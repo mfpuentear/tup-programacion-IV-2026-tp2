@@ -1,0 +1,32 @@
+### Obtener todos los rectángulos
+GET http://localhost:3000/api/rectangulos
+
+### Crear rectángulo válido (perímetro y superficie se calculan en servidor)
+POST http://localhost:3000/api/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 4,
+  "lado2": 5.5
+}
+
+### Probar validación (lado con valor inválido <= 0)
+POST http://localhost:3000/api/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": -2,
+  "lado2": 5
+}
+
+### Actualizar rectángulo con ID 1
+PUT http://localhost:3000/api/rectangulos/1
+Content-Type: application/json
+
+{
+  "lado1": 10,
+  "lado2": 20
+}
+
+### Eliminar rectángulo con ID 1
+DELETE http://localhost:3000/api/rectangulos/1
