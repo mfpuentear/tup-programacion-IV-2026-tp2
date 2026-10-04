@@ -1,0 +1,147 @@
+@url = http://localhost:3000
+
+### Crear una materia
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+  "nombre": "Programación IV"
+}
+
+### Crear otra materia
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+  "nombre": "Legislación"
+}
+
+### Crear una materia con nombre vacío 
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+  "nombre": ""
+}
+
+### Listar todas las materias
+GET {{url}}/materias
+
+### Obtener una materia por id
+GET {{url}}/materias/1
+
+### Obtener una materia que no existe 
+GET {{url}}/materias/9999
+
+### Listar todas las calificaciones
+GET {{url}}/calificaciones
+
+### Obtener una calificación por id
+GET {{url}}/calificaciones/1
+
+### Obtener una calificación con id inválido 
+GET {{url}}/calificaciones/abc
+
+### Obtener una calificación que no existe
+GET {{url}}/calificaciones/9999
+
+### Crear una calificación válida
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Benjamín Gramajo",
+  "materiaId": 1,
+  "nota1": 8,
+  "nota2": 7.5,
+  "nota3": 9
+}
+
+### Crear una calificación para el mismo alumno y materia 
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "  benjamín GRAMAJO  ",
+  "materiaId": 1,
+  "nota1": 6,
+  "nota2": 6,
+  "nota3": 6
+}
+
+### Crear una calificación con una materia que no existe 
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Juan Pérez",
+  "materiaId": 9999,
+  "nota1": 8,
+  "nota2": 8,
+  "nota3": 8
+}
+
+### Crear una calificación con una nota fuera de la escala 
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Juan Pérez",
+  "materiaId": 1,
+  "nota1": 15,
+  "nota2": 8,
+  "nota3": 8
+}
+
+### Crear una calificación con una nota no numérica 
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Juan Pérez",
+  "materiaId": 1,
+  "nota1": "ocho",
+  "nota2": 8,
+  "nota3": 8
+}
+
+### Crear una calificación sin nombre de alumno 
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "materiaId": 1,
+  "nota1": 8,
+  "nota2": 8,
+  "nota3": 8
+}
+
+### Actualizar una calificación existente
+PUT {{url}}/calificaciones/1
+Content-Type: application/json
+
+{
+  "alumno": "Benjamín Gramajo",
+  "materiaId": 1,
+  "nota1": 9,
+  "nota2": 9,
+  "nota3": 10
+}
+
+### Actualizar una calificación que no existe 
+PUT {{url}}/calificaciones/9999
+Content-Type: application/json
+
+{
+  "alumno": "Benjamín Gramajo",
+  "materiaId": 1,
+  "nota1": 9,
+  "nota2": 9,
+  "nota3": 10
+}
+
+### Eliminar una calificación existente
+DELETE {{url}}/calificaciones/1
+
+### Eliminar una calificación que no existe
+DELETE {{url}}/calificaciones/9999

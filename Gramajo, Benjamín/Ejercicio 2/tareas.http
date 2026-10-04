@@ -1,0 +1,96 @@
+@url = http://localhost:3000
+
+### Listar todas las tareas
+GET {{url}}/tareas
+
+### Obtener una tarea por id
+GET {{url}}/tareas/1
+
+### Listar solo las tareas completadas
+GET {{url}}/tareas?completada=true
+
+### Listar solo las tareas pendientes
+GET {{url}}/tareas?completada=false
+
+### Filtrar con un valor de estado inválido
+GET {{url}}/tareas?completada=si
+
+### Crear una tarea válida
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Terminar el Ejercicio 2",
+  "completada": false
+
+
+}
+
+### Crear una tarea con nombre duplicado (distintas mayúsculas y espacios)
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "  terminar EL ejercicio 2  ",
+  "completada": true
+}
+
+### Crear una tarea con un nombre vacío
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "", 
+  "completada": false
+}
+
+### Crear una tarea con un nombre no válido (solo espacios)
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "   ",
+  "completada": false
+}
+
+### Crear una tarea "completada" con un string (no booleano)
+POST {{url}}/tareas
+Content-Type: application/json
+   
+   {
+     "nombre": "Pasear al perro",
+     "completada": "si"
+   }
+
+### Actualizar una tarea existente
+PUT {{url}}/tareas/1
+Content-Type: application/json
+
+{
+  "nombre": "Hacer Ejercicio 2",
+  "completada": true
+}
+
+### Actualizar una tarea que no existe 
+PUT {{url}}/tareas/9999
+Content-Type: application/json
+
+{
+  "nombre": "Tarea inexistente",
+  "completada": false
+  }
+
+### Actualizar una tarea con un id inválido 
+PUT {{url}}/tareas/abc
+Content-Type: application/json
+
+{
+  "nombre": "Tarea inválida",
+  "completada": false 
+}
+
+### Eliminar una tarea existente
+DELETE {{url}}/tareas/1
+
+### Eliminar una tarea que no existe 
+DELETE {{url}}/tareas/9999

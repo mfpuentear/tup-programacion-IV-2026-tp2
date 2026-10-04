@@ -1,0 +1,75 @@
+@url = http://localhost:3000
+
+### Listar todos los rectángulos
+GET {{url}}/rectangulos
+
+### Obtener un rectángulo por id
+GET {{url}}/rectangulos/1
+
+### Crear un rectángulo válido
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 5,
+  "lado2": 10
+}
+
+### Crear un rectángulo con lado negativo 
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": -5,
+  "lado2": 10
+}
+
+### Crear un rectángulo con un lado faltante 
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 5
+}
+
+### Crear un rectángulo con un lado no numérico 
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": "abc",
+  "lado2": 10
+}
+
+### Actualizar un rectángulo existente
+PUT {{url}}/rectangulos/1
+Content-Type: application/json
+
+{
+  "lado1": 7,
+  "lado2": 3
+}
+
+### Actualizar un rectángulo que no existe 
+PUT {{url}}/rectangulos/9999
+Content-Type: application/json
+
+{
+  "lado1": 7,
+  "lado2": 3
+}
+
+### Actualizar con un id inválido 
+PUT {{url}}/rectangulos/abc
+Content-Type: application/json
+
+{
+  "lado1": 7,
+  "lado2": 3
+}
+
+### Eliminar un rectángulo existente
+DELETE {{url}}/rectangulos/1
+
+### Eliminar un rectángulo que no existe 
+DELETE {{url}}/rectangulos/9999
