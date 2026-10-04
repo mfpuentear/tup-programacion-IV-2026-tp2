@@ -1,0 +1,192 @@
+@url = http://localhost:3000
+
+######## MATERIAS
+
+### Crear materia (201)
+POST {{url}}/materias
+Content-Type: application/json
+
+{ "nombre": "Programación IV" }
+
+### Crear otra materia (201)
+POST {{url}}/materias
+Content-Type: application/json
+
+{ "nombre": "Base de Datos" }
+
+### Materia repetida: sin acento, en minúsculas y con espacios extra (400)
+POST {{url}}/materias
+Content-Type: application/json
+
+{ "nombre": "programacion   iv" }
+
+### Materia sin nombre (400)
+POST {{url}}/materias
+Content-Type: application/json
+
+{ "nombre": "" }
+
+### Listar materias (200)
+GET {{url}}/materias
+
+### Renombrar materia (200)
+PUT {{url}}/materias/2
+Content-Type: application/json
+
+{ "nombre": "Bases de Datos II" }
+
+### Renombrar con el nombre de otra materia (400)
+PUT {{url}}/materias/2
+Content-Type: application/json
+
+{ "nombre": "PROGRAMACIÓN IV" }
+
+### Materia inexistente (404)
+GET {{url}}/materias/9999
+
+######## ALUMNOS
+
+### Crear alumno (201)
+POST {{url}}/alumnos
+Content-Type: application/json
+
+{ "nombre": "José María Pérez" }
+
+### Crear otro alumno (201)
+POST {{url}}/alumnos
+Content-Type: application/json
+
+{ "nombre": "Ana Gómez" }
+
+### Nombre con números (400)
+POST {{url}}/alumnos
+Content-Type: application/json
+
+{ "nombre": "R2D2" }
+
+### Nombre que no es texto (400)
+POST {{url}}/alumnos
+Content-Type: application/json
+
+{ "nombre": 123 }
+
+### Modificar alumno (200)
+PUT {{url}}/alumnos/2
+Content-Type: application/json
+
+{ "nombre": "Ana Lucía Gómez" }
+
+### Listar alumnos (200)
+GET {{url}}/alumnos
+
+### Alumno inexistente (404)
+GET {{url}}/alumnos/9999
+
+######## CALIFICACIONES
+
+### Cargar calificación (201)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{ "alumnoId": 1, "materiaId": 1, "notas": [8, 7, 9] }
+
+### Cargar otra calificación (201)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{ "alumnoId": 1, "materiaId": 2, "notas": [4, 6, 10] }
+
+### Mismo alumno en la misma materia (400)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{ "alumnoId": 1, "materiaId": 1, "notas": [5, 5, 5] }
+
+### Materia inexistente (400)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{ "alumnoId": 1, "materiaId": 9999, "notas": [5, 5, 5] }
+
+### Alumno inexistente (400)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{ "alumnoId": 9999, "materiaId": 1, "notas": [5, 5, 5] }
+
+### Solo 2 notas (400)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{ "alumnoId": 2, "materiaId": 2, "notas": [5, 5] }
+
+### 4 notas (400)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{ "alumnoId": 2, "materiaId": 2, "notas": [5, 5, 5, 5] }
+
+### Notas fuera de escala y con decimales (400)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{ "alumnoId": 2, "materiaId": 2, "notas": [0, 11, 7.5] }
+
+### Body vacío (400)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{}
+
+### Listar calificaciones (200)
+GET {{url}}/calificaciones
+
+### Filtrar por alumno (200)
+GET {{url}}/calificaciones?alumnoId=1
+
+### Filtrar por materia (200)
+GET {{url}}/calificaciones?materiaId=1
+
+### Filtro inválido (400)
+GET {{url}}/calificaciones?alumnoId=abc
+
+### Obtener una (200)
+GET {{url}}/calificaciones/1
+
+### Id inválido (400)
+GET {{url}}/calificaciones/abc
+
+### Calificación inexistente (404)
+GET {{url}}/calificaciones/9999
+
+### Modificar notas (200)
+PUT {{url}}/calificaciones/1
+Content-Type: application/json
+
+{ "alumnoId": 1, "materiaId": 1, "notas": [9, 9, 9] }
+
+### Modificar a una materia que el alumno ya tiene (400)
+PUT {{url}}/calificaciones/1
+Content-Type: application/json
+
+{ "alumnoId": 1, "materiaId": 2, "notas": [9, 9, 9] }
+
+### Modificar inexistente (404)
+PUT {{url}}/calificaciones/9999
+Content-Type: application/json
+
+{ "alumnoId": 2, "materiaId": 2, "notas": [9, 9, 9] }
+
+######## BORRADOS
+
+### Borrar materia con calificaciones (409)
+DELETE {{url}}/materias/1
+
+### Borrar alumno con calificaciones (409)
+DELETE {{url}}/alumnos/1
+
+### Borrar calificación (204)
+DELETE {{url}}/calificaciones/1
+
+### Borrar calificación otra vez (404)
+DELETE {{url}}/calificaciones/1
