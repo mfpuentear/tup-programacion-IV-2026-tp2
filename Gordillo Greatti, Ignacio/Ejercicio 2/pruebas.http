@@ -1,0 +1,100 @@
+@url = http://localhost:3000/tareas
+
+### Crear tarea pendiente (201)
+POST {{url}}
+Content-Type: application/json
+
+{ "nombre": "Comprar pan" }
+
+### Crear tarea completada (201)
+POST {{url}}
+Content-Type: application/json
+
+{ "nombre": "Estudiar Express", "completada": true }
+
+### Duplicado: otras mayúsculas y espacios extra (400)
+POST {{url}}
+Content-Type: application/json
+
+{ "nombre": "  comprar   PAN  " }
+
+### Duplicado: con acento (400)
+POST {{url}}
+Content-Type: application/json
+
+{ "nombre": "Cómprar pan" }
+
+### Nombre vacío (400)
+POST {{url}}
+Content-Type: application/json
+
+{ "nombre": "   " }
+
+### Nombre que no es texto (400)
+POST {{url}}
+Content-Type: application/json
+
+{ "nombre": 123 }
+
+### Sin nombre (400)
+POST {{url}}
+Content-Type: application/json
+
+{}
+
+### Estado inválido (400)
+POST {{url}}
+Content-Type: application/json
+
+{ "nombre": "Lavar ropa", "completada": "si" }
+
+### Listar todas (200)
+GET {{url}}
+
+### Filtrar completadas (200)
+GET {{url}}?estado=completadas
+
+### Filtrar pendientes (200)
+GET {{url}}?estado=pendientes
+
+### Filtro inválido (400)
+GET {{url}}?estado=hecha
+
+### Obtener una (200)
+GET {{url}}/1
+
+### Id inválido (400)
+GET {{url}}/abc
+
+### Id inexistente (404)
+GET {{url}}/9999
+
+### Marcar como completada (200)
+PUT {{url}}/1
+Content-Type: application/json
+
+{ "nombre": "Comprar pan", "completada": true }
+
+### Renombrar con el nombre de otra tarea (400)
+PUT {{url}}/1
+Content-Type: application/json
+
+{ "nombre": "ESTUDIAR express", "completada": true }
+
+### Modificar sin estado (400)
+PUT {{url}}/1
+Content-Type: application/json
+
+{ "nombre": "Comprar pan y leche" }
+
+### Modificar inexistente (404)
+PUT {{url}}/9999
+Content-Type: application/json
+
+{ "nombre": "Otra tarea", "completada": false }
+
+### Eliminar (204)
+DELETE {{url}}/1
+
+### Eliminar otra vez (404)
+DELETE {{url}}/1
