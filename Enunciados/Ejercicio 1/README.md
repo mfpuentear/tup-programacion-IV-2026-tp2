@@ -19,4 +19,4 @@ adoptadas para el modelo de datos y para la API.
 
 ### Diagrama Entidad-Relación
 
-![Diagrama Entidad-Relación](https://imgur.com/a/ZrcD695)
+![Diagrama Entidad-Relación](./Relaciones%20SQL.png)
