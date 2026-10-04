@@ -1,0 +1,88 @@
+@url=http://127.0.0.1:3003
+
+##### 1. Consultar catálogo de materias existentes
+GET {{url}}/materias
+
+##### 2. Listar todas las calificaciones actuales (con JOIN a materias)
+GET {{url}}/calificaciones
+
+##### 3. Crear calificación válida (Escala de 0 a 10)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Lautaro Jover",
+  "materia_id": 1,
+  "nota1": 8.50,
+  "nota2": 9.00,
+  "nota3": 10.00
+}
+
+##### 4. Crear calificación para otro alumno en otra materia
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Maria Gonzalez",
+  "materia_id": 2,
+  "nota1": 7.00,
+  "nota2": 6.50,
+  "nota3": 8.00
+}
+
+##### 5. Test Error Cualidad: Intentar registrar al mismo alumno en la misma materia (debe fallar 400)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "  lautaro jover  ",
+  "materia_id": 1,
+  "nota1": 6.00,
+  "nota2": 7.00,
+  "nota3": 8.00
+}
+
+##### 6. Test Error Materia Inexistente: Registrar en una materia que no existe (debe fallar 404)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Carlos Gomez",
+  "materia_id": 999,
+  "nota1": 8,
+  "nota2": 7,
+  "nota3": 9
+}
+
+##### 7. Test Error Escala de Notas: Nota mayor a 10 o negativa (debe fallar 400 por express-validator)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Carlos Gomez",
+  "materia_id": 2,
+  "nota1": 15,
+  "nota2": -2,
+  "nota3": 8
+}
+
+##### 8. Consultar calificación por ID
+GET {{url}}/calificaciones/1
+
+##### 9. Modificar calificaciones
+PUT {{url}}/calificaciones/1
+Content-Type: application/json
+
+{
+  "alumno": "Lautaro Jover",
+  "materia_id": 1,
+  "nota1": 9.50,
+  "nota2": 9.00,
+  "nota3": 10.00
+}
+
+##### 10. Eliminar calificación
+DELETE {{url}}/calificaciones/2
+
+##### 11. Confirmar eliminación consultando el registro borrado (debe fallar 404)
+GET {{url}}/calificaciones/2
