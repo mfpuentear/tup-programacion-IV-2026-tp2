@@ -1,0 +1,66 @@
+@url=http://127.0.0.1:3002
+
+##### 1. Listar todas las tareas iniciales
+GET {{url}}/tareas
+
+##### 2. Crear tarea pendiente 1
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Estudiar para Programacion IV",
+  "completada": false
+}
+
+##### 3. Crear tarea completada 2
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Configurar MySQL en DBeaver",
+  "completada": true
+}
+
+##### 4. Test Error Unicidad: Intentar crear tarea duplicada distintas mayúsculas y espacios
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "  estudiar para programacion 4  "
+}
+
+##### 5. Test Error Validación: Crear con nombre vacío y completada no booleana
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "   ",
+  "completada": "no-booleano"
+}
+
+##### 6. Filtrar solo completadas
+GET {{url}}/tareas?estado=completadas
+
+##### 7. Filtrar solo pendientes
+GET {{url}}/tareas?estado=pendientes
+
+##### 8. Test Error Filtro: Consultar con estado inválido debe fallar 400
+GET {{url}}/tareas?estado=canceladas
+
+##### 9. Consultar tarea por ID
+GET {{url}}/tareas/1
+
+##### 10. Modificar tarea (marcar como completada)
+PUT {{url}}/tareas/1
+Content-Type: application/json
+
+{
+  "nombre": "Estudiar para Programacion 4 Repaso",
+  "completada": true
+}
+
+##### 11. Eliminar tarea
+DELETE {{url}}/tareas/3
+
+##### 12. Confirmar eliminación consultando ID borrado debe fallar 404
+GET {{url}}/tareas/4
