@@ -1,0 +1,76 @@
+@url = http://localhost:3000/rectangulos
+
+### Crear rectángulo (201)
+POST {{url}}
+Content-Type: application/json
+
+{ "base": 5, "altura": 3 }
+
+### Crear con decimales (201)
+POST {{url}}
+Content-Type: application/json
+
+{ "base": 2.5, "altura": 4.25 }
+
+### Falta un lado (400)
+POST {{url}}
+Content-Type: application/json
+
+{ "base": 5 }
+
+### Lado negativo y lado no numérico (400)
+POST {{url}}
+Content-Type: application/json
+
+{ "base": -1, "altura": "abc" }
+
+### Más de 2 decimales (400)
+POST {{url}}
+Content-Type: application/json
+
+{ "base": 1.234, "altura": 2 }
+
+### Intentar mandar el perímetro (400)
+POST {{url}}
+Content-Type: application/json
+
+{ "base": 5, "altura": 3, "perimetro": 16 }
+
+### Listar todos (200)
+GET {{url}}
+
+### Filtrar por superficie (200)
+GET {{url}}?superficieMin=10&superficieMax=20
+
+### Filtro no numérico (400)
+GET {{url}}?superficieMin=abc
+
+### Mínimo mayor que máximo (400)
+GET {{url}}?superficieMin=50&superficieMax=10
+
+### Obtener uno (200)
+GET {{url}}/1
+
+### Id inválido (400)
+GET {{url}}/abc
+
+### Id inexistente (404)
+GET {{url}}/9999
+
+### Modificar (200, recalcula perímetro y superficie)
+PUT {{url}}/1
+Content-Type: application/json
+
+{ "base": 10, "altura": 2 }
+
+### Modificar inexistente (404)
+PUT {{url}}/9999
+Content-Type: application/json
+
+{ "base": 10, "altura": 2 }
+
+### Eliminar (204)
+DELETE {{url}}/1
+
+### Eliminar otra vez (404)
+DELETE {{url}}/1
