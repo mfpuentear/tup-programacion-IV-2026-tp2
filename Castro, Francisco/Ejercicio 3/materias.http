@@ -1,0 +1,115 @@
+@url = http://localhost:3003
+
+# Crear materia Programacion I (id 1)
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+  "nombre": "Programacion I"
+}
+
+###
+
+# Crear materia Programacion II (id 2)
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+  "nombre": "Programacion II"
+}
+
+###
+
+# Crear materia Algebra (id 3)
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+  "nombre": "Algebra"
+}
+
+###
+
+# Crear materia Fisica (id 4)
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+  "nombre": "Fisica"
+}
+
+###
+
+# Listar todas las materias
+GET {{url}}/materias
+
+###
+
+# Buscar materias por nombre
+GET {{url}}/materias?buscar=algebra
+
+###
+
+# Obtener una materia por id
+GET {{url}}/materias/1
+
+###
+
+# Modificar materia
+PUT {{url}}/materias/4
+Content-Type: application/json
+
+{
+  "nombre": "Fisica I"
+}
+
+###
+
+# Error: materia duplicada
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+  "nombre": "algebra"
+}
+
+###
+
+# Error: nombre vacio
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+  "nombre": ""
+}
+
+###
+
+# Error: campo no permitido
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+  "nombre": "Quimica",
+  "codigo": "QUI"
+}
+
+###
+
+# Error: id invalido
+GET {{url}}/materias/abc
+
+###
+
+# Error: materia no encontrada
+GET {{url}}/materias/999999
+
+###
+
+# Eliminar materia sin notas asociadas
+DELETE {{url}}/materias/4
+
+###
+
+# Error: eliminar materia inexistente
+DELETE {{url}}/materias/999999

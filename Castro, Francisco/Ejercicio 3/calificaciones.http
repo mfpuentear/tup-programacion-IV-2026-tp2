@@ -1,0 +1,169 @@
+@url = http://localhost:3003
+
+# Recordatorio: primero se crea la materia
+# Casos validos
+
+### 1. Crear calificacion para Programacion I (id: 1)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Juan Pérez",
+  "materiaId": 1,
+  "notas": [8, 7, 9]
+}
+
+### 2. Crear calificacion para Programacion II (id: 2) 
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Juan Pérez",
+  "materiaId": 2,
+  "notas": [6, 8, 7]
+}
+
+### 3. Crear calificacion para Maria Gomez en Programacion I
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "María Gómez",
+  "materiaId": 1,
+  "notas": [9, 9, 10]
+}
+
+### 4. Listar todas las calificaciones
+GET {{url}}/calificaciones
+
+### 5. Filtrar calificaciones por alumno
+GET {{url}}/calificaciones?alumno=Juan
+
+### 6. Filtrar calificaciones por materia
+GET {{url}}/calificaciones?materiaId=1
+
+### 7. Obtener calificacion por id
+GET {{url}}/calificaciones/1
+
+### 8. Reemplazo completo (PUT)
+PUT {{url}}/calificaciones/1
+Content-Type: application/json
+
+{
+  "alumno": "Juan Pérez",
+  "materiaId": 1,
+  "notas": [9, 9, 9]
+}
+
+### 9. Modificacion parcial (PATCH solo notas)
+PATCH {{url}}/calificaciones/1
+Content-Type: application/json
+
+{
+  "notas": [10, 8, 9]
+}
+
+
+### 10. Intento de registrar a Juan Perez nuevamente en Programacion I
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "juan pérez",
+  "materiaId": 1,
+  "notas": [5, 5, 5]
+}
+
+### 11. Modificar asignando una materia que el alumno ya tiene registrada
+PATCH {{url}}/calificaciones/1
+Content-Type: application/json
+
+{
+  "materiaId": 2
+}
+
+
+# Casos invalidos (400)
+
+### 12. Materia inexistente
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Carlos Ruiz",
+  "materiaId": 9999,
+  "notas": [7, 8, 9]
+}
+
+### 13. Faltan notas (menos de 3)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Carlos Ruiz",
+  "materiaId": 1,
+  "notas": [7, 8]
+}
+
+### 14. Sobran notas (mas de 3)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Carlos Ruiz",
+  "materiaId": 1,
+  "notas": [7, 8, 9, 10]
+}
+
+### 15. Notas fuera de la escala (menores a 1 o mayores a 10)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Carlos Ruiz",
+  "materiaId": 1,
+  "notas": [0, 8, 12]
+}
+
+### 16. Notas no numericas
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Carlos Ruiz",
+  "materiaId": 1,
+  "notas": ["siete", 8, null]
+}
+
+### 17. Nombre de alumno vacio o invalido
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "   ",
+  "materiaId": 1,
+  "notas": [7, 8, 9]
+}
+
+### 18. Campo no permitido en el cuerpo
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Carlos Ruiz",
+  "materiaId": 1,
+  "notas": [7, 8, 9],
+  "promedio": 8
+}
+
+### 19. JSON mal formado
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{ "alumno": "Juan"
+
+
+# Eliminar calificacion
+
+### 20. Eliminar una calificacion
+DELETE {{url}}/calificaciones/1

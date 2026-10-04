@@ -1,0 +1,113 @@
+@url = http://localhost:3001
+
+
+# Casos validos
+
+### 1. Crear rectangulo 1
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+  "ladoA": 5,
+  "ladoB": 6
+}
+
+### 2. Crear rectangulo con decimales
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+  "ladoA": 2.5,
+  "ladoB": 1.5
+}
+
+### 3. Listar todos los rectangulos
+GET {{url}}/rectangulos
+
+### 4. Filtrar por rango de superficie
+GET {{url}}/rectangulos?superficieMin=1&superficieMax=5000
+
+### 5. Paginacion con limit y offset
+GET {{url}}/rectangulos?limit=2&offset=0
+
+### 6. Obtener rectangulo por id
+GET {{url}}/rectangulos/1
+
+### 7. Modificar rectangulo
+PUT {{url}}/rectangulos/1
+Content-Type: application/json
+
+{
+  "ladoA": 100,
+  "ladoB": 30
+}
+
+
+# Casos invalidos (400)
+
+### 8. Error: falta un lado
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+  "ladoA": 5
+}
+
+### 9. Error: lado menor o igual a cero
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+  "ladoA": 0,
+  "ladoB": 4
+}
+
+### 10. Error: lado no numerico
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+  "ladoA": "abc",
+  "ladoB": 4
+}
+
+### 11. Error: cliente intenta mandar perimetro o superficie
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+  "ladoA": 3,
+  "ladoB": 4,
+  "perimetro": 14,
+  "superficie": 12
+}
+
+### 12. Error: id no numerico
+GET {{url}}/rectangulos/abc
+
+### 13. Error: filtros invalidos
+GET {{url}}/rectangulos?superficieMin=-10
+
+
+# No encontrado (404)
+
+### 14. Error: rectangulo no encontrado
+GET {{url}}/rectangulos/999999
+
+### 15. Error: modificar rectangulo inexistente
+PUT {{url}}/rectangulos/999999
+Content-Type: application/json
+
+{
+  "ladoA": 10,
+  "ladoB": 20
+}
+
+### 16. Error: eliminar rectangulo inexistente
+DELETE {{url}}/rectangulos/999999
+
+
+# Eliminar rectangulo
+
+### 17. Eliminar rectangulo
+DELETE {{url}}/rectangulos/1

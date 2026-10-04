@@ -1,0 +1,159 @@
+@url = http://localhost:3002
+
+# Casos validos
+
+### 1. Crear tarea pendiente
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Estudiar para el examen",
+  "estado": false
+}
+
+### 2. Crear tarea sin indicar estado (por defecto pendiente)
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Hacer las compras del supermercado"
+}
+
+### 3. Crear tarea completada
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Entregar el trabajo practico",
+  "estado": true
+}
+
+### 4. Listar todas las tareas
+GET {{url}}/tareas
+
+### 5. Filtrar solo tareas completadas
+GET {{url}}/tareas?estado=completadas
+
+### 6. Filtrar solo tareas pendientes
+GET {{url}}/tareas?estado=pendientes
+
+### 7. Paginacion con limit y offset
+GET {{url}}/tareas?limit=2&offset=0
+
+### 8. Obtener tarea por id
+GET {{url}}/tareas/1
+
+### 9. Modificar tarea (cambiar nombre y marcar como completada)
+PUT {{url}}/tareas/1
+Content-Type: application/json
+
+{
+  "nombre": "Estudiar para el examen de Programacion IV",
+  "estado": true
+}
+
+### 10. Modificar tarea manteniendo el mismo nombre
+PUT {{url}}/tareas/2
+Content-Type: application/json
+
+{
+  "nombre": "Hacer las compras del supermercado",
+  "estado": true
+}
+
+
+# Regla de unicidad (409)
+
+### 11. Error: crear tarea con nombre repetido
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Entregar el trabajo practico"
+}
+
+### 12. Error: crear tarea repetida con mayusculas o espacios extra
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "   entregar   el   TRABAJO   PRACTICO   "
+}
+
+### 13. Error: modificar con el nombre de otra tarea que ya existe
+PUT {{url}}/tareas/1
+Content-Type: application/json
+
+{
+  "nombre": "Entregar el trabajo practico",
+  "estado": false
+}
+
+
+# Casos invalidos (400)
+
+### 14. Error: falta el nombre
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "estado": false
+}
+
+### 15. Error: nombre vacio
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "   "
+}
+
+### 16. Error: nombre no texto
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": 12345
+}
+
+### 17. Error: estado no booleano
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Comprar cafe",
+  "estado": "completada"
+}
+
+### 18. Error: filtro de estado invalido
+GET {{url}}/tareas?estado=enProceso
+
+### 19. Error: limit invalido
+GET {{url}}/tareas?limit=-5
+
+### 20. Error: id no numerico
+GET {{url}}/tareas/abc
+
+
+# No encontrado (404)
+
+### 21. Error: obtener tarea inexistente
+GET {{url}}/tareas/999999
+
+### 22. Error: modificar tarea inexistente
+PUT {{url}}/tareas/999999
+Content-Type: application/json
+
+{
+  "nombre": "Tarea fantasma",
+  "estado": false
+}
+
+### 23. Error: eliminar tarea inexistente
+DELETE {{url}}/tareas/999999
+
+
+# Eliminar tarea
+
+### 24. Eliminar tarea
+DELETE {{url}}/tareas/3
