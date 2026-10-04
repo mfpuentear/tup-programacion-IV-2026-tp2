@@ -1,0 +1,10 @@
+CREATE DATABASE IF NOT EXISTS tp2_ejercicio2;
+
+USE tp2_ejercicio2;
+
+CREATE TABLE IF NOT EXISTS tareas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(60) NOT NULL,
+    completada BOOLEAN NOT NULL DEFAULT FALSE,
+    nombre_normalizado VARCHAR(60) NOT NULL UNIQUE
+);
