@@ -16,3 +16,7 @@ cuerpo de las solicitudes que implemente, utilizando `express-validator`.
 Definir los recursos, los métodos HTTP y las respuestas que considere
 necesarios para gestionar los rectángulos. Fundamentar las decisiones de diseño
 adoptadas para el modelo de datos y para la API.
+
+### Diagrama Entidad-Relación
+
+![Diagrama Entidad-Relación](https://imgur.com/a/ZrcD695)
