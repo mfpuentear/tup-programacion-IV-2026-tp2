@@ -1,0 +1,144 @@
+@url=http://localhost:3000
+
+### ========== CASOS VÁLIDOS ==========
+
+### Crear tarea (sin estado: arranca pendiente)
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Comprar pan"
+}
+
+### Crear tarea completada
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar Programación",
+    "completada": true
+}
+
+### Listado de tareas
+GET {{url}}/tareas
+
+### Listado de tareas completadas
+GET {{url}}/tareas?estado=completadas
+
+### Listado de tareas pendientes
+GET {{url}}/tareas?estado=pendientes
+
+### Detalle de tarea
+GET {{url}}/tareas/1
+
+### Modificar tarea (marcarla como completada)
+PUT {{url}}/tareas/1
+Content-Type: application/json
+
+{
+    "nombre": "Comprar pan",
+    "completada": true
+}
+
+### Modificar tarea cambiando solo mayúsculas de su propio nombre (permitido)
+PUT {{url}}/tareas/1
+Content-Type: application/json
+
+{
+    "nombre": "COMPRAR PAN",
+    "completada": true
+}
+
+### Eliminar tarea
+DELETE {{url}}/tareas/2
+
+### ========== REGLA DE UNICIDAD ==========
+
+### Error 400: mismo nombre con mayúsculas, tildes y espacios extra
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "   comprár     PAN   "
+}
+
+### Crear otra tarea para la prueba siguiente
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Lavar el auto"
+}
+
+### Error 400: renombrar una tarea con el nombre de otra
+PUT {{url}}/tareas/3
+Content-Type: application/json
+
+{
+    "nombre": "comprar pan",
+    "completada": false
+}
+
+### ========== OTROS CASOS DE ERROR ==========
+
+### Error 400: falta el nombre
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "completada": false
+}
+
+### Error 400: nombre vacío (solo espacios)
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "     "
+}
+
+### Error 400: nombre que no es texto
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": 123
+}
+
+### Error 400: estado no booleano
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Hacer la cama",
+    "completada": "si"
+}
+
+### Error 400: PUT sin el estado
+PUT {{url}}/tareas/1
+Content-Type: application/json
+
+{
+    "nombre": "Comprar pan"
+}
+
+### Error 400: filtro de estado no admitido
+GET {{url}}/tareas?estado=terminadas
+
+### Error 400: id no válido
+GET {{url}}/tareas/abc
+
+### Error 404: tarea inexistente
+GET {{url}}/tareas/9999
+
+### Error 404: modificar tarea inexistente
+PUT {{url}}/tareas/9999
+Content-Type: application/json
+
+{
+    "nombre": "Algo nuevo",
+    "completada": false
+}
+
+### Error 404: eliminar tarea inexistente
+DELETE {{url}}/tareas/9999

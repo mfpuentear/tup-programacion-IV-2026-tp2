@@ -1,0 +1,13 @@
+CREATE DATABASE IF NOT EXISTS tp2_rectangulos;
+
+USE tp2_rectangulos;
+
+CREATE TABLE IF NOT EXISTS rectangulos (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  lado1 DOUBLE NOT NULL,
+  lado2 DOUBLE NOT NULL,
+  perimetro DOUBLE NOT NULL,
+  superficie DOUBLE NOT NULL,
+  CONSTRAINT chk_lado1 CHECK (lado1 > 0),
+  CONSTRAINT chk_lado2 CHECK (lado2 > 0)
+);

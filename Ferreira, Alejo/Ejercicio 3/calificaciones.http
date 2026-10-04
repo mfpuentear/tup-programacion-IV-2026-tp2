@@ -1,0 +1,240 @@
+@url=http://localhost:3000
+
+### ================= MATERIAS =================
+
+### Listado de materias
+GET {{url}}/materias
+
+### Detalle de materia
+GET {{url}}/materias/2
+
+### Crear materia
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+    "nombre": "Física"
+}
+
+### Modificar materia
+PUT {{url}}/materias/5
+Content-Type: application/json
+
+{
+    "nombre": "Física I"
+}
+
+### Error 400: materia repetida (mayúsculas y sin tilde)
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+    "nombre": "programacion iv"
+}
+
+### Error 400: nombre de materia vacío
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+    "nombre": "   "
+}
+
+### Error 404: materia inexistente
+GET {{url}}/materias/9999
+
+### ================= CALIFICACIONES: CASOS VÁLIDOS =================
+
+### Crear calificación
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Juan Pérez",
+    "materiaId": 2,
+    "notas": [7, 8, 9]
+}
+
+### Crear otra calificación en la misma materia
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "María Gómez",
+    "materiaId": 2,
+    "notas": [10, 9, 8]
+}
+
+### Mismo alumno en otra materia (permitido)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Juan Pérez",
+    "materiaId": 3,
+    "notas": [6, 7, 8]
+}
+
+### Listado de calificaciones
+GET {{url}}/calificaciones
+
+### Listado filtrado por alumno
+GET {{url}}/calificaciones?alumno=juan
+
+### Listado filtrado por materia
+GET {{url}}/calificaciones?materiaId=2
+
+### Listado filtrado por alumno y materia
+GET {{url}}/calificaciones?alumno=juan&materiaId=3
+
+### Detalle de calificación
+GET {{url}}/calificaciones/1
+
+### Calificaciones de una materia
+GET {{url}}/materias/2/calificaciones
+
+### Modificar notas de una calificación (mismo alumno y materia: permitido)
+PUT {{url}}/calificaciones/1
+Content-Type: application/json
+
+{
+    "alumno": "Juan Pérez",
+    "materiaId": 2,
+    "notas": [8, 8, 9]
+}
+
+### ================= REGLA DE UNICIDAD =================
+
+### Error 400: mismo alumno y materia (con mayúsculas, sin tilde y espacios extra)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "  juan   PEREZ  ",
+    "materiaId": 2,
+    "notas": [5, 5, 5]
+}
+
+### Error 400: modificar pasando a una combinación que ya existe
+PUT {{url}}/calificaciones/3
+Content-Type: application/json
+
+{
+    "alumno": "Juan Pérez",
+    "materiaId": 2,
+    "notas": [6, 7, 8]
+}
+
+### ================= CALIFICACIONES: OTROS ERRORES =================
+
+### Error 400: la materia no existe
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Ana López",
+    "materiaId": 9999,
+    "notas": [7, 7, 7]
+}
+
+### Error 400: solo dos notas
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Ana López",
+    "materiaId": 1,
+    "notas": [7, 7]
+}
+
+### Error 400: cuatro notas
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Ana López",
+    "materiaId": 1,
+    "notas": [7, 7, 7, 7]
+}
+
+### Error 400: nota fuera de escala
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Ana López",
+    "materiaId": 1,
+    "notas": [7, 11, 0]
+}
+
+### Error 400: nota decimal
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Ana López",
+    "materiaId": 1,
+    "notas": [7, 7.5, 8]
+}
+
+### Error 400: nota como texto
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Ana López",
+    "materiaId": 1,
+    "notas": [7, "8", 9]
+}
+
+### Error 400: falta el alumno
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "materiaId": 1,
+    "notas": [7, 7, 7]
+}
+
+### Error 400: alumno con números
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Ana123",
+    "materiaId": 1,
+    "notas": [7, 7, 7]
+}
+
+### Error 400: filtro no válido
+GET {{url}}/calificaciones?materiaId=abc
+
+### Error 400: id no válido
+GET {{url}}/calificaciones/abc
+
+### Error 404: calificación inexistente
+GET {{url}}/calificaciones/9999
+
+### ================= ELIMINAR =================
+
+### Error 409: no se puede borrar una materia con calificaciones
+DELETE {{url}}/materias/2
+
+### Eliminar materia sin calificaciones
+DELETE {{url}}/materias/5
+
+### Eliminar calificación
+DELETE {{url}}/calificaciones/3
+
+### Error 404: eliminar calificación inexistente
+DELETE {{url}}/calificaciones/9999
+### ================= ALUMNOS =================
+
+### Listado de alumnos con sus calificaciones
+GET {{url}}/alumnos
+
+### Buscar alumno por nombre (búsqueda parcial)
+GET {{url}}/alumnos?nombre=juan
+
+### Error 400: filtro de nombre vacío
+GET {{url}}/alumnos?nombre=

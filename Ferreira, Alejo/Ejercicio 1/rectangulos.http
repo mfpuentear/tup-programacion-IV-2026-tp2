@@ -1,0 +1,114 @@
+@url=http://localhost:3000
+
+### ========== CASOS VÁLIDOS ==========
+
+### Crear rectángulo
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "lado1": 4,
+    "lado2": 5
+}
+
+### Crear rectángulo con lados decimales
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "lado1": 2.5,
+    "lado2": 3
+}
+
+### Listado de rectángulos
+GET {{url}}/rectangulos
+
+### Listado filtrado por superficie mínima
+GET {{url}}/rectangulos?superficieMin=10
+
+### Listado filtrado por superficie mínima y máxima
+GET {{url}}/rectangulos?superficieMin=5&superficieMax=15
+
+### Detalle de rectángulo
+GET {{url}}/rectangulos/1
+
+### Modificar rectángulo (se recalculan perímetro y superficie)
+PUT {{url}}/rectangulos/1
+Content-Type: application/json
+
+{
+    "lado1": 10,
+    "lado2": 2
+}
+
+### Eliminar rectángulo
+DELETE {{url}}/rectangulos/2
+
+### ========== CASOS DE ERROR ==========
+
+### Error 400: falta un lado
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "lado1": 4
+}
+
+### Error 400: lado igual a cero
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "lado1": 0,
+    "lado2": 5
+}
+
+### Error 400: lado negativo
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "lado1": -3,
+    "lado2": 5
+}
+
+### Error 400: lado no numérico
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "lado1": "hola",
+    "lado2": 5
+}
+
+### Error 400: el cliente intenta enviar perímetro y superficie
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "lado1": 4,
+    "lado2": 5,
+    "perimetro": 100,
+    "superficie": 999
+}
+
+### Error 400: id no válido
+GET {{url}}/rectangulos/abc
+
+### Error 400: filtro no válido
+GET {{url}}/rectangulos?superficieMin=-5
+
+### Error 404: rectángulo inexistente
+GET {{url}}/rectangulos/9999
+
+### Error 404: modificar rectángulo inexistente
+PUT {{url}}/rectangulos/9999
+Content-Type: application/json
+
+{
+    "lado1": 3,
+    "lado2": 3
+}
+
+### Error 404: eliminar rectángulo inexistente
+DELETE {{url}}/rectangulos/9999
