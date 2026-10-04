@@ -1,0 +1,89 @@
+@url=http://localhost:3000
+
+### Crear rectangulo
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "ladoA": 10,
+    "ladoB": 5
+}
+
+### Crear otro rectangulo
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "ladoA": 8,
+    "ladoB": 8
+}
+
+### Listar rectangulos
+GET {{url}}/rectangulos
+
+### Listar rectangulos con filtro minimo
+GET {{url}}/rectangulos?ladoMin=5
+
+### Listar rectangulos con filtro maximo
+GET {{url}}/rectangulos?ladoMax=20
+
+### Consultar rectangulo por id
+GET {{url}}/rectangulos/1
+
+### Modificar rectangulo
+PUT {{url}}/rectangulos/1
+Content-Type: application/json
+
+{
+    "ladoA": 12,
+    "ladoB": 6
+}
+
+### Consultar rectangulo modificado
+GET {{url}}/rectangulos/1
+
+### Eliminar rectangulo
+DELETE {{url}}/rectangulos/1
+
+### Error: no debe aceptar perimetro enviado por cliente
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "ladoA": 10,
+    "ladoB": 5,
+    "perimetro": 30
+}
+
+### Error: no debe aceptar superficie enviada por cliente
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "ladoA": 10,
+    "ladoB": 5,
+    "superficie": 50
+}
+
+### Error: lado negativo
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "ladoA": -10,
+    "ladoB": 5
+}
+
+### Error: falta ladoB
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "ladoA": 10
+}
+
+### Error: id invalido
+GET {{url}}/rectangulos/abc
+
+### Error: filtro invalido
+GET {{url}}/rectangulos?ladoMin=abc
