@@ -1,0 +1,118 @@
+### Variables de entorno
+@baseUrl = http://localhost:3001
+
+### 1. Documentación / Raíz de la API
+GET {{baseUrl}}/
+
+### 2. Listar todos los rectángulos
+GET {{baseUrl}}/api/rectangulos
+
+### 3. Listar rectángulos que son cuadrados (esCuadrado=true)
+GET {{baseUrl}}/api/rectangulos?esCuadrado=true
+
+### 4. Listar rectángulos que NO son cuadrados (esCuadrado=false)
+GET {{baseUrl}}/api/rectangulos?esCuadrado=false
+
+### 5. Listar con orden descendente y límite de 2 elementos
+GET {{baseUrl}}/api/rectangulos?orden=desc&limite=2
+
+### 6. Error de consulta: filtro esCuadrado inválido (400)
+GET {{baseUrl}}/api/rectangulos?esCuadrado=invalido
+
+### 7. Obtener un rectángulo por ID existente
+GET {{baseUrl}}/api/rectangulos/1
+
+### 8. Error: Obtener rectángulo con ID inexistente (404)
+GET {{baseUrl}}/api/rectangulos/999999
+
+### 9. Error: Obtener rectángulo con ID no numérico (400)
+GET {{baseUrl}}/api/rectangulos/abc
+
+### 10. Crear un nuevo rectángulo válido (El servidor calcula perímetro y superficie)
+POST {{baseUrl}}/api/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 15.5,
+  "lado2": 7.0
+}
+
+### 11. Crear un cuadrado válido (lados iguales, servidor calcula perímetro y superficie)
+POST {{baseUrl}}/api/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 8,
+  "lado2": 8
+}
+
+### 12. Error: Crear rectángulo con lado negativo o cero (400)
+POST {{baseUrl}}/api/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": -5,
+  "lado2": 10
+}
+
+### 13. Error: Crear rectángulo omitiendo un lado obligatorio (400)
+POST {{baseUrl}}/api/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 10
+}
+
+### 14. Error: Crear rectángulo con valores no numéricos (400)
+POST {{baseUrl}}/api/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": "diez",
+  "lado2": "cinco"
+}
+
+### 15. Error: Cliente intenta enviar 'perimetro' o 'superficie' (400 - Rechazado expresamente)
+POST {{baseUrl}}/api/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 10,
+  "lado2": 5,
+  "perimetro": 30,
+  "superficie": 50
+}
+
+### 16. Modificar un rectángulo existente (recalcula perímetro y superficie en servidor)
+PUT {{baseUrl}}/api/rectangulos/1
+Content-Type: application/json
+
+{
+  "lado1": 12.0,
+  "lado2": 6.5
+}
+
+### 17. Error: Modificar rectángulo con ID inexistente (404)
+PUT {{baseUrl}}/api/rectangulos/999999
+Content-Type: application/json
+
+{
+  "lado1": 10,
+  "lado2": 5
+}
+
+### 18. Error: Modificar rectángulo intentando enviar superficie (400)
+PUT {{baseUrl}}/api/rectangulos/1
+Content-Type: application/json
+
+{
+  "lado1": 20,
+  "lado2": 10,
+  "superficie": 200
+}
+
+### 19. Eliminar un rectángulo existente
+DELETE {{baseUrl}}/api/rectangulos/2
+
+### 20. Error: Eliminar rectángulo inexistente (404)
+DELETE {{baseUrl}}/api/rectangulos/999999

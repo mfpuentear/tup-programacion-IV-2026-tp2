@@ -1,0 +1,164 @@
+### Variables de entorno
+@baseUrl = http://localhost:3003
+
+### 1. Documentación / Raíz de la API
+GET {{baseUrl}}/
+
+### ==========================================================
+### GESTIÓN DE MATERIAS
+### ==========================================================
+
+### 2. Listar todas las materias
+GET {{baseUrl}}/api/materias
+
+### 3. Obtener una materia por ID existente
+GET {{baseUrl}}/api/materias/1
+
+### 4. Error: Obtener materia con ID inexistente (404)
+GET {{baseUrl}}/api/materias/999999
+
+### 5. Crear una nueva materia válida
+POST {{baseUrl}}/api/materias
+Content-Type: application/json
+
+{
+  "nombre": "Redes de Datos",
+  "codigo": "RED-1"
+}
+
+### 6. Error: Crear materia con nombre o código ya existente (409 Conflict)
+POST {{baseUrl}}/api/materias
+Content-Type: application/json
+
+{
+  "nombre": "Redes de Datos",
+  "codigo": "RED-1"
+}
+
+### 7. Error: Crear materia con campos vacíos o ausentes (400 Bad Request)
+POST {{baseUrl}}/api/materias
+Content-Type: application/json
+
+{
+  "nombre": ""
+}
+
+### ==========================================================
+### GESTIÓN DE CALIFICACIONES
+### ==========================================================
+
+### 8. Listar todas las calificaciones registradas (incluye nombre de materia y promedio calculado)
+GET {{baseUrl}}/api/calificaciones
+
+### 9. Filtrar calificaciones por materia (?materia_id=1)
+GET {{baseUrl}}/api/calificaciones?materia_id=1
+
+### 10. Filtrar calificaciones por alumno (?alumno=Federico)
+GET {{baseUrl}}/api/calificaciones?alumno=Federico
+
+### 11. Obtener una calificación por ID existente
+GET {{baseUrl}}/api/calificaciones/1
+
+### 12. Error: Obtener calificación con ID inexistente (404 Not Found)
+GET {{baseUrl}}/api/calificaciones/999999
+
+### 13. Registrar calificación válida (Exactamente 3 notas entre 1.00 y 10.00)
+POST {{baseUrl}}/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Lucas Benjamín Gómez",
+  "materia_id": 2,
+  "nota1": 8.50,
+  "nota2": 7.00,
+  "nota3": 9.25
+}
+
+### 14. Error: Registrar calificación con materia inexistente (400 Bad Request)
+POST {{baseUrl}}/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Carlos Menem",
+  "materia_id": 99999,
+  "nota1": 7.0,
+  "nota2": 8.0,
+  "nota3": 9.0
+}
+
+### 15. Error: Registrar calificación duplicada para el mismo alumno y materia (409 Conflict)
+POST {{baseUrl}}/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Lucas Benjamín Gómez",
+  "materia_id": 2,
+  "nota1": 6.0,
+  "nota2": 6.0,
+  "nota3": 6.0
+}
+
+### 16. Error: Registrar notas fuera de la escala definida [1.00 - 10.00] (400 Bad Request)
+POST {{baseUrl}}/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Valeria Silva",
+  "materia_id": 1,
+  "nota1": 12.50,
+  "nota2": 7.00,
+  "nota3": 0.50
+}
+
+### 17. Error: Registrar calificación omitiendo alguna de las 3 notas obligatorias (400 Bad Request)
+POST {{baseUrl}}/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Valeria Silva",
+  "materia_id": 1,
+  "nota1": 8.00,
+  "nota2": 7.50
+}
+
+### 18. Modificar una calificación existente (PUT)
+PUT {{baseUrl}}/api/calificaciones/1
+Content-Type: application/json
+
+{
+  "alumno": "Federico Merlo Brac",
+  "materia_id": 1,
+  "nota1": 10.00,
+  "nota2": 9.50,
+  "nota3": 10.00
+}
+
+### 19. Error: Modificar calificación asignando materia inexistente (400 Bad Request)
+PUT {{baseUrl}}/api/calificaciones/1
+Content-Type: application/json
+
+{
+  "alumno": "Federico Merlo Brac",
+  "materia_id": 9999,
+  "nota1": 8.0,
+  "nota2": 8.0,
+  "nota3": 8.0
+}
+
+### 20. Error: Modificar calificación provocando duplicación alumno-materia (409 Conflict)
+PUT {{baseUrl}}/api/calificaciones/2
+Content-Type: application/json
+
+{
+  "alumno": "Federico Merlo Brac",
+  "materia_id": 1,
+  "nota1": 7.0,
+  "nota2": 7.0,
+  "nota3": 7.0
+}
+
+### 21. Eliminar una calificación existente
+DELETE {{baseUrl}}/api/calificaciones/3
+
+### 22. Error: Eliminar calificación inexistente (404 Not Found)
+DELETE {{baseUrl}}/api/calificaciones/999999
