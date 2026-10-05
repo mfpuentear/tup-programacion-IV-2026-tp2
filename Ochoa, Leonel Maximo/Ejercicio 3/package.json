@@ -1,0 +1,17 @@
+{
+  "name": "tp2-ejercicio-3",
+  "version": "1.0.0",
+  "description": "API de calificaciones con alumnos y materias",
+  "license": "ISC",
+  "author": "Ochoa, Leonel Maximo",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --env-file=.env --watch index.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "express-validator": "^7.3.2",
+    "mysql2": "^3.24.4"
+  }
+}

@@ -1,0 +1,144 @@
+@url=http://localhost:3000
+
+### Listado de alumnos
+GET {{url}}/alumnos
+
+### Crear alumno
+POST {{url}}/alumnos
+Content-Type: application/json
+
+{
+    "nombre": "Ana Perez"
+}
+
+### Crear alumno duplicado
+POST {{url}}/alumnos
+Content-Type: application/json
+
+{
+    "nombre": "ana perez"
+}
+
+### Detalle de alumno
+GET {{url}}/alumnos/1
+
+### Alumno con id invalido
+GET {{url}}/alumnos/algo
+
+### Alumno inexistente
+GET {{url}}/alumnos/999
+
+### Modificar alumno
+PUT {{url}}/alumnos/1
+Content-Type: application/json
+
+{
+    "nombre": "Ana Gomez"
+}
+
+### Listado de materias
+GET {{url}}/materias
+
+### Crear materia
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+    "nombre": "Programacion"
+}
+
+### Crear otra materia
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+    "nombre": "Base de datos"
+}
+
+### Detalle de materia
+GET {{url}}/materias/1
+
+### Modificar materia
+PUT {{url}}/materias/2
+Content-Type: application/json
+
+{
+    "nombre": "Bases de datos"
+}
+
+### Listado de calificaciones
+GET {{url}}/calificaciones
+
+### Calificaciones filtradas por alumno
+GET {{url}}/calificaciones?alumnoId=1
+
+### Filtro invalido
+GET {{url}}/calificaciones?alumnoId=algo
+
+### Crear calificacion
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumnoId": 1,
+    "materiaId": 1,
+    "notas": [8, 7, 9]
+}
+
+### Crear calificacion duplicada alumno-materia
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumnoId": 1,
+    "materiaId": 1,
+    "notas": [4, 5, 6]
+}
+
+### Crear calificacion con materia inexistente
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumnoId": 1,
+    "materiaId": 99,
+    "notas": [8, 7, 9]
+}
+
+### Crear calificacion con notas invalidas
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumnoId": 1,
+    "materiaId": 2,
+    "notas": [11, -1]
+}
+
+### Detalle de calificacion
+GET {{url}}/calificaciones/1
+
+### Calificaciones de un alumno
+GET {{url}}/alumnos/1/calificaciones
+
+### Calificaciones de una materia
+GET {{url}}/materias/1/calificaciones
+
+### Modificar calificacion
+PUT {{url}}/calificaciones/1
+Content-Type: application/json
+
+{
+    "alumnoId": 1,
+    "materiaId": 1,
+    "notas": [6, 6, 7]
+}
+
+### Quitar calificacion
+DELETE {{url}}/calificaciones/1
+
+### Quitar materia
+DELETE {{url}}/materias/2
+
+### Quitar alumno
+DELETE {{url}}/alumnos/1
