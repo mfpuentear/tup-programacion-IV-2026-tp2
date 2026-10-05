@@ -1,0 +1,6 @@
+node_modules/
+package-lock.json
+init-db.sql
+.env.example
+.env
+

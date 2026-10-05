@@ -1,0 +1,45 @@
+@host = http://localhost:3003
+
+### Obtener todas las materias
+GET {{host}}/api/materias
+
+### Crear una nueva materia
+POST {{host}}/api/materias
+Content-Type: application/json
+
+{
+  "nombre": "Programación IV"
+}
+
+### Obtener todas las calificaciones
+GET {{host}}/api/calificaciones
+
+### Obtener una calificación por su ID
+GET {{host}}/api/calificaciones/1
+
+### Registrar una calificación
+POST {{host}}/api/calificaciones
+Content-Type: application/json
+
+{
+  "nombre_alumno": "Roman Moreno",
+  "materia_id": 1,
+  "nota_1": 8.5,
+  "nota_2": 9.0,
+  "nota_3": 7.5
+}
+
+### Modificar una calificación (PUT)
+PUT {{host}}/api/calificaciones/1
+Content-Type: application/json
+
+{
+  "nombre_alumno": "Roman Moreno",
+  "materia_id": 1,
+  "nota_1": 9.0,
+  "nota_2": 9.5,
+  "nota_3": 10.0
+}
+
+### Eliminar una calificación (DELETE)
+DELETE {{host}}/api/calificaciones/1

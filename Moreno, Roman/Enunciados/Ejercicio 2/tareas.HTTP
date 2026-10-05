@@ -1,0 +1,87 @@
+@host = http://localhost:3002
+
+### Obtener todas las tareas
+GET {{host}}/api/tareas
+
+### Obtener tareas pendientes
+GET {{host}}/api/tareas?estado=pendiente
+
+### Obtener tareas completadas
+GET {{host}}/api/tareas?estado=completada
+
+### Crear tarea
+POST {{host}}/api/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Comprar leche",
+  "completada": false
+} 
+
+### Crear otra tarea
+POST {{host}}/api/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Estudiar programación",
+  "completada": false
+}
+
+### Intentar crear tarea duplicada (debe fallar)
+POST {{host}}/api/tareas
+Content-Type: application/json
+
+{
+  "nombre": "comprar  leche",
+  "completada": true
+}
+
+### Actualizar tarea
+PUT {{host}}/api/tareas/1
+Content-Type: application/json
+
+{
+  "nombre": "Comprar pan",
+  "completada": true
+}
+
+### Actualizar solo estado
+PUT {{host}}/api/tareas/1
+Content-Type: application/json
+
+{
+  "completada": false
+}
+
+### Eliminar tarea
+DELETE {{host}}/api/tareas/1
+
+### Error: nombre vacío
+POST {{host}}/api/tareas
+Content-Type: application/json
+
+{
+  "nombre": "",
+  "completada": false
+}
+
+### Error: nombre muy corto
+POST {{host}}/api/tareas
+Content-Type: application/json
+
+{
+  "nombre": "A",
+  "completada": false
+}
+
+### Error: estado no es booleano
+POST {{host}}/api/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Nueva tarea",
+  "completada": "si"
+}
+
+### Error: estado inválido en query
+GET {{host}}/api/tareas?estado=invalido
