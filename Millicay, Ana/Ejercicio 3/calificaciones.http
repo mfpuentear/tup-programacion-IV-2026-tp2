@@ -1,0 +1,123 @@
+@baseUrl = http://localhost:3000
+
+### ===== 1. MATERIAS =====
+
+### Crear materia (201)
+POST {{baseUrl}}/materias
+Content-Type: application/json
+
+{ "nombre": "Programación IV" }
+
+### Crear materia sin nombre (400)
+POST {{baseUrl}}/materias
+Content-Type: application/json
+
+{ }
+
+### Listar materias (200)
+GET {{baseUrl}}/materias
+
+### Obtener materia (200)
+GET {{baseUrl}}/materias/1
+
+### Obtener materia con id inválido (400)
+GET {{baseUrl}}/materias/abc
+
+### ===== 2. CALIFICACIONES =====
+
+### Crear calificación (201)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "alumno": "Perez, Juan", "materia_id": 1, "notas": [7, 8.5, 9] }
+
+### Repetir alumno + materia (400)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "alumno": "perez, juan", "materia_id": 1, "notas": [5, 6, 7] }
+
+### Solo 2 notas (400)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "alumno": "Gomez, Maria", "materia_id": 1, "notas": [7, 8] }
+
+### 4 notas (400)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "alumno": "Gomez, Maria", "materia_id": 1, "notas": [7, 8, 9, 10] }
+
+### Nota fuera de escala (400)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "alumno": "Gomez, Maria", "materia_id": 1, "notas": [7, 11, -1] }
+
+### Nota no numérica (400)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "alumno": "Gomez, Maria", "materia_id": 1, "notas": [7, "ocho", 9] }
+
+### Materia inexistente (400)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "alumno": "Gomez, Maria", "materia_id": 999, "notas": [7, 8, 9] }
+
+### Alumno vacío (400)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "alumno": "   ", "materia_id": 1, "notas": [7, 8, 9] }
+
+### ===== 3. CONSULTAS Y MODIFICACIÓN =====
+
+### Listar todas (200)
+GET {{baseUrl}}/calificaciones
+
+### Filtrar por alumno (200)
+GET {{baseUrl}}/calificaciones?alumno=perez
+
+### Filtrar por materia (200)
+GET {{baseUrl}}/calificaciones?materia_id=1
+
+### Filtro inválido (400)
+GET {{baseUrl}}/calificaciones?materia_id=xyz
+
+### Obtener una (200)
+GET {{baseUrl}}/calificaciones/1
+
+### Obtener inexistente (404)
+GET {{baseUrl}}/calificaciones/999
+
+### Modificar calificación (200)
+PUT {{baseUrl}}/calificaciones/1
+Content-Type: application/json
+
+{ "alumno": "Perez, Juan", "materia_id": 1, "notas": [8, 9, 10] }
+
+### ===== 4. CONFLICTOS Y ELIMINACIÓN =====
+
+### Crear materia duplicada (409)
+POST {{baseUrl}}/materias
+Content-Type: application/json
+
+{ "nombre": "programación iv" }
+
+### Modificar materia (200)
+PUT {{baseUrl}}/materias/1
+Content-Type: application/json
+
+{ "nombre": "Programación IV - Backend" }
+
+### Eliminar materia con calificaciones (409)
+DELETE {{baseUrl}}/materias/1
+
+### Eliminar calificación (204)
+DELETE {{baseUrl}}/calificaciones/1
+
+### Eliminar materia sin calificaciones (204)
+DELETE {{baseUrl}}/materias/1

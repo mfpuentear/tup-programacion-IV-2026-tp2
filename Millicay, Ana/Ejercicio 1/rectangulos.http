@@ -1,0 +1,76 @@
+@host = http://localhost:3000
+
+### Crear rectángulo (válido) -> 201
+POST {{host}}/rectangulos
+Content-Type: application/json
+
+{ "ladoA": 5, "ladoB": 3.5 }
+
+### Crear con un lado en cero -> 400
+POST {{host}}/rectangulos
+Content-Type: application/json
+
+{ "ladoA": 0, "ladoB": 3 }
+
+### Crear con lado negativo -> 400
+POST {{host}}/rectangulos
+Content-Type: application/json
+
+{ "ladoA": -2, "ladoB": 3 }
+
+### Crear con lado faltante -> 400
+POST {{host}}/rectangulos
+Content-Type: application/json
+
+{ "ladoA": 5 }
+
+### Crear con texto en un lado -> 400
+POST {{host}}/rectangulos
+Content-Type: application/json
+
+{ "ladoA": "abc", "ladoB": 3 }
+
+### Crear enviando perímetro o superficie -> 400
+POST {{host}}/rectangulos
+Content-Type: application/json
+
+{ "ladoA": 5, "ladoB": 3, "perimetro": 16, "superficie": 15 }
+
+### Listar -> 200
+GET {{host}}/rectangulos?limit=10&offset=0
+
+### Listar con query inválida -> 400
+GET {{host}}/rectangulos?limit=-5
+
+### Obtener por id -> 200
+GET {{host}}/rectangulos/1
+
+### Obtener con id inválido -> 400
+GET {{host}}/rectangulos/abc
+
+### Obtener un id inexistente -> 404
+GET {{host}}/rectangulos/9999
+
+### Modificar -> 200
+PUT {{host}}/rectangulos/1
+Content-Type: application/json
+
+{ "ladoA": 10, "ladoB": 4 }
+
+### Modificar con datos inválidos -> 400
+PUT {{host}}/rectangulos/1
+Content-Type: application/json
+
+{ "ladoA": 10, "ladoB": 0 }
+
+### Modificar un id inexistente -> 404
+PUT {{host}}/rectangulos/9999
+Content-Type: application/json
+
+{ "ladoA": 10, "ladoB": 4 }
+
+### Eliminar -> 204
+DELETE {{host}}/rectangulos/1
+
+### Eliminar un id inexistente -> 404
+DELETE {{host}}/rectangulos/9999

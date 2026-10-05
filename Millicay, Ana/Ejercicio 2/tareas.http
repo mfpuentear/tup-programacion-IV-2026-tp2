@@ -1,0 +1,124 @@
+@host = http://localhost:3000
+
+### 1. Crear tarea (id 1) -> 201
+POST {{host}}/tareas
+Content-Type: application/json
+
+{ "nombre": "Comprar pan" }
+
+### 2. Crear tarea ya completada (id 2) -> 201
+POST {{host}}/tareas
+Content-Type: application/json
+
+{ "nombre": "Estudiar Node", "completada": true }
+
+### 3. Nombre duplicado con otro formato -> 409
+POST {{host}}/tareas
+Content-Type: application/json
+
+{ "nombre": "  comprar   PAN " }
+
+### 4. Nombre duplicado con tilde -> 409
+POST {{host}}/tareas
+Content-Type: application/json
+
+{ "nombre": "Comprar pán" }
+
+### 5. Sin nombre -> 400
+POST {{host}}/tareas
+Content-Type: application/json
+
+{ "completada": false }
+
+### 6. Nombre solo con espacios -> 400
+POST {{host}}/tareas
+Content-Type: application/json
+
+{ "nombre": "   " }
+
+### 7. Nombre que no es texto -> 400
+POST {{host}}/tareas
+Content-Type: application/json
+
+{ "nombre": 123 }
+
+### 8. Nombre sin letras ni números -> 400
+POST {{host}}/tareas
+Content-Type: application/json
+
+{ "nombre": "!!!" }
+
+### 9. Estado con texto en vez de booleano -> 400
+POST {{host}}/tareas
+Content-Type: application/json
+
+{ "nombre": "Tarea nueva", "completada": "si" }
+
+### 10. Estado con número en vez de booleano -> 400
+POST {{host}}/tareas
+Content-Type: application/json
+
+{ "nombre": "Tarea nueva", "completada": 1 }
+
+### 11. Listar todas -> 200
+GET {{host}}/tareas
+
+### 12. Solo completadas -> 200 (solo la 2)
+GET {{host}}/tareas?estado=completadas
+
+### 13. Solo pendientes -> 200 (solo la 1)
+GET {{host}}/tareas?estado=pendientes
+
+### 14. Filtro inválido -> 400
+GET {{host}}/tareas?estado=hecho
+
+### 15. Obtener por id -> 200
+GET {{host}}/tareas/1
+
+### 16. Id inválido -> 400
+GET {{host}}/tareas/abc
+
+### 17. Id inexistente -> 404
+GET {{host}}/tareas/9999
+
+### 18. Modificar con el nombre de otra tarea -> 409
+PUT {{host}}/tareas/1
+Content-Type: application/json
+
+{ "nombre": "estudiar NODE", "completada": false }
+
+### 19. Modificar -> 200
+PUT {{host}}/tareas/1
+Content-Type: application/json
+
+{ "nombre": "Comprar pan integral", "completada": false }
+
+### 20. Modificar sin estado -> 400
+PUT {{host}}/tareas/1
+Content-Type: application/json
+
+{ "nombre": "Comprar pan integral" }
+
+### 21. Marcar como completada -> 200
+PATCH {{host}}/tareas/1/estado
+Content-Type: application/json
+
+{ "completada": true }
+
+### 22. Estado inválido -> 400
+PATCH {{host}}/tareas/1/estado
+Content-Type: application/json
+
+{ "completada": "si" }
+
+### 23. Cambiar estado de id inexistente -> 404
+PATCH {{host}}/tareas/9999/estado
+Content-Type: application/json
+
+{ "completada": true }
+
+### 24. Eliminar -> 204
+DELETE {{host}}/tareas/1
+
+### 25. Eliminar id inexistente -> 404
+DELETE {{host}}/tareas/9999
