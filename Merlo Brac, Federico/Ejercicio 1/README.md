@@ -61,40 +61,58 @@ erDiagram
 - Node.js (v18+)
 - MySQL Server en ejecución
 
-### Pasos
-1. Instalar las dependencias:
-   ```bash
-   npm install
-   ```
+### 4.1 Configuración de variables de entorno
+Configurar las credenciales en el archivo `.env`:
+```env
+PORT=3001
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=tu_contraseña_aqui
+DB_NAME=tp2_ejercicio1
+```
 
-2. Configurar las variables de entorno en el archivo `.env`:
-   ```env
-   PORT=3001
-   DB_HOST=localhost
-   DB_PORT=3306
-   DB_USER=root
-   DB_PASSWORD=tu_contraseña_aqui
-   DB_NAME=tp2_ejercicio1
-   ```
+### 4.2 Inicialización y Ejecución en PowerShell
+```powershell
+# Desde la raíz del repositorio, ingresar a la carpeta:
+cd "Merlo Brac, Federico\Ejercicio 1"
 
-3. Inicializar la base de datos (opcional, la aplicación la inicializa automáticamente al arrancar):
-   ```bash
-   npm run init-db
-   ```
-   O bien ejecutar manualmente el script `schema.sql` en MySQL.
+# Instalar dependencias (solo la primera vez):
+npm install
 
-4. Iniciar el servidor:
-   ```bash
-   # Modo producción
-   npm start
+# Inicializar la base de datos (opcional, se inicializa automáticamente al arrancar):
+npm run init-db
 
-   # Modo desarrollo (con recarga automática)
-   npm run dev
-   ```
+# Iniciar el servidor (Puerto 3001):
+npm start
 
-5. Probar los endpoints:
-   - Utilizar el archivo de pruebas `ejercicio1.http` con la extensión REST Client de VS Code o Thunder Client.
-   - O ejecutar la suite de pruebas automatizadas:
-     ```bash
-     npm test
-     ```
+# Modo desarrollo con recarga automática:
+npm run dev
+
+# Ejecutar suite de pruebas automatizadas:
+npm test
+```
+
+### 4.3 Inicialización y Ejecución en Bash / Git Bash
+```bash
+# Desde la raíz del repositorio, ingresar a la carpeta:
+cd "Merlo Brac, Federico/Ejercicio 1"
+
+# Instalar dependencias (solo la primera vez):
+npm install
+
+# Inicializar la base de datos:
+npm run init-db
+
+# Iniciar el servidor (Puerto 3001):
+npm start
+
+# Modo desarrollo con recarga automática:
+npm run dev
+
+# Ejecutar suite de pruebas automatizadas:
+npm test
+```
+
+### 4.4 Pruebas con archivo HTTP
+Con el servidor en ejecución, abrir el archivo [ejercicio1.http](file:///c:/Users/Usuario/Desktop/tp2%20prog4/tup-programacion-IV-2026-tp2/Merlo%20Brac,%20Federico/Ejercicio%201/ejercicio1.http) con la extensión REST Client de VS Code o Thunder Client y hacer clic en **"Send Request"** sobre cada caso de prueba.

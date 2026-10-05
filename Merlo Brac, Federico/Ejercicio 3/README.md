@@ -96,38 +96,58 @@ erDiagram
 - Node.js (v18+)
 - MySQL Server en ejecución
 
-### Pasos
-1. Instalar dependencias:
-   ```bash
-   npm install
-   ```
+### 4.1 Configuración de variables de entorno
+Configurar las credenciales en el archivo `.env`:
+```env
+PORT=3003
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=tu_contraseña_aqui
+DB_NAME=tp2_ejercicio3
+```
 
-2. Configurar el archivo `.env`:
-   ```env
-   PORT=3003
-   DB_HOST=localhost
-   DB_PORT=3306
-   DB_USER=root
-   DB_PASSWORD=tu_contraseña_aqui
-   DB_NAME=tp2_ejercicio3
-   ```
+### 4.2 Inicialización y Ejecución en PowerShell
+```powershell
+# Desde la raíz del repositorio, ingresar a la carpeta:
+cd "Merlo Brac, Federico\Ejercicio 3"
 
-3. Inicializar la base de datos (opcional, la aplicación la inicializa automáticamente al arrancar):
-   ```bash
-   npm run init-db
-   ```
+# Instalar dependencias (solo la primera vez):
+npm install
 
-4. Iniciar el servidor:
-   ```bash
-   # Modo producción
-   npm start
+# Inicializar la base de datos (opcional, se inicializa automáticamente al arrancar):
+npm run init-db
 
-   # Modo desarrollo (con recarga automática)
-   npm run dev
-   ```
+# Iniciar el servidor (Puerto 3003):
+npm start
 
-5. Ejecutar pruebas automatizadas:
-   ```bash
-   npm test
-   ```
-   O utilizar el archivo `ejercicio3.http` en VS Code.
+# Modo desarrollo con recarga automática:
+npm run dev
+
+# Ejecutar suite de pruebas automatizadas:
+npm test
+```
+
+### 4.3 Inicialización y Ejecución en Bash / Git Bash
+```bash
+# Desde la raíz del repositorio, ingresar a la carpeta:
+cd "Merlo Brac, Federico/Ejercicio 3"
+
+# Instalar dependencias (solo la primera vez):
+npm install
+
+# Inicializar la base de datos:
+npm run init-db
+
+# Iniciar el servidor (Puerto 3003):
+npm start
+
+# Modo desarrollo con recarga automática:
+npm run dev
+
+# Ejecutar suite de pruebas automatizadas:
+npm test
+```
+
+### 4.4 Pruebas con archivo HTTP
+Con el servidor en ejecución, abrir el archivo [ejercicio3.http](file:///c:/Users/Usuario/Desktop/tp2%20prog4/tup-programacion-IV-2026-tp2/Merlo%20Brac,%20Federico/Ejercicio%203/ejercicio3.http) con la extensión REST Client de VS Code o Thunder Client y hacer clic en **"Send Request"** sobre cada caso de prueba.
