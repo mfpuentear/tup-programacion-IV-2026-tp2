@@ -1,0 +1,61 @@
+### Listar rectángulos (vacío al principio)
+GET http://localhost:3000/rectangulos
+
+### Crear un rectángulo válido
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 4,
+  "lado2": 6
+}
+
+### Crear un cuadrado (lados iguales)
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 5,
+  "lado2": 5
+}
+
+### Intentar crear con lado negativo
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": -4,
+  "lado2": 6
+}
+
+### Intentar crear sin lado2
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 4
+}
+
+### Consultar el rectángulo con id 1
+GET http://localhost:3000/rectangulos/1
+
+### Consultar un id que no existe
+GET http://localhost:3000/rectangulos/999
+
+### Consultar con un id inválido (no numérico)
+GET http://localhost:3000/rectangulos/abc
+
+### Modificar el rectángulo con id 1
+PUT http://localhost:3000/rectangulos/1
+Content-Type: application/json
+
+{
+  "lado1": 10,
+  "lado2": 10
+}
+
+### Borrar el rectángulo con id 2
+DELETE http://localhost:3000/rectangulos/2
+
+### Listar rectángulos al final
+GET http://localhost:3000/rectangulos
