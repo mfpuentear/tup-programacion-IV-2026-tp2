@@ -1,0 +1,10 @@
+CREATE DATABASE IF NOT EXISTS tp2_programacion;
+USE tp2_programacion;
+
+CREATE TABLE IF NOT EXISTS rectangulos (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  lado1 DECIMAL(10,2) NOT NULL,
+  lado2 DECIMAL(10,2) NOT NULL,
+  perimetro DECIMAL(10,2) NOT NULL,
+  superficie DECIMAL(10,2) NOT NULL
+);

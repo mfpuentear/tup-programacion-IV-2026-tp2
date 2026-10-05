@@ -1,0 +1,37 @@
+@url=http://localhost:3001
+
+##### 1. Listar rectángulos
+GET {{url}}/rectangulos
+
+##### 2. Crear rectángulo válido
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 10,
+  "lado2": 5
+}
+
+##### 3. Crear con lado inválido (falla 400 por validación)
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": -3,
+  "lado2": 5
+}
+
+##### 4. Consultar rectángulo por ID
+GET {{url}}/rectangulos/3
+
+##### 5. Modificar rectángulo
+PUT {{url}}/rectangulos/1
+Content-Type: application/json
+
+{
+  "lado1": 12,
+  "lado2": 4
+}
+
+##### 6. Eliminar rectángulo
+DELETE {{url}}/rectangulos/3
