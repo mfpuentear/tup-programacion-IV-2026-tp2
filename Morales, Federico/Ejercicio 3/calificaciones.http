@@ -1,0 +1,110 @@
+### Listar materias (vacío al principio)
+GET http://localhost:3000/materias
+
+### Crear materia: Programación V
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+  "nombre": "Programacion V"
+}
+
+### Crear materia: Bases de Datos
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+  "nombre": "Bases de Datos II"
+}
+
+### Intentar crear materia sin nombre
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+}
+
+### Listar calificaciones (vacío al principio)
+GET http://localhost:3000/calificaciones
+
+### Crear una calificación válida (alumno en materia_id 1)
+POST http://localhost:3000/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Juan Perez",
+  "materia_id": 1,
+  "nota1": 7,
+  "nota2": 8,
+  "nota3": 6
+}
+
+### Crear otra calificación (mismo alumno, otra materia - válido)
+POST http://localhost:3000/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Juan Perez",
+  "materia_id": 2,
+  "nota1": 9,
+  "nota2": 9,
+  "nota3": 10
+}
+
+### Intentar duplicar la combinación alumno + materia
+POST http://localhost:3000/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "  JUAN perez  ",
+  "materia_id": 1,
+  "nota1": 5,
+  "nota2": 5,
+  "nota3": 5
+}
+
+### Intentar crear con una materia que no existe
+POST http://localhost:3000/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Ana Gomez",
+  "materia_id": 999,
+  "nota1": 7,
+  "nota2": 7,
+  "nota3": 7
+}
+
+### Intentar crear con una nota fuera de escala
+POST http://localhost:3000/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Pedro Lopez",
+  "materia_id": 1,
+  "nota1": 15,
+  "nota2": 7,
+  "nota3": 7
+}
+
+### Consultar una calificación puntual
+GET http://localhost:3000/calificaciones/1
+
+### Consultar una calificación que no existe
+GET http://localhost:3000/calificaciones/999
+
+### Modificar las notas de una calificación
+PUT http://localhost:3000/calificaciones/1
+Content-Type: application/json
+
+{
+  "nota1": 10,
+  "nota2": 7,
+  "nota3": 9
+}
+
+### Borrar una calificación
+DELETE http://localhost:3000/calificaciones/2
+
+### Listar calificaciones al final
+GET http://localhost:3000/calificaciones
