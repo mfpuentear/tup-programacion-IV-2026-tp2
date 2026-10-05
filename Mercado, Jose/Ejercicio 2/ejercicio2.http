@@ -1,0 +1,35 @@
+### 1. Crear una tarea nueva (Debería retornar 201 Created)
+POST http://localhost:3001/api/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar Programación IV",
+    "completada": false
+}
+
+### 2. Intentar crear una tarea con el mismo nombre (Debería fallar con 409 Conflict)
+POST http://localhost:3001/api/tareas
+Content-Type: application/json
+
+{
+    "nombre": "  estudiar programación IV  ",
+    "completada": true
+}
+
+### 3. Obtener todas las tareas
+GET http://localhost:3001/api/tareas
+
+### 4. Filtrar solo las tareas pendientes
+GET http://localhost:3001/api/tareas?estado=pendientes
+
+### 5. Filtrar solo las tareas completadas
+GET http://localhost:3001/api/tareas?estado=completadas
+
+### 6. Modificar una tarea existente (Actualizar nombre y estado)
+PUT http://localhost:3001/api/tareas/1
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar Node.js y Express",
+    "completada": true
+}
