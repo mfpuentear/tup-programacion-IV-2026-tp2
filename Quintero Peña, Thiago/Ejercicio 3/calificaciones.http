@@ -1,0 +1,32 @@
+### Obtener todas las calificaciones
+GET http://localhost:3000/api/calificaciones
+
+### Crear calificación para un alumno en Programación IV (materia_id: 1)
+POST http://localhost:3000/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Thiago Quintero",
+  "materia_id": 1,
+  "nota1": 9,
+  "nota2": 8.5,
+  "nota3": 10
+}
+
+### Obtener calificación por ID
+GET http://localhost:3000/api/calificaciones/1
+
+### Actualizar calificación
+PUT http://localhost:3000/api/calificaciones/1
+Content-Type: application/json
+
+{
+  "alumno": "Thiago Quintero",
+  "materia_id": 1,
+  "nota1": 10,
+  "nota2": 9,
+  "nota3": 10
+}
+
+### Eliminar calificación por ID
+DELETE http://localhost:3000/api/calificaciones/1
