@@ -1,0 +1,74 @@
+@url = http://localhost:3000/api
+
+### Obtener todos los rectángulos 
+GET {{url}}/rectangulos
+
+
+### Crear un rectángulo correctamente
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+  "medida_base": 15.5,
+  "medida_altura": 10
+}
+
+
+### Modificar un rectángulo existente
+PUT {{url}}/rectangulos/1
+Content-Type: application/json
+
+{
+  "medida_base": 20,
+  "medida_altura": 20
+}
+
+
+### Eliminar un rectángulo
+DELETE {{url}}/rectangulos/1
+
+
+### ---------------------------------------------------
+### PRUEBAS DE VALIDACIONES Y ERRORES
+### ---------------------------------------------------
+
+
+### Error: Intentar enviar el perímetro a mano
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+  "medida_base": 5,
+  "medida_altura": 5,
+  "perimetro": 20
+}
+
+
+### Error: Enviar texto en lugar de un número
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+  "medida_base": "veinte",
+  "medida_altura": 10
+}
+
+
+### Error: Enviar un número negativo
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+  "medida_base": 15,
+  "medida_altura": -5
+}
+
+
+### Error: Intentar modificar con un ID inválido
+PUT {{url}}/rectangulos/abc
+Content-Type: application/json
+
+{
+  "medida_base": 10,
+  "medida_altura": 10
+}

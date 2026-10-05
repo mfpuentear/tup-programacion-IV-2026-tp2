@@ -1,0 +1,87 @@
+@url = http://localhost:3000/api
+
+### Listar todas las calificaciones
+GET {{url}}/calificaciones
+
+
+### Crear calificacion 1 (Materia 1: Programacion)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "nombre_alumno": "Nachito de la Cruz",
+  "id_materia": 1, 
+  "nota_1": 8,
+  "nota_2": 9.5,
+  "nota_3": 10
+}
+
+
+### Crear calificacion 2 (Materia 2: Metodologia de sistemas)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "nombre_alumno": "Uriel Rivero",
+  "id_materia": 2, 
+  "nota_1": 5,
+  "nota_2": 6,
+  "nota_3": 7.25
+}
+
+
+### Modificar/Corregir las notas de un alumno
+PUT {{url}}/calificaciones/1
+Content-Type: application/json
+
+{
+  "nombre_alumno": "Nachito de la Cruz",
+  "id_materia": 1, 
+  "nota_1": 8.5,
+  "nota_2": 9,
+  "nota_3": 10
+}
+
+
+### PRUEBA DE ERROR: Regla de Unicidad (Duplicado)
+# Falla porque Nachito ya está registrado en la materia 1
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "nombre_alumno": "Nachito de la Cruz",
+  "id_materia": 1, 
+  "nota_1": 9,
+  "nota_2": 9,
+  "nota_3": 9
+}
+
+
+### PRUEBA DE ERROR: Notas fuera de escala definida (1 al 10)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "nombre_alumno": "Martin",
+  "id_materia": 1, 
+  "nota_1": 11,
+  "nota_2": -2,
+  "nota_3": 6
+}
+
+
+### PRUEBA DE ERROR: Materia no existe
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "nombre_alumno": "Martin",
+  "id_materia": 99, 
+  "nota_1": 7,
+  "nota_2": 8,
+  "nota_3": 9
+}
+
+
+### Eliminar un registro de calificacion
+DELETE {{url}}/calificaciones/1

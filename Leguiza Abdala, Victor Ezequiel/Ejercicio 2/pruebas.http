@@ -1,0 +1,102 @@
+@url = http://localhost:3000/api
+
+### Obtener todas las tareas 
+GET {{url}}/tareas
+
+
+### Crear tarea 1 (Pendiente)
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "titulo_tarea": "Configurar los dotfiles de Hyprland en CachyOS",
+  "esta_completada": false
+}
+
+
+### Crear tarea 2 (Completada)
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "titulo_tarea": "Comprar pavos en el Fortnite",
+  "esta_completada": true
+}
+
+
+### Crear tarea 3 (Pendiente)
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "titulo_tarea": "Repasar apuntes de Probabilidad y Estadística",
+  "esta_completada": false
+}
+
+
+### Modificar una tarea existente (Pasar la tarea 1 a completada)
+PUT {{url}}/tareas/1
+Content-Type: application/json
+
+{
+  "titulo_tarea": "Configurar los dotfiles de Hyprland en CachyOS (¡Terminado!)",
+  "esta_completada": true
+}
+
+
+### Eliminar una tarea
+DELETE {{url}}/tareas/1
+
+
+### Filtrar solo por tareas pendientes
+GET {{url}}/tareas?estado=pendiente
+
+
+### Filtrar solo por tareas completadas
+GET {{url}}/tareas?estado=completada
+
+
+### PRUEBAS DE VALIDACIONES Y ERRORES
+
+### Prueba de Error: Filtro no admitido
+GET {{url}}/tareas?estado=cualquiera
+
+
+### Prueba de Unicidad: Intentar crear tarea duplicada
+# Falla porque la tarea 2 ya existe (ignora mayúsculas y espacios)
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "titulo_tarea": "   comprar pavos en el fortnite   "
+}
+
+
+### Prueba de Error: Título vacío 
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "titulo_tarea": "   ",
+  "esta_completada": false
+}
+
+
+### Prueba de Error: Estado NO es un booleano
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "titulo_tarea": "Acomodar repositorios en GitHub",
+  "esta_completada": "terminado"
+}
+
+
+### Prueba de Error: Parámetro ID inválido
+PUT {{url}}/tareas/abc
+Content-Type: application/json
+
+{
+  "titulo_tarea": "Actualizar el sistema",
+  "esta_completada": true
+}
