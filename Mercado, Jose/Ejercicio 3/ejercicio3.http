@@ -1,0 +1,41 @@
+### 1. Crear calificación (Materia ID 1 es Programación IV)
+POST http://localhost:3002/api/calificaciones
+Content-Type: application/json
+
+{
+    "alumno_nombre": "José Mercado",
+    "materia_id": 1,
+    "nota1": 8.5,
+    "nota2": 9.0,
+    "nota3": 10.0
+}
+
+### 2. Intentar duplicar al mismo alumno en la misma materia (Debería fallar con 409 Conflict)
+POST http://localhost:3002/api/calificaciones
+Content-Type: application/json
+
+{
+    "alumno_nombre": "José Mercado",
+    "materia_id": 1,
+    "nota1": 7.0,
+    "nota2": 7.5,
+    "nota3": 8.0
+}
+
+### 3. Obtener todas las calificaciones
+GET http://localhost:3002/api/calificaciones
+
+### 4. Modificar una calificación (Reemplazar "1" por un ID real)
+PUT http://localhost:3002/api/calificaciones/1
+Content-Type: application/json
+
+{
+    "alumno_nombre": "José Mercado",
+    "materia_id": 1,
+    "nota1": 9.5,
+    "nota2": 9.5,
+    "nota3": 10.0
+}
+
+### 5. Eliminar una calificación (Reemplazar "1" por un ID real)
+DELETE http://localhost:3002/api/calificaciones/1

@@ -1,0 +1,32 @@
+### 1. Crear un rectángulo nuevo
+POST http://localhost:3000/api/rectangulos
+Content-Type: application/json
+
+{
+    "base": 10.5,
+    "altura": 5.2
+}
+
+### 2. Intentar crear un rectángulo con datos inválidos (Debería fallar por la validación)
+POST http://localhost:3000/api/rectangulos
+Content-Type: application/json
+
+{
+    "base": -3,
+    "altura": "veinte"
+}
+
+### 3. Obtener todos los rectángulos
+GET http://localhost:3000/api/rectangulos
+
+### 4. Modificar un rectángulo existente (Reemplazar "1" por un ID real que te devuelva el GET)
+PUT http://localhost:3000/api/rectangulos/1
+Content-Type: application/json
+
+{
+    "base": 7,
+    "altura": 14
+}
+
+### 5. Eliminar un rectángulo (Reemplazar "1" por un ID real que te devuelva el GET)
+DELETE http://localhost:3000/api/rectangulos/1
