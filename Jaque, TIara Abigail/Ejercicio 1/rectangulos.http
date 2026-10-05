@@ -1,0 +1,35 @@
+@api = http://localhost:3001/api/rectangulo
+
+### 1. Obtener todos los rectángulos
+GET {{api}}
+
+### 2. Crear un rectángulo válido (Debe calcular perímetro y superficie en el servidor)
+POST {{api}}
+Content-Type: application/json
+
+{
+    "base": 10,
+    "altura": 5
+}
+
+### 3. Crear un rectángulo inválido (Debe fallar porque intenta enviar perímetro a mano)
+POST {{api}}
+Content-Type: application/json
+
+{
+    "base": 10,
+    "altura": 5,
+    "perimetro": 30
+}
+
+### 4. Modificar un rectángulo por ID (Reemplaza el 1 por un ID real que tengas)
+PUT {{api}}/1
+Content-Type: application/json
+
+{
+    "base": 8,
+    "altura": 4
+}
+
+### 5. Eliminar un rectángulo por ID
+DELETE {{api}}/1

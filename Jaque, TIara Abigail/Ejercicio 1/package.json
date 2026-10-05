@@ -1,0 +1,27 @@
+{
+  "name": "tup-programacion-iv-2026-tp2",
+  "version": "1.0.0",
+  "description": "- Bifurcar (fork) el repositorio para tener una copia en su cuenta de Github. - Crear una rama con sus apellidos y nombres (separados por una coma. Ejemplo:   Perez, Juan). - Crear una carpeta con sus apellidos y nombres (separados por una coma.   Ejemplo: Perez, Juan). - Dentro de esa carpeta agregar los ejercicios resueltos. Cada ejercicio en una   carpeta diferente (Ejemplo: Ejercicio 1, Ejercicio 2, etc). - Los enunciados de los ejercicios se encuentran dentro de la carpeta   'Enunciados'. - Para cada ejercicio plantear los métodos HTTP que considere necesarios junto   con el nombre del o los recursos. - También verificar que los valores (params, query, body) al consultar, crear,   modificar o quitar estén dentro de valores válidos empleando express-validator. - A su vez, incluir el diagrama de relaciones de entidades de cada tabla de la   base de datos. - Por último agregar un archivo http en cada ejercicio para probar los   distintos métodos. - Realizar al menos un commit por ejercicio. - Crear un pull request una vez finalizado el trabajo práctico.",
+  "main": "index.js",
+"scripts": {
+    "dev": "node --watch src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koretj2025-bit/tup-programacion-IV-2026-tp2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/koretj2025-bit/tup-programacion-IV-2026-tp2/issues"
+  },
+  "homepage": "https://github.com/koretj2025-bit/tup-programacion-IV-2026-tp2#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "express-validator": "^7.3.2",
+    "mysql2": "^3.24.5"
+  }
+}

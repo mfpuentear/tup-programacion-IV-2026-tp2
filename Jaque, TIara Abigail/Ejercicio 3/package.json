@@ -1,0 +1,14 @@
+{
+  "name": "api-calificaciones",
+  "version": "1.0.0",
+  "description": "API REST para gestionar calificaciones de alumnos y materias con ExpressJS y MySQL",
+  "main": "src/app.js",
+  "scripts": {
+    "dev": "node --watch src/app.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-validator": "^7.0.1",
+    "mysql2": "^3.9.2"
+  }
+}

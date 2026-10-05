@@ -1,0 +1,39 @@
+@api = http://localhost:3007/api
+
+### 1. Obtener todas las materias
+GET {{api}}/materias
+
+### 2. Crear una materia
+POST {{api}}/materias
+Content-Type: application/json
+
+{
+    "nombre": "Programación 2"
+}
+
+### 3. Obtener todas las calificaciones
+GET {{api}}/calificaciones
+
+### 4. Registrar calificaciones de un alumno
+POST {{api}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno_nombre": "Tiara Jaque",
+    "materia_id": 1,
+    "nota1": 8.5,
+    "nota2": 9.0,
+    "nota3": 10.0
+}
+
+### 5. Intentar duplicar alumno y materia (Debe fallar por unicidad)
+POST {{api}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno_nombre": "tiara jaque",
+    "materia_id": 1,
+    "nota1": 7.0,
+    "nota2": 6.5,
+    "nota3": 8.0
+}

@@ -1,0 +1,40 @@
+@api = http://localhost:3004/api/tareas
+
+### 1. Obtener todas las tareas
+GET {{api}}
+
+### 2. Filtrar tareas pendientes
+GET {{api}}?estado=pendientes
+
+### 3. Filtrar tareas completadas
+GET {{api}}?estado=completadas
+
+### 4. Crear una tarea nueva
+POST {{api}}
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar Programacion 2",
+    "completada": false
+}
+
+### 5. Intentar crear tarea duplicada (Debe fallar por unicidad)
+POST {{api}}
+Content-Type: application/json
+
+{
+    "nombre": "estudiar programacion 2",
+    "completada": false
+}
+
+### 6. Actualizar tarea (Marcar como completada)
+PUT {{api}}/1
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar Programacion 2",
+    "completada": true
+}
+
+### 7. Eliminar tarea
+DELETE {{api}}/1
