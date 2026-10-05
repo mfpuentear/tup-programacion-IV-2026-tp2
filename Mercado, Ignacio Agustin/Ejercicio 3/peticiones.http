@@ -1,0 +1,74 @@
+@url = http://localhost:3000
+
+### 1. Listar materias disponibles
+GET {{url}}/materias
+
+### 2. Registrar una nueva materia
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+    "nombre": "Estructura de Datos"
+}
+
+### 3. Listar todas las calificaciones
+GET {{url}}/calificaciones
+
+### 4. Registrar calificación válida para un alumno
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Ignacio Mercado",
+    "materia_id": 1,
+    "nota1": 8.5,
+    "nota2": 9.0,
+    "nota3": 10.0
+}
+
+### 5. Intentar registrar el mismo alumno en la misma materia (Error 400 Unicidad)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "ignacio mercado",
+    "materia_id": 1,
+    "nota1": 7.0,
+    "nota2": 8.0,
+    "nota3": 6.0
+}
+
+### 6. Intentar registrar nota fuera de escala (ej: 11.5) (Error 400)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Carlos Pérez",
+    "materia_id": 2,
+    "nota1": 11.5,
+    "nota2": 8.0,
+    "nota3": 9.0
+}
+
+### 7. Intentar asociar materia inexistente (Error 400)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Ana Gómez",
+    "materia_id": 999,
+    "nota1": 8.0,
+    "nota2": 8.0,
+    "nota3": 8.0
+}
+
+### 8. Actualizar calificación
+PUT {{url}}/calificaciones/1
+Content-Type: application/json
+
+{
+    "nota1": 9.5
+}
+
+### 9. Eliminar registro de calificación
+DELETE {{url}}/calificaciones/1
