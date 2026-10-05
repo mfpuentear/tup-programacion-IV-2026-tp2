@@ -1,0 +1,14 @@
+{
+  "name": "ejercicio-3",
+  "version": "1.0.0",
+  "description": "API para gestionar calificaciones de alumnos y materias",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "express-validator": "^7.2.1",
+    "mysql2": "^3.24.5"
+  }
+}

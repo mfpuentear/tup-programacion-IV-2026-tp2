@@ -1,0 +1,86 @@
+### 1. Crear tarea pendiente
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Comprar pan",
+    "completada": false
+}
+
+
+### 2. Crear tarea completada
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar Express",
+    "completada": true
+}
+
+
+### 3. Obtener todas las tareas
+GET http://localhost:3000/tareas
+
+
+### 4. Obtener tarea por ID
+GET http://localhost:3000/tareas/1
+
+
+### 5. Obtener tareas completadas
+GET http://localhost:3000/tareas/filtrar?estado=completadas
+
+
+### 6. Obtener tareas pendientes
+GET http://localhost:3000/tareas/filtrar?estado=pendientes
+
+
+### 7. Modificar tarea
+PUT http://localhost:3000/tareas/1
+Content-Type: application/json
+
+{
+    "nombre": "Comprar leche",
+    "completada": true
+}
+
+
+### 8. Eliminar tarea
+DELETE http://localhost:3000/tareas/1
+
+
+### 9. Error: nombre vacio
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "nombre": "",
+    "completada": false
+}
+
+
+### 10. Error: estado invalido
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Otra tarea",
+    "completada": "si"
+}
+
+
+### 11. Error: tarea duplicada
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar Express",
+    "completada": false
+}
+
+
+### 12. Error: filtro invalido
+GET http://localhost:3000/tareas/filtrar?estado=terminadas
+
+
+### 13. Error: ID invalido
+GET http://localhost:3000/tareas/abc
