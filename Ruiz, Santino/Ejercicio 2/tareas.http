@@ -1,0 +1,42 @@
+@url=http://localhost:3000
+
+### 1. Listar todas las tareas
+GET {{url}}/tareas
+
+### 2. Listar tareas pendientes (completada=false)
+GET {{url}}/tareas?completada=false
+
+### 3. Listar tareas completadas (completada=true)
+GET {{url}}/tareas?completada=true
+
+### 4. Consultar tarea por ID
+GET {{url}}/tareas/1
+
+### 5. Crear una nueva tarea
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Aprovechar las ofertas de otoño de Steam",
+  "completada": false
+}
+
+### 6. Intentar crear tarea duplicada (Prueba de unicidad -> Error 400)
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "  aprovechar las ofertas de otoño de steam  "
+}
+
+### 7. Modificar tarea (marcar como completada)
+PUT {{url}}/tareas/4
+Content-Type: application/json
+
+{
+  "nombre": "Aprovechar las ofertas de otoño de Steam",
+  "completada": true
+}
+
+### 8. Eliminar tarea
+DELETE {{url}}/tareas/4

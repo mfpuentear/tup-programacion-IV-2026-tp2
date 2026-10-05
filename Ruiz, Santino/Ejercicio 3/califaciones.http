@@ -1,0 +1,72 @@
+@url=http://localhost:3000
+
+### 1. Listar todas las materias
+GET {{url}}/materias
+
+### 2. Crear una nueva materia
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+  "nombre": "Estadística"
+}
+
+### 3. Listar todas las calificaciones
+GET {{url}}/calificaciones
+
+### 4. Filtrar calificaciones por materia (materia_id = 1)
+GET {{url}}/calificaciones?materia_id=3
+
+### 5. Consultar calificación por ID
+GET {{url}}/calificaciones/2
+
+### 6. Registrar notas de un alumno en una materia
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Hitori Gotoh",
+  "materia_id": 1,
+  "nota1": 8.50,
+  "nota2": 9.00,
+  "nota3": 10.00
+}
+
+### 7. Intentar registrar al mismo alumno en la misma materia (Prueba Unicidad -> Error 400)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "  hitori gotoh  ",
+  "materia_id": 1,
+  "nota1": 7.00,
+  "nota2": 6.00,
+  "nota3": 8.00
+}
+
+### 8. Intentar registrar notas fuera de la escala permitida (Prueba Validación -> Error 400)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Hitori Gotoh",
+  "materia_id": 1,
+  "nota1": 11.50,
+  "nota2": -2.00,
+  "nota3": 8.00
+}
+
+### 9. Modificar calificaciones de un registro existente
+PUT {{url}}/calificaciones/1
+Content-Type: application/json
+
+{
+  "alumno": "Santino Ruiz",
+  "materia_id": 1,
+  "nota1": 9.00,
+  "nota2": 9.50,
+  "nota3": 10.00
+}
+
+### 10. Eliminar un registro de calificación
+DELETE {{url}}/calificaciones/2
