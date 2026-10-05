@@ -1,0 +1,28 @@
+@baseUrl = http://localhost:3000
+
+### Listar rectangulos
+GET {{baseUrl}}/rectangulos
+
+### Obtener un rectangulo
+GET {{baseUrl}}/rectangulos/1
+
+### Crear un rectangulo
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{
+  "ladoA": 3,
+  "ladoB": 4
+}
+
+### Actualizar un rectangulo
+PUT {{baseUrl}}/rectangulos/1
+Content-Type: application/json
+
+{
+  "ladoA": 5,
+  "ladoB": 6
+}
+
+### Eliminar un rectangulo
+DELETE {{baseUrl}}/rectangulos/1

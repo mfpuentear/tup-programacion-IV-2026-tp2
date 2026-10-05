@@ -1,0 +1,31 @@
+@baseUrl = http://localhost:3000
+
+### Listar tareas
+GET {{baseUrl}}/tareas
+
+### Filtrar tareas pendientes
+GET {{baseUrl}}/tareas?estado=pendiente
+
+### Obtener una tarea
+GET {{baseUrl}}/tareas/1
+
+### Crear una tarea
+POST {{baseUrl}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Preparar TP2",
+  "completada": false
+}
+
+### Actualizar una tarea
+PUT {{baseUrl}}/tareas/1
+Content-Type: application/json
+
+{
+  "nombre": "Entregar TP2",
+  "completada": true
+}
+
+### Eliminar una tarea
+DELETE {{baseUrl}}/tareas/1
