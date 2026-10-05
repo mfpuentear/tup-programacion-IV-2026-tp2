@@ -1,0 +1,25 @@
+@host = http://localhost:3003
+
+GET {{host}}/alumnos
+###
+
+GET {{host}}/materias
+###
+
+GET {{host}}/calificaciones
+###
+
+POST {{host}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumnoId": 1,
+  "materiaId": 2,
+  "nota": 7.5
+}
+###
+
+GET {{host}}/alumnos/1/promedio
+###
+
+GET {{host}}/materias/1/promedio

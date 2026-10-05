@@ -1,0 +1,31 @@
+@host = http://localhost:3002
+
+GET {{host}}/tareas
+###
+
+GET {{host}}/tareas?estado=pendiente
+###
+
+POST {{host}}/tareas
+Content-Type: application/json
+
+{
+  "titulo": "Hacer commit",
+  "descripcion": "Subir la solución del TP",
+  "estado": "pendiente",
+  "completada": false
+}
+###
+
+PUT {{host}}/tareas/1
+Content-Type: application/json
+
+{
+  "titulo": "Leer el enunciado actualizado",
+  "descripcion": "Revisar el ejercicio 2 para terminarlo",
+  "estado": "completada",
+  "completada": true
+}
+###
+
+DELETE {{host}}/tareas/2

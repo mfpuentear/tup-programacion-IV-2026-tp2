@@ -1,0 +1,15 @@
+{
+  "name": "tp2-programacion-iv",
+  "version": "1.0.0",
+  "description": "Trabajo práctico N° 2 - Programación IV",
+  "main": "index.js",
+  "scripts": {
+    "ej1": "node "./Bazan, Xavier/Ejercicio 1/app.js"",
+    "ej2": "node "./Bazan, Xavier/Ejercicio 2/app.js"",
+    "ej3": "node "./Bazan, Xavier/Ejercicio 3/app.js""
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-validator": "^7.0.0"
+  }
+}

@@ -1,0 +1,27 @@
+@host = http://localhost:3001
+
+GET {{host}}/rectangulos
+###
+
+POST {{host}}/rectangulos
+Content-Type: application/json
+
+{
+  "base": 4,
+  "altura": 5
+}
+###
+
+GET {{host}}/rectangulos/1
+###
+
+PUT {{host}}/rectangulos/1
+Content-Type: application/json
+
+{
+  "base": 7,
+  "altura": 3
+}
+###
+
+DELETE {{host}}/rectangulos/1
