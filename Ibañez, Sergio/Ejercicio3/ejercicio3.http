@@ -1,0 +1,141 @@
+@url=http://localhost:3003
+
+### Listado de materias
+GET {{url}}/materias
+
+### Crear materia
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+  "nombre": "Ingles I"
+}
+
+### Crear materia repetida cambiando mayusculas
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+  "nombre": "ingles i"
+}
+
+### Detalle de materia
+GET {{url}}/materias/1
+
+### Renombrar materia
+PUT {{url}}/materias/4
+Content-Type: application/json
+
+{
+  "nombre": "Ingles II"
+}
+
+### Calificaciones de una materia
+GET {{url}}/materias/1/calificaciones
+
+### Borrar materia con calificaciones (debe fallar 409)
+DELETE {{url}}/materias/1
+
+### Borrar materia sin calificaciones
+DELETE {{url}}/materias/4
+
+### Listado de calificaciones
+GET {{url}}/calificaciones
+
+### Listado filtrado por materia
+GET {{url}}/calificaciones?materiaId=1
+
+### Listado filtrado por alumno
+GET {{url}}/calificaciones?alumno=sergio
+
+### Filtro invalido
+GET {{url}}/calificaciones?materiaId=abc
+
+### Detalle de una calificacion
+GET {{url}}/calificaciones/1
+
+### Crear calificacion
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Maria Gomez",
+  "materiaId": 2,
+  "nota1": 7,
+  "nota2": 8,
+  "nota3": 9
+}
+
+### Crear calificacion repetida mismo alumno y materia
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "maria gomez",
+  "materiaId": 2,
+  "nota1": 5,
+  "nota2": 5,
+  "nota3": 5
+}
+
+### Crear con materia inexistente
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Juan Perez",
+  "materiaId": 99,
+  "nota1": 7,
+  "nota2": 8,
+  "nota3": 9
+}
+
+### Crear con nota fuera de escala
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Juan Perez",
+  "materiaId": 1,
+  "nota1": 11,
+  "nota2": 8,
+  "nota3": 9
+}
+
+### Crear con una nota de menos
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Juan Perez",
+  "materiaId": 1,
+  "nota1": 7,
+  "nota2": 8
+}
+
+### Modificar calificacion
+PUT {{url}}/calificaciones/2
+Content-Type: application/json
+
+{
+  "alumno": "Ana Lopez",
+  "materiaId": 2,
+  "nota1": 8,
+  "nota2": 8,
+  "nota3": 9
+}
+
+### Modificar hacia combinacion ya existente (debe fallar 409)
+PUT {{url}}/calificaciones/2
+Content-Type: application/json
+
+{
+  "alumno": "Sergio Ibanez",
+  "materiaId": 1,
+  "nota1": 8,
+  "nota2": 8,
+  "nota3": 9
+}
+
+### Quitar calificacion
+DELETE {{url}}/calificaciones/3

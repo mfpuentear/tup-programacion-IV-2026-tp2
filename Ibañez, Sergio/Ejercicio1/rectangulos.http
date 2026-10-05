@@ -1,0 +1,68 @@
+@url=http://localhost:3001
+
+### Listado de rectangulos
+GET {{url}}/rectangulos
+
+### Listado filtrado solo cuadrados
+GET {{url}}/rectangulos?tipo=cuadrado
+
+### Listado filtrado solo rectangulos
+GET {{url}}/rectangulos?tipo=rectangulo
+
+### Listado filtrado por perimetro minimo y maximo
+GET {{url}}/rectangulos?perimetroMin=10&perimetroMax=20
+
+### Tipo invalido en query
+GET {{url}}/rectangulos?tipo=rombo
+
+### Detalle de un rectangulo
+GET {{url}}/rectangulos/1
+
+### Detalle con id invalido
+GET {{url}}/rectangulos/abc
+
+### Crear rectangulo
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+  "ladoA": 5,
+  "ladoB": 3
+}
+
+### Crear cuadrado
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+  "ladoA": 4,
+  "ladoB": 4
+}
+
+### Crear con lado negativo
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+  "ladoA": -2,
+  "ladoB": 5
+}
+
+### Crear sin lados
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+}
+
+### Modificar rectangulo
+PUT {{url}}/rectangulos/1
+Content-Type: application/json
+
+{
+  "ladoA": 8,
+  "ladoB": 2
+}
+
+### Quitar rectangulo
+DELETE {{url}}/rectangulos/2

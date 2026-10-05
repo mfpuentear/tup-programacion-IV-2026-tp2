@@ -1,0 +1,96 @@
+@url=http://localhost:3002
+
+### Listado de tareas
+GET {{url}}/tareas
+
+### Listado de tareas completadas
+GET {{url}}/tareas?estado=completada
+
+### Listado de tareas pendientes
+GET {{url}}/tareas?estado=pendiente
+
+### Estado invalido en query
+GET {{url}}/tareas?estado=terminada
+
+### Detalle de una tarea
+GET {{url}}/tareas/1
+
+### Detalle con id invalido
+GET {{url}}/tareas/abc
+
+### Crear tarea pendiente
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Hacer el ejercicio 2 del TP2"
+}
+
+### Crear tarea completada
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Crear la base de datos",
+  "completada": true
+}
+
+### Crear con nombre repetido cambiando mayusculas
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "CREAR LA BASE DE DATOS"
+}
+
+### Crear sin nombre
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "completada": false
+}
+
+### Crear con completada invalida
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Probar el http",
+  "completada": "si"
+}
+
+### Marcar tarea como completada con PATCH
+PATCH {{url}}/tareas/1
+Content-Type: application/json
+
+{
+  "completada": true
+}
+
+### Cambiar solo el nombre con PATCH
+PATCH {{url}}/tareas/2
+Content-Type: application/json
+
+{
+  "nombre": "Crear la base de datos en DBeaver"
+}
+
+### PATCH sin campos
+PATCH {{url}}/tareas/1
+Content-Type: application/json
+
+{
+}
+
+### Modificar tarea completa con PUT
+PUT {{url}}/tareas/1
+Content-Type: application/json
+
+{
+  "nombre": "Hacer el ejercicio 2 completo",
+  "completada": true
+}
+
+### Quitar tarea
+DELETE {{url}}/tareas/3
