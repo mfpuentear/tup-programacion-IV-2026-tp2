@@ -1,0 +1,77 @@
+@baseUrl = http://localhost:3002
+
+### Crear tarea pendiente
+# @name crearTarea
+POST {{baseUrl}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Hacer TP2",
+  "completada": false
+}
+
+### Crear tarea completada
+POST {{baseUrl}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Instalar MySQL",
+  "completada": true
+}
+
+### Listar todas
+GET {{baseUrl}}/tareas
+
+### Filtrar completadas
+GET {{baseUrl}}/tareas?estado=completadas
+
+### Filtrar pendientes
+GET {{baseUrl}}/tareas?estado=pendientes
+
+### Consultar una tarea
+GET {{baseUrl}}/tareas/{{crearTarea.response.body.$.id}}
+
+### Modificar tarea
+PUT {{baseUrl}}/tareas/{{crearTarea.response.body.$.id}}
+Content-Type: application/json
+
+{
+  "nombre": "Hacer TP2",
+  "completada": true
+}
+
+### Rechazar duplicado ignorando mayúsculas y espacios repetidos
+POST {{baseUrl}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "  HACER   TP2  ",
+  "completada": false
+}
+
+### Rechazar booleano enviado como string
+POST {{baseUrl}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Tarea inválida",
+  "completada": "false"
+}
+
+### Rechazar nombre vacío
+POST {{baseUrl}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "   ",
+  "completada": false
+}
+
+### Rechazar filtro inválido
+GET {{baseUrl}}/tareas?estado=terminadas
+
+### Rechazar id inválido
+GET {{baseUrl}}/tareas/abc
+
+### Eliminar
+DELETE {{baseUrl}}/tareas/{{crearTarea.response.body.$.id}}

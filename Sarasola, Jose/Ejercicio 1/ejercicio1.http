@@ -1,0 +1,114 @@
+@baseUrl = http://localhost:3001
+
+### Crear rectángulo
+# @name crearRectangulo
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 5,
+  "lado2": 3
+}
+
+### Crear cuadrado
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 4,
+  "lado2": 4
+}
+
+### Listar todos
+GET {{baseUrl}}/rectangulos
+
+### Filtrar cuadrados
+GET {{baseUrl}}/rectangulos?cuadrado=true
+
+### Filtrar no cuadrados
+GET {{baseUrl}}/rectangulos?cuadrado=false
+
+### Consultar el rectángulo creado
+GET {{baseUrl}}/rectangulos/{{crearRectangulo.response.body.$.id}}
+
+### Modificar: el servidor recalcula perímetro y superficie
+PUT {{baseUrl}}/rectangulos/{{crearRectangulo.response.body.$.id}}
+Content-Type: application/json
+
+{
+  "lado1": 10,
+  "lado2": 2
+}
+
+### Rechazar perímetro enviado por el cliente
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 5,
+  "lado2": 3,
+  "perimetro": 16
+}
+
+### Rechazar lado faltante
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 5
+}
+
+### Rechazar lado cero
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 0,
+  "lado2": 3
+}
+
+### Rechazar lado como string
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": "5",
+  "lado2": 3
+}
+
+### Rechazar lado con más de dos decimales
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 1.234,
+  "lado2": 2
+}
+
+### Rechazar lado que excede la capacidad de DECIMAL(10,2)
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 100000000,
+  "lado2": 2
+}
+
+
+### Aceptar valor máximo permitido
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 99999999.99,
+  "lado2": 2
+}
+
+### Rechazar filtro inválido
+GET {{baseUrl}}/rectangulos?cuadrado=quizas
+
+### Rechazar id inválido
+GET {{baseUrl}}/rectangulos/abc
+
+### Eliminar
+DELETE {{baseUrl}}/rectangulos/{{crearRectangulo.response.body.$.id}}

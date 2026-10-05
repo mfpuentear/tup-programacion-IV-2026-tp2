@@ -1,0 +1,114 @@
+@baseUrl = http://localhost:3003
+
+### Crear materia Matemática
+# @name crearMatematica
+POST {{baseUrl}}/materias
+Content-Type: application/json
+
+{
+  "nombre": "Matemática"
+}
+
+### Crear materia Programación IV
+# @name crearProgramacion
+POST {{baseUrl}}/materias
+Content-Type: application/json
+
+{
+  "nombre": "Programación IV"
+}
+
+### Listar materias
+GET {{baseUrl}}/materias
+
+### Crear calificación válida
+# @name crearCalificacion
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Ana Perez",
+  "materiaId": {{crearMatematica.response.body.$.id}},
+  "notas": [8, 7.5, 9]
+}
+
+### Listar calificaciones
+GET {{baseUrl}}/calificaciones
+
+### Filtrar por materia
+GET {{baseUrl}}/calificaciones?materiaId={{crearMatematica.response.body.$.id}}
+
+### Consultar una calificación
+GET {{baseUrl}}/calificaciones/{{crearCalificacion.response.body.$.id}}
+
+### Rechazar combinación alumno-materia duplicada
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "  ANA   PEREZ ",
+  "materiaId": {{crearMatematica.response.body.$.id}},
+  "notas": [10, 10, 10]
+}
+
+### Rechazar materia inexistente
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Bruno Diaz",
+  "materiaId": 999999,
+  "notas": [7, 8, 9]
+}
+
+### Rechazar menos de tres notas
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Bruno Diaz",
+  "materiaId": {{crearProgramacion.response.body.$.id}},
+  "notas": [7, 8]
+}
+
+### Rechazar nota fuera de escala
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Bruno Diaz",
+  "materiaId": {{crearProgramacion.response.body.$.id}},
+  "notas": [7, 11, 8]
+}
+
+### Rechazar nota con más de dos decimales
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Bruno Diaz",
+  "materiaId": {{crearProgramacion.response.body.$.id}},
+  "notas": [7, 8.123, 9]
+}
+
+### Modificar calificación y materia
+PUT {{baseUrl}}/calificaciones/{{crearCalificacion.response.body.$.id}}
+Content-Type: application/json
+
+{
+  "alumno": "Ana Perez",
+  "materiaId": {{crearProgramacion.response.body.$.id}},
+  "notas": [9, 9, 10]
+}
+
+### Intentar eliminar materia que sigue referenciada: debe dar 409
+DELETE {{baseUrl}}/materias/{{crearProgramacion.response.body.$.id}}
+
+### Eliminar calificación
+DELETE {{baseUrl}}/calificaciones/{{crearCalificacion.response.body.$.id}}
+
+### Ahora sí eliminar materia sin referencias
+DELETE {{baseUrl}}/materias/{{crearProgramacion.response.body.$.id}}
+
+### Rechazar id inválido
+GET {{baseUrl}}/calificaciones/abc
