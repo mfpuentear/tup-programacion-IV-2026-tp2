@@ -1,0 +1,72 @@
+@url=http://localhost:3000
+
+GET {{url}}/rectangulos
+
+
+
+###Crear rectangulo
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "base": 10,
+    "altura": 5
+}
+
+
+
+### Modificar rectangulo
+PUT {{url}}/rectangulos/1
+Content-Type: application/json
+
+{
+    "base": 20,
+    "altura": 10
+}
+
+
+
+###Obtener rectangulo por ID
+GET {{url}}/rectangulos/1
+
+
+
+###Eliminar rectangulo
+DELETE {{url}}/rectangulos/1
+
+
+
+###Error aproposito de base negativa
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "base": -10,
+    "altura": 5
+}
+
+
+
+###Error aproposito de falta la altura
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "base": 10
+}
+
+
+
+###Error aproposito de base no numérica
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "base": "hola",
+    "altura": 5
+}
+
+
+
+### Error de ID inválido
+GET {{url}}/rectangulos/abc

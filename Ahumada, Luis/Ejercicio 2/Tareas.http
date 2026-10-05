@@ -1,0 +1,111 @@
+@url=http://localhost:3000
+
+###Crear una tarea
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar Express",
+    "completada": false
+}
+
+
+
+###Crear otra tarea
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Hacer ejercicio",
+    "completada": true
+}
+
+
+
+###Obtener todas las tareas
+GET {{url}}/tareas
+
+
+
+###Obtener solamente las tareas completadas
+GET {{url}}/tareas?completada=true
+
+
+
+###Obtener solamente las tareas pendientes
+GET {{url}}/tareas?completada=false
+
+
+
+###Buscar una tarea por ID
+GET {{url}}/tareas/1
+
+
+
+###Intentar crear una tarea con el mismo nombre
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "estudiar express",
+    "completada": true
+}
+
+
+
+###Modificar una tarea
+PUT {{url}}/tareas/1
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar MySQL",
+    "completada": true
+}
+
+
+
+###Intentar modificar usando un nombre que ya existe
+PUT {{url}}/tareas/1
+Content-Type: application/json
+
+{
+    "nombre": "Hacer ejercicio",
+    "completada": true
+}
+
+
+
+###Eliminar una tarea
+DELETE {{url}}/tareas/1
+
+
+
+###Probar ID inválido
+GET {{url}}/tareas/abc
+
+
+
+###Probar estado inválido
+GET {{url}}/tareas?completada=hola
+
+
+
+###Probar nombre vacío
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "",
+    "completada": false
+}
+
+
+
+###Probar estado inválido al crear
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Otra tarea",
+    "completada": "hola"
+}
