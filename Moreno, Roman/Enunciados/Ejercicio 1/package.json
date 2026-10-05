@@ -1,0 +1,21 @@
+{
+  "name": "ejercicio-1",
+  "version": "1.0.0",
+  "description": "API con ExpressJS para administrar rectángulos, persistiendo la información en una base de datos MySQL.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Moreno, Roman",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "body-parser": "^2.3.0",
+    "express": "^5.2.1",
+    "express-validator": "^7.3.2",
+    "mysql2": "^3.24.5"
+  }
+}
