@@ -1,0 +1,9 @@
+CREATE DATABASE ejercicio2;
+
+USE ejercicio2;
+
+CREATE TABLE tareas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL UNIQUE,
+    completada BOOLEAN NOT NULL
+);
