@@ -1,0 +1,64 @@
+### 1. Crear rectangulo
+
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+"lado_a": 5,
+"lado_b": 3
+}
+
+### 2. Ver todos los rectangulos
+
+GET http://localhost:3000/rectangulos
+
+### 3. Ver rectangulo por ID
+
+GET http://localhost:3000/rectangulos/1
+
+### 4. Modificar rectangulo
+
+PUT http://localhost:3000/rectangulos/1
+Content-Type: application/json
+
+{
+"lado_a": 10,
+"lado_b": 4
+}
+
+### 5. Eliminar rectangulo
+
+DELETE http://localhost:3000/rectangulos/1
+
+### 6. Error: lado negativo
+
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+"lado_a": -5,
+"lado_b": 3
+}
+
+### 7. Error: lado igual a cero
+
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+"lado_a": 0,
+"lado_b": 3
+}
+
+### 8. Error: falta un lado
+
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+"lado_a": 5
+}
+
+### 9. Error: ID invalido
+
+GET http://localhost:3000/rectangulos/abc
