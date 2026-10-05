@@ -1,0 +1,114 @@
+### Variables de entorno
+@baseUrl = http://localhost:3002
+
+### 1. Documentación / Raíz de la API
+GET {{baseUrl}}/
+
+### 2. Listar todas las tareas (sin filtros)
+GET {{baseUrl}}/api/tareas
+
+### 3. Filtrar tareas completadas (?estado=completadas)
+GET {{baseUrl}}/api/tareas?estado=completadas
+
+### 4. Filtrar tareas pendientes (?estado=pendientes)
+GET {{baseUrl}}/api/tareas?estado=pendientes
+
+### 5. Filtrar tareas con valor booleano (?estado=true)
+GET {{baseUrl}}/api/tareas?estado=true
+
+### 6. Filtrar tareas con valor booleano (?estado=false)
+GET {{baseUrl}}/api/tareas?estado=false
+
+### 7. Error de consulta: filtro de estado no admitido (400 Bad Request)
+GET {{baseUrl}}/api/tareas?estado=archivadas
+
+### 8. Obtener una tarea por ID existente
+GET {{baseUrl}}/api/tareas/1
+
+### 9. Error: Obtener tarea con ID inexistente (404 Not Found)
+GET {{baseUrl}}/api/tareas/999999
+
+### 10. Error: Obtener tarea con ID no numérico (400 Bad Request)
+GET {{baseUrl}}/api/tareas/abc
+
+### 11. Crear una nueva tarea válida (por defecto estado=false)
+POST {{baseUrl}}/api/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Preparar presentación del TP2",
+  "estado": false
+}
+
+### 12. Error: Crear tarea con nombre duplicado exacto (409 Conflict)
+POST {{baseUrl}}/api/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Preparar presentación del TP2"
+}
+
+### 13. Error: Crear tarea duplicada con mayúsculas y espacios superfluos (409 Conflict)
+POST {{baseUrl}}/api/tareas
+Content-Type: application/json
+
+{
+  "nombre": "   PREPARAR    PRESENTACIÓN   DEL TP2   "
+}
+
+### 14. Error: Crear tarea con nombre vacío (400 Bad Request)
+POST {{baseUrl}}/api/tareas
+Content-Type: application/json
+
+{
+  "nombre": ""
+}
+
+### 15. Error: Crear tarea con estado no booleano (400 Bad Request)
+POST {{baseUrl}}/api/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Tarea de prueba",
+  "estado": "en_progreso"
+}
+
+### 16. Modificar una tarea existente (PUT)
+PUT {{baseUrl}}/api/tareas/1
+Content-Type: application/json
+
+{
+  "nombre": "Configurar entorno de desarrollo local con Docker",
+  "estado": true
+}
+
+### 17. Error: Modificar tarea asignando un nombre ya existente en otra tarea (409 Conflict)
+PUT {{baseUrl}}/api/tareas/1
+Content-Type: application/json
+
+{
+  "nombre": "Diseñar base de datos MySQL",
+  "estado": true
+}
+
+### 18. Modificar únicamente el estado de una tarea (PATCH)
+PATCH {{baseUrl}}/api/tareas/3/estado
+Content-Type: application/json
+
+{
+  "estado": true
+}
+
+### 19. Error: Modificar estado con valor no booleano (400 Bad Request)
+PATCH {{baseUrl}}/api/tareas/3/estado
+Content-Type: application/json
+
+{
+  "estado": "listo"
+}
+
+### 20. Eliminar una tarea existente
+DELETE {{baseUrl}}/api/tareas/4
+
+### 21. Error: Eliminar tarea inexistente (404 Not Found)
+DELETE {{baseUrl}}/api/tareas/999999
