@@ -1,0 +1,119 @@
+@url=http://localhost:3002
+
+### Listar materias
+GET {{url}}/materias
+
+### Consultar materia por id
+GET {{url}}/materias/1
+
+### Crear materia
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+    "nombre": "Matematica"
+}
+
+### Crear calificacion
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumnoNombre": "Ana Perez",
+    "materiaId": 1,
+    "notas": [8, 9, 10]
+}
+
+### Crear otra calificacion
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumnoNombre": "Juan Gomez",
+    "materiaId": 2,
+    "notas": [5, 6, 7]
+}
+
+### Listar calificaciones
+GET {{url}}/calificaciones
+
+### Filtrar calificaciones por alumno
+GET {{url}}/calificaciones?alumno=Ana
+
+### Filtrar calificaciones por materia
+GET {{url}}/calificaciones?materiaId=1
+
+### Consultar calificacion por id
+GET {{url}}/calificaciones/1
+
+### Modificar calificacion
+PUT {{url}}/calificaciones/1
+Content-Type: application/json
+
+{
+    "alumnoNombre": "Ana Perez",
+    "materiaId": 1,
+    "notas": [7, 8, 9]
+}
+
+### Consultar calificacion modificada
+GET {{url}}/calificaciones/1
+
+### Eliminar calificacion
+DELETE {{url}}/calificaciones/2
+
+### Error: calificacion duplicada para mismo alumno y materia
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumnoNombre": "ana perez",
+    "materiaId": 1,
+    "notas": [9, 9, 9]
+}
+
+### Error: materia inexistente
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumnoNombre": "Carlos Diaz",
+    "materiaId": 999,
+    "notas": [7, 8, 9]
+}
+
+### Error: faltan notas
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumnoNombre": "Carlos Diaz",
+    "materiaId": 1,
+    "notas": [7, 8]
+}
+
+### Error: nota fuera de escala
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumnoNombre": "Carlos Diaz",
+    "materiaId": 1,
+    "notas": [7, 11, 9]
+}
+
+### Error: alumno sin nombre valido
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumnoNombre": "A",
+    "materiaId": 1,
+    "notas": [7, 8, 9]
+}
+
+### Error: id invalido
+GET {{url}}/calificaciones/abc
+
+### Error: filtro materia invalido
+GET {{url}}/calificaciones?materiaId=abc
