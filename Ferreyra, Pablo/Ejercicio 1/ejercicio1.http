@@ -1,0 +1,34 @@
+@url = http://localhost:3000 
+
+###Crear un rectangulo
+POST {{url}}/resultado
+Content-Type: application/json
+
+{
+    "base": 10,
+    "altura": 26
+}
+
+###Crear un rectangulo
+POST {{url}}/resultado
+Content-Type: application/json
+
+{
+    "base": -13,
+    "altura": 26
+}
+
+###Modificar un rectángulo 
+PUT {{url}}/resultado/3
+Content-Type: application/json
+
+{
+  "base": 12,
+  "altura": 5
+}
+
+###Quitar un rectangulo por id
+DELETE {{url}}/resultado/1
+
+###Ver rectangulos
+GET {{url}}/calculo
