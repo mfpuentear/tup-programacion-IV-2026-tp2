@@ -60,7 +60,11 @@ export async function initDatabase() {
 
     console.log(`[DB] Base de datos '${dbConfig.database}' y tabla 'rectangulos' verificadas exitosamente.`);
   } catch (error) {
-    console.error(`[DB Error] No se pudo inicializar la base de datos: ${error.message}`);
+    const errorMsg = error.message || error.code || (error.errors && error.errors[0]?.message) || String(error);
+    console.error(`[DB Error] No se pudo inicializar la base de datos: ${errorMsg}`);
+    if (error.code === 'ECONNREFUSED' || (error.errors && error.errors[0]?.code === 'ECONNREFUSED')) {
+      console.error(`[DB Error] El servicio de MySQL está DETENIDO o no responde en el puerto ${dbConfig.port}.`);
+    }
     console.error(`[DB Sugerencia] Verifica que MySQL esté en ejecución y los datos de conexión en el archivo .env sean correctos.`);
   }
 }
