@@ -13,8 +13,55 @@ const PORT = process.env.PORT || 3003;
 // Middlewares
 app.use(express.json());
 
-// Ruta raíz con información y documentación de la API
+// Ruta raíz con información y documentación interactiva
 app.get('/', (req, res) => {
+  const esNavegador = req.headers.accept && req.headers.accept.includes('text/html') && !req.headers.accept.includes('application/json');
+
+  if (esNavegador) {
+    return res.send(`
+      <!DOCTYPE html>
+      <html lang="es">
+      <head>
+        <meta charset="UTF-8">
+        <title>Ejercicio 3 - API de Calificaciones</title>
+        <style>
+          body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding: 30px; background: #0f172a; color: #f8fafc; max-width: 900px; margin: 0 auto; line-height: 1.6; }
+          h1 { color: #38bdf8; border-bottom: 2px solid #334155; padding-bottom: 12px; margin-bottom: 15px; }
+          .card { background: #1e293b; padding: 22px; border-radius: 10px; margin-bottom: 20px; border: 1px solid #334155; }
+          .badge { background: #0284c7; color: white; padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: bold; }
+          .btn { display: inline-block; background: #2563eb; color: white; padding: 10px 16px; border-radius: 6px; text-decoration: none; font-weight: 600; margin: 6px 6px 6px 0; transition: background 0.2s; }
+          .btn:hover { background: #1d4ed8; }
+          .btn-secondary { background: #475569; }
+          .btn-secondary:hover { background: #334155; }
+        </style>
+      </head>
+      <body>
+        <h1>🎓 Ejercicio 3: API de Gestión de Calificaciones</h1>
+        <div class="card">
+          <p><strong>Autor:</strong> Federico Merlo Brac | <span class="badge">MySQL Relacional (Clave Foránea y 3 Notas)</span></p>
+          <p>Para ver los datos persistidos en la base de datos MySQL, haz clic en los siguientes enlaces directos:</p>
+          <div style="margin: 15px 0;">
+            <a class="btn" href="/api/calificaciones" target="_blank">📋 Ver Calificaciones (JSON con JOIN)</a>
+            <a class="btn" href="/api/materias" target="_blank">📚 Ver Materias Registradas</a>
+            <a class="btn btn-secondary" href="/api/calificaciones?materia_id=1" target="_blank">🔍 Filtrar por Materia ID 1</a>
+            <a class="btn btn-secondary" href="/api/calificaciones?alumno=Federico" target="_blank">👤 Filtrar por Alumno</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3>📌 Métodos y Endpoints Disponibles</h3>
+          <ul>
+            <li><code>GET /api/calificaciones</code> - Listar actas de notas (promedio y condición académica calculados)</li>
+            <li><code>GET /api/materias</code> - Listar materias de la carrera</li>
+            <li><code>POST /api/calificaciones</code> - Registrar notas (valida existencia de materia, 3 notas válidas y unicidad)</li>
+            <li><code>PUT /api/calificaciones/:id</code> - Modificar calificaciones</li>
+            <li><code>DELETE /api/calificaciones/:id</code> - Eliminar registro</li>
+          </ul>
+        </div>
+      </body>
+      </html>
+    `);
+  }
+
   res.json({
     nombre: 'API de Gestión de Calificaciones de Alumnos',
     version: '1.0.0',
