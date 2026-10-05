@@ -1,0 +1,21 @@
+{
+  "name": "ejercicio-3-calificaciones",
+  "version": "1.0.0",
+  "description": "API REST con ExpressJS y MySQL para administrar alumnos, materias y calificaciones con relaciones y control de unicidad.",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "init-db": "node src/initDb.js",
+    "test": "node verify.mjs"
+  },
+  "author": "Federico Merlo Brac",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-validator": "^7.2.1",
+    "mysql2": "^3.12.0"
+  }
+}
