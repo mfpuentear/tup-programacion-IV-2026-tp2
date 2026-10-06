@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:ej1": "node \"Flores, Alexander Exequiel/Ejercicio 1/app.js\""
+    "start:ej1": "node \"Flores, Alexander Exequiel/Ejercicio 1/app.js\"",
+    "start:ej2": "node \"Flores, Alexander Exequiel/Ejercicio 2/app.js\""
   },
   "repository": {
     "type": "git",

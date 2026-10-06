@@ -1,0 +1,91 @@
+### Listar todas las tareas
+GET http://localhost:3001/tareas
+
+### Listar solo completadas
+GET http://localhost:3001/tareas?completada=true
+
+### Listar solo pendientes
+GET http://localhost:3001/tareas?completada=false
+
+### Crear una tarea (pendiente por defecto)
+POST http://localhost:3001/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Entregar el TP2"
+}
+
+### Crear una tarea ya completada
+POST http://localhost:3001/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Leer el enunciado",
+  "completada": true
+}
+
+### Consultar una tarea
+GET http://localhost:3001/tareas/1
+
+### Marcar como completada
+PATCH http://localhost:3001/tareas/1/completada
+Content-Type: application/json
+
+{
+  "completada": true
+}
+
+### Reemplazar una tarea completa
+PUT http://localhost:3001/tareas/1
+Content-Type: application/json
+
+{
+  "nombre": "Entregar el TP2 de Programación IV",
+  "completada": false
+}
+
+### Eliminar una tarea
+DELETE http://localhost:3001/tareas/2
+
+### ERROR 409: nombre repetido al crear
+POST http://localhost:3001/tareas
+Content-Type: application/json
+
+{
+  "nombre": "entregar el tp2 de programación iv"
+}
+
+### ERROR 409: nombre repetido al reemplazar
+PUT http://localhost:3001/tareas/1
+Content-Type: application/json
+
+{
+  "nombre": "Leer el enunciado",
+  "completada": false
+}
+
+### ERROR 400: falta el nombre
+POST http://localhost:3001/tareas
+Content-Type: application/json
+
+{
+  "completada": false
+}
+
+### ERROR 400: completada no es booleano
+POST http://localhost:3001/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Tarea con estado inválido",
+  "completada": "si"
+}
+
+### ERROR 400: filtro inválido
+GET http://localhost:3001/tareas?completada=quizas
+
+### ERROR 400: id inválido
+GET http://localhost:3001/tareas/abc
+
+### ERROR 404: tarea inexistente
+GET http://localhost:3001/tareas/999
