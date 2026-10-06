@@ -1,0 +1,52 @@
+### Variables
+@api = http://localhost:3000/rectangulos
+
+###  Crear un rectángulo exitosamente
+POST {{api}}
+Content-Type: application/json
+
+{
+  "lado_a": 5,
+  "lado_b": 10
+}
+
+###  Error por lados negativos 
+POST {{api}}
+Content-Type: application/json
+
+{
+  "lado_a": -5,
+  "lado_b": 10
+}
+s
+### Error por letras en lugar de números 
+POST {{api}}
+Content-Type: application/json
+
+{
+  "lado_a": "cinco",
+  "lado_b": 10
+}
+
+### Error por datos faltantes
+POST {{api}}
+Content-Type: application/json
+
+{
+  "lado_a": 8
+}
+
+### Listar todos los rectángulos
+GET {{api}}
+
+### Obtener un rectángulo por ID
+GET {{api}}/1
+
+###Modificar un rectángulo existente
+PUT {{api}}/1
+Content-Type: application/json
+
+{
+  "lado_a": 15,
+  "lado_b": 20
+}
