@@ -1,0 +1,12 @@
+### Obtener todos
+GET http://localhost:3000/api/productos
+
+### Crear producto
+POST http://localhost:3000/api/productos
+Content-Type: application/json
+
+{
+  "nombre": "Teclado Mecánico",
+  "precio": 45000,
+  "stock": 10
+}
