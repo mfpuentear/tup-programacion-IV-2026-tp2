@@ -1,0 +1,9 @@
+CREATE DATABASE db_tareas;
+
+USE db_tareas;
+
+CREATE TABLE tareas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    completada BOOLEAN NOT NULL DEFAULT FALSE
+);

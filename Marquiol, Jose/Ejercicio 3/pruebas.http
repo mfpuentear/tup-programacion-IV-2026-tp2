@@ -1,0 +1,175 @@
+### Obtener todos los alumnos
+GET http://localhost:3000/alumnos
+
+
+### Crear alumno
+POST http://localhost:3000/alumnos
+Content-Type: application/json
+
+{
+    "nombre": "Juan Perez"
+}
+
+
+### Crear segundo alumno
+POST http://localhost:3000/alumnos
+Content-Type: application/json
+
+{
+    "nombre": "Maria Gomez"
+}
+
+
+### Crear alumno con nombre inválido
+POST http://localhost:3000/alumnos
+Content-Type: application/json
+
+{
+    "nombre": ""
+}
+
+
+### Obtener todas las materias
+GET http://localhost:3000/materias
+
+
+### Crear materia
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "nombre": "Programación IV"
+}
+
+
+### Crear segunda materia
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "nombre": "Base de Datos II"
+}
+
+
+### Crear materia con nombre inválido
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "nombre": ""
+}
+
+
+### Obtener todas las notas
+GET http://localhost:3000/notas
+
+
+### Crear registro de notas
+POST http://localhost:3000/notas
+Content-Type: application/json
+
+{
+    "alumno_id": 1,
+    "materia_id": 1,
+    "nota1": 8,
+    "nota2": 9,
+    "nota3": 7
+}
+
+
+### Obtener nota por ID
+GET http://localhost:3000/notas/1
+
+
+### Crear registro duplicado
+POST http://localhost:3000/notas
+Content-Type: application/json
+
+{
+    "alumno_id": 1,
+    "materia_id": 1,
+    "nota1": 10,
+    "nota2": 10,
+    "nota3": 10
+}
+
+
+### Crear nota con materia inexistente
+POST http://localhost:3000/notas
+Content-Type: application/json
+
+{
+    "alumno_id": 1,
+    "materia_id": 999,
+    "nota1": 8,
+    "nota2": 9,
+    "nota3": 7
+}
+
+
+### Crear nota con calificación inválida
+POST http://localhost:3000/notas
+Content-Type: application/json
+
+{
+    "alumno_id": 1,
+    "materia_id": 1,
+    "nota1": 15,
+    "nota2": -2,
+    "nota3": "hola"
+}
+
+
+### Crear nota con menos de tres notas
+POST http://localhost:3000/notas
+Content-Type: application/json
+
+{
+    "alumno_id": 1,
+    "materia_id": 2,
+    "nota1": 8,
+    "nota2": 9
+}
+
+
+### Modificar registro de notas
+PUT http://localhost:3000/notas/1
+Content-Type: application/json
+
+{
+    "alumno_id": 1,
+    "materia_id": 1,
+    "nota1": 9,
+    "nota2": 9,
+    "nota3": 8
+}
+
+
+### Modificar con combinación alumno/materia duplicada
+PUT http://localhost:3000/notas/1
+Content-Type: application/json
+
+{
+    "alumno_id": 2,
+    "materia_id": 1,
+    "nota1": 8,
+    "nota2": 8,
+    "nota3": 8
+}
+
+
+### Modificar con ID inválido
+PUT http://localhost:3000/notas/abc
+Content-Type: application/json
+
+{
+    "alumno_id": 1,
+    "materia_id": 1,
+    "nota1": 8,
+    "nota2": 8,
+    "nota3": 8
+}
+
+
+### Eliminar registro de notas
+DELETE http://localhost:3000/notas/1

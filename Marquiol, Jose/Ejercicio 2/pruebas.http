@@ -1,0 +1,96 @@
+### Obtener todas las tareas
+GET http://localhost:3000/tareas
+
+
+### Obtener tarea por ID
+GET http://localhost:3000/tareas/1
+
+
+### Obtener tarea con ID inválido
+GET http://localhost:3000/tareas/abc
+
+
+### Crear tarea pendiente
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar Programación IV",
+    "completada": false
+}
+
+
+### Crear tarea completada
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Hacer TP1",
+    "completada": true
+}
+
+
+### Crear tarea con nombre duplicado
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "nombre": "estudiar programación iv",
+    "completada": false
+}
+
+
+### Crear tarea con datos inválidos
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "nombre": "",
+    "completada": "hola"
+}
+
+
+### Obtener tareas pendientes
+GET http://localhost:3000/tareas?estado=pendiente
+
+
+### Obtener tareas completadas
+GET http://localhost:3000/tareas?estado=completada
+
+
+### Obtener tareas con estado inválido
+GET http://localhost:3000/tareas?estado=otra
+
+
+### Modificar tarea
+PUT http://localhost:3000/tareas/1
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar Programación IV - TP2",
+    "completada": true
+}
+
+
+### Modificar tarea con nombre duplicado
+PUT http://localhost:3000/tareas/1
+Content-Type: application/json
+
+{
+    "nombre": "Hacer TP1",
+    "completada": true
+}
+
+
+### Modificar tarea con ID inválido
+PUT http://localhost:3000/tareas/abc
+Content-Type: application/json
+
+{
+    "nombre": "Nueva tarea",
+    "completada": false
+}
+
+
+### Eliminar tarea
+DELETE http://localhost:3000/tareas/2
