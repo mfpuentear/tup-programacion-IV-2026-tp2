@@ -1,0 +1,11 @@
+### Obtener todos los rectángulos
+GET http://localhost:3000/api/rectangulos
+
+### Crear rectángulo (calcula área y perímetro automáticamente)
+POST http://localhost:3000/api/rectangulos
+Content-Type: application/json
+
+{
+  "base": 10,
+  "altura": 5
+}
