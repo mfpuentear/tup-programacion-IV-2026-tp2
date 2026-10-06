@@ -1,0 +1,51 @@
+@url=http://localhost:3000
+
+### Mostrar todo
+
+GET {{url}}/rectangulos
+
+### Ver rectangulo por id
+
+GET {{url}}/rectangulos/1
+
+### Crear rectangulo
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+  "ancho": 2,
+  "alto": 7
+}
+
+### Prueba de agregar una superficie manualmente (error)
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+  "ancho": 2,
+  "alto": 7,
+  "superficie": 123
+}
+
+### Modificar
+PUT {{url}}/rectangulos/4
+Content-Type: application/json
+
+{
+  "ancho": 10,
+  "alto": 9
+}
+
+### Prueba de modificar un perimetro manualmente
+PUT {{url}}/rectangulos/12
+Content-Type: application/json
+
+{
+  "ancho": 2,
+  "alto": 7,
+  "perimetro": 123
+}
+
+### Eliminar
+
+DELETE {{url}}/rectangulos/10

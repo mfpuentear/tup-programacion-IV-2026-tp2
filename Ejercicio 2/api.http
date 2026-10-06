@@ -1,0 +1,51 @@
+@url=http://localhost:3000
+
+### Ver todas las tareas
+GET {{url}}/tareas
+
+### Crear tarea
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Comprar pan"
+}
+
+### Crear ya completada
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Pagar la luz",
+  "completada": true
+}
+
+### Filtrar completadas
+GET {{url}}/tareas?estado=completada
+
+### Filtrar pendientes
+GET {{url}}/tareas?estado=pendiente
+
+### Buscar por id
+GET {{url}}/tareas/1
+
+### Reemplazo completo de la tarea
+PUT {{url}}/tareas/1
+Content-Type: application/json
+
+{
+  "nombre": "Comprar pan integral",
+  "completada": false
+}
+
+### Modificar parcialmente: solo marcar como completada
+PATCH {{url}}/tareas/1
+Content-Type: application/json
+
+{
+  "completada": true
+}
+
+### Eliminar
+DELETE {{url}}/tareas/1
+
