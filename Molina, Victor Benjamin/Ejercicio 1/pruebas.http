@@ -1,0 +1,74 @@
+### Obtener todos los rectángulos
+GET http://localhost:3000/rectangulos
+
+
+### Crear un rectángulo
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+    "lado1": 5,
+    "lado2": 10
+}
+
+### Obtener un rectángulo por ID
+GET http://localhost:3000/rectangulos/1
+
+
+### Probar un ID inexistente
+GET http://localhost:3000/rectangulos/99999
+
+
+### Probar un ID inválido
+GET http://localhost:3000/rectangulos/abc
+
+### Modificar un rectángulo
+PUT http://localhost:3000/rectangulos/1
+Content-Type: application/json
+
+{
+    "lado1": 8,
+    "lado2": 4
+}
+
+
+### Modificar un rectángulo inexistente
+PUT http://localhost:3000/rectangulos/99999
+Content-Type: application/json
+
+{
+    "lado1": 8,
+    "lado2": 4
+}
+
+
+### Modificar con lados inválidos
+PUT http://localhost:3000/rectangulos/1
+Content-Type: application/json
+
+{
+    "lado1": -5,
+    "lado2": 0
+}
+
+### Eliminar un rectángulo
+DELETE http://localhost:3000/rectangulos/3
+
+
+### Eliminar un rectángulo inexistente
+DELETE http://localhost:3000/rectangulos/99999
+
+
+### Eliminar usando un ID inválido
+DELETE http://localhost:3000/rectangulos/abc
+
+### Intentar enviar perímetro y superficie manualmente
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+    "lado1": 5,
+    "lado2": 10,
+    "perimetro": 9999,
+    "superficie": 9999
+}

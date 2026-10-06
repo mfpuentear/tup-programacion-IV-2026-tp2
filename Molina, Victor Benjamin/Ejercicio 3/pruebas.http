@@ -1,0 +1,135 @@
+### Obtener todas las materias
+GET http://localhost:3000/materias
+
+### Crear registro de notas
+POST http://localhost:3000/notas
+Content-Type: application/json
+
+{
+    "alumno": "Victor Molina",
+    "materia_id": 1,
+    "notas": [8, 7.5, 9]
+}
+
+
+### Intentar registrar el mismo alumno en la misma materia
+POST http://localhost:3000/notas
+Content-Type: application/json
+
+{
+    "alumno": "victor molina",
+    "materia_id": 1,
+    "notas": [6, 7, 8]
+}
+
+
+### Materia inexistente
+POST http://localhost:3000/notas
+Content-Type: application/json
+
+{
+    "alumno": "Juan Perez",
+    "materia_id": 99999,
+    "notas": [8, 7, 9]
+}
+
+
+### Más de tres notas
+POST http://localhost:3000/notas
+Content-Type: application/json
+
+{
+    "alumno": "Juan Perez",
+    "materia_id": 2,
+    "notas": [8, 7, 9, 10]
+}
+
+
+### Nota fuera de la escala
+POST http://localhost:3000/notas
+Content-Type: application/json
+
+{
+    "alumno": "Juan Perez",
+    "materia_id": 2,
+    "notas": [8, 15, 9]
+}
+
+### Obtener todos los registros de notas
+GET http://localhost:3000/notas
+
+### Obtener un registro de notas por ID
+GET http://localhost:3000/notas/1
+
+
+### Registro inexistente
+GET http://localhost:3000/notas/99999
+
+
+### ID inválido
+GET http://localhost:3000/notas/abc
+
+### Modificar un registro de notas
+PUT http://localhost:3000/notas/1
+Content-Type: application/json
+
+{
+    "alumno": "Victor Molina",
+    "materia_id": 1,
+    "notas": [10, 8.5, 9]
+}
+
+
+### Modificar con materia inexistente
+PUT http://localhost:3000/notas/1
+Content-Type: application/json
+
+{
+    "alumno": "Victor Molina",
+    "materia_id": 99999,
+    "notas": [8, 9, 10]
+}
+
+
+### Modificar con cantidad incorrecta de notas
+PUT http://localhost:3000/notas/1
+Content-Type: application/json
+
+{
+    "alumno": "Victor Molina",
+    "materia_id": 1,
+    "notas": [8, 9]
+}
+
+
+### Modificar con nota fuera de escala
+PUT http://localhost:3000/notas/1
+Content-Type: application/json
+
+{
+    "alumno": "Victor Molina",
+    "materia_id": 1,
+    "notas": [8, 11, 9]
+}
+
+
+### Modificar registro inexistente
+PUT http://localhost:3000/notas/99999
+Content-Type: application/json
+
+{
+    "alumno": "Alumno Prueba",
+    "materia_id": 2,
+    "notas": [7, 8, 9]
+}
+
+### Eliminar un registro de notas
+DELETE http://localhost:3000/notas/1
+
+
+### Eliminar un registro inexistente
+DELETE http://localhost:3000/notas/99999
+
+
+### Eliminar con ID inválido
+DELETE http://localhost:3000/notas/abc

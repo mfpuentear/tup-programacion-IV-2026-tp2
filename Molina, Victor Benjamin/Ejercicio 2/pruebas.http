@@ -1,0 +1,124 @@
+### Obtener todas las tareas
+GET http://localhost:3000/tareas
+
+
+### Obtener tareas completadas
+GET http://localhost:3000/tareas?estado=completadas
+
+
+### Obtener tareas pendientes
+GET http://localhost:3000/tareas?estado=pendientes
+
+
+### Estado inválido
+GET http://localhost:3000/tareas?estado=banana
+
+### Crear una tarea pendiente
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar Programacion IV",
+    "completada": false
+}
+
+
+### Crear una tarea completada
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Terminar Ejercicio 1",
+    "completada": true
+}
+
+
+### Intentar crear una tarea duplicada
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "nombre": "estudiar programacion iv",
+    "completada": false
+}
+
+
+### Nombre vacío
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "nombre": "",
+    "completada": false
+}
+
+
+### Estado que no es booleano
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Otra tarea",
+    "completada": "pendiente"
+}
+
+### Obtener una tarea por ID
+GET http://localhost:3000/tareas/1
+
+
+### Obtener una tarea inexistente
+GET http://localhost:3000/tareas/99999
+
+
+### ID inválido
+GET http://localhost:3000/tareas/abc
+
+### Modificar una tarea
+PUT http://localhost:3000/tareas/1
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar Programacion IV",
+    "completada": true
+}
+
+
+### Intentar usar el nombre de otra tarea
+PUT http://localhost:3000/tareas/1
+Content-Type: application/json
+
+{
+    "nombre": "Terminar Ejercicio 1",
+    "completada": true
+}
+
+
+### Modificar una tarea inexistente
+PUT http://localhost:3000/tareas/99999
+Content-Type: application/json
+
+{
+    "nombre": "Tarea inexistente",
+    "completada": false
+}
+
+
+### Modificar con estado inválido
+PUT http://localhost:3000/tareas/1
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar Programacion IV",
+    "completada": "si"
+}
+
+### Eliminar una tarea
+DELETE http://localhost:3000/tareas/1
+
+
+### Eliminar una tarea inexistente
+DELETE http://localhost:3000/tareas/99999
+
+
+### Eliminar con ID inválido
+DELETE http://localhost:3000/tareas/abc
