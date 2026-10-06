@@ -1,15 +1,18 @@
-const express = require('express');
-require('dotenv').config();
+import express from 'express';
+import dotenv from 'dotenv';
+import materiasRouter from './materias.js';
+import calificacionesRouter from './calificaciones.js';
 
-const calificacionesRouter = require('./calificaciones');
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
+app.use('/api/materias', materiasRouter);
 app.use('/api/calificaciones', calificacionesRouter);
 
 app.listen(PORT, () => {
-  console.log(`Servidor de Calificaciones corriendo en el puerto ${PORT}`);
+  console.log(`Servidor Ejercicio 3 corriendo en puerto ${PORT}`);
 });
