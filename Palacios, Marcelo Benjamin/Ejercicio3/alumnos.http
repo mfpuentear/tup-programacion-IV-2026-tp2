@@ -1,0 +1,13 @@
+@url=http://localhost:3000
+
+### Consultar alumnos
+GET {{url}}/alumnos
+
+### Consultar calificaciones de un alumno
+GET {{url}}/alumnos/Juan Pérez/calificaciones
+
+### Consultar calificaciones de un alumno inexistente (error 404)
+GET {{url}}/alumnos/Nadie/calificaciones
+
+### Consultar con nombre no valido (error 400)
+GET {{url}}/alumnos/Juan123/calificaciones

@@ -1,0 +1,92 @@
+@url=http://localhost:3000
+
+### Crear rectangulo
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "base": 3,
+    "altura": 4.5
+}
+
+### Crear otro rectangulo
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "base": 10,
+    "altura": 20
+}
+
+### Crear rectangulo sin altura (error 400)
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "base": 3
+}
+
+### Crear rectangulo con lados no validos (error 400)
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "base": -2,
+    "altura": "cuatro"
+}
+
+### Crear rectangulo enviando perimetro y superficie (error 400)
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "base": 3,
+    "altura": 4,
+    "perimetro": 100,
+    "superficie": 999
+}
+
+### Listado de rectangulos
+GET {{url}}/rectangulos
+
+### Listado de rectangulos con filtro de superficie minima
+GET {{url}}/rectangulos?superficieMin=20
+
+### Listado de rectangulos con filtro de superficie minima y maxima
+GET {{url}}/rectangulos?superficieMin=10&superficieMax=100
+
+### Listado de rectangulos con filtro no valido (error 400)
+GET {{url}}/rectangulos?superficieMin=abc
+
+### Detalles de rectangulo
+GET {{url}}/rectangulos/1
+
+### Detalles de rectangulo con id no valido (error 400)
+GET {{url}}/rectangulos/algo
+
+### Detalles de rectangulo inexistente (error 404)
+GET {{url}}/rectangulos/9999
+
+### Modificar rectangulo
+PUT {{url}}/rectangulos/1
+Content-Type: application/json
+
+{
+    "base": 5,
+    "altura": 2
+}
+
+### Modificar rectangulo con lado igual a cero (error 400)
+PUT {{url}}/rectangulos/1
+Content-Type: application/json
+
+{
+    "base": 0,
+    "altura": 2
+}
+
+### Quitar rectangulo
+DELETE {{url}}/rectangulos/2
+
+### Quitar rectangulo inexistente (error 404)
+DELETE {{url}}/rectangulos/9999

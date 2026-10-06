@@ -1,0 +1,101 @@
+@url=http://localhost:3000
+
+### Crear tarea (completada es opcional, por defecto false)
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar Express"
+}
+
+### Crear tarea completada
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Instalar MySQL",
+    "completada": true
+}
+
+### Crear tarea con nombre repetido (error 400: no importan espacios, mayusculas ni tildes)
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "   ESTUDIAR    express  "
+}
+
+### Crear tarea sin nombre (error 400)
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "completada": false
+}
+
+### Crear tarea con nombre vacio (error 400)
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "    "
+}
+
+### Crear tarea con completada no valido (error 400)
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Hacer el TP",
+    "completada": "si"
+}
+
+### Listado de tareas
+GET {{url}}/tareas
+
+### Listado de tareas completadas
+GET {{url}}/tareas?estado=completada
+
+### Listado de tareas pendientes
+GET {{url}}/tareas?estado=pendiente
+
+### Listado de tareas con estado no valido (error 400)
+GET {{url}}/tareas?estado=terminada
+
+### Detalles de tarea
+GET {{url}}/tareas/1
+
+### Detalles de tarea inexistente (error 404)
+GET {{url}}/tareas/9999
+
+### Modificar tarea
+PUT {{url}}/tareas/1
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar Express",
+    "completada": true
+}
+
+### Modificar tarea sin completada (error 400)
+PUT {{url}}/tareas/1
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar Express"
+}
+
+### Modificar tarea con el nombre de otra tarea (error 400)
+PUT {{url}}/tareas/1
+Content-Type: application/json
+
+{
+    "nombre": "instalar mysql",
+    "completada": false
+}
+
+### Quitar tarea
+DELETE {{url}}/tareas/2
+
+### Quitar tarea inexistente (error 404)
+DELETE {{url}}/tareas/9999

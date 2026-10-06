@@ -1,0 +1,115 @@
+@url=http://localhost:3000
+
+### Crear calificacion
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Juan Pérez",
+    "materiaId": 1,
+    "notas": [7, 8.5, 9]
+}
+
+### Crear calificacion del mismo alumno en otra materia
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Juan Pérez",
+    "materiaId": 2,
+    "notas": [6, 6, 7.25]
+}
+
+### Crear calificacion repetida para alumno y materia (error 400)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "  juan   PEREZ ",
+    "materiaId": 1,
+    "notas": [4, 5, 6]
+}
+
+### Crear calificacion con materia inexistente (error 400)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Ana Gómez",
+    "materiaId": 999,
+    "notas": [7, 7, 7]
+}
+
+### Crear calificacion con solo dos notas (error 400)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Ana Gómez",
+    "materiaId": 1,
+    "notas": [7, 8]
+}
+
+### Crear calificacion con notas fuera de escala (error 400)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Ana Gómez",
+    "materiaId": 1,
+    "notas": [11, "ocho", 0]
+}
+
+### Crear calificacion con nombre de alumno no valido (error 400)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Ana123",
+    "materiaId": 1,
+    "notas": [7, 8, 9]
+}
+
+### Listado de calificaciones
+GET {{url}}/calificaciones
+
+### Listado de calificaciones con filtro de materia
+GET {{url}}/calificaciones?materiaId=1
+
+### Listado de calificaciones con filtro de alumno
+GET {{url}}/calificaciones?alumno=Juan
+
+### Listado de calificaciones con filtro no valido (error 400)
+GET {{url}}/calificaciones?materiaId=algo
+
+### Detalles de calificacion
+GET {{url}}/calificaciones/1
+
+### Detalles de calificacion inexistente (error 404)
+GET {{url}}/calificaciones/9999
+
+### Modificar calificacion
+PUT {{url}}/calificaciones/1
+Content-Type: application/json
+
+{
+    "alumno": "Juan Pérez",
+    "materiaId": 1,
+    "notas": [8, 9, 10]
+}
+
+### Modificar calificacion para que repita alumno y materia (error 400)
+PUT {{url}}/calificaciones/1
+Content-Type: application/json
+
+{
+    "alumno": "Juan Pérez",
+    "materiaId": 2,
+    "notas": [8, 9, 10]
+}
+
+### Quitar calificacion
+DELETE {{url}}/calificaciones/2
+
+### Quitar calificacion inexistente (error 404)
+DELETE {{url}}/calificaciones/9999

@@ -1,0 +1,51 @@
+@url=http://localhost:3000
+
+### Consultar materias
+GET {{url}}/materias
+
+### Consultar materia
+GET {{url}}/materias/1
+
+### Consultar materia inexistente (error 404)
+GET {{url}}/materias/9999
+
+### Crear materia
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+    "nombre": "Estadística"
+}
+
+### Crear materia repetida (error 400: no importan mayusculas ni tildes)
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+    "nombre": "programacion"
+}
+
+### Crear materia con nombre no valido (error 400)
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+    "nombre": "Materia 123"
+}
+
+### Modificar materia
+PUT {{url}}/materias/4
+Content-Type: application/json
+
+{
+    "nombre": "Estadística y Probabilidad"
+}
+
+### Consultar calificaciones de una materia
+GET {{url}}/materias/1/calificaciones
+
+### Quitar materia sin calificaciones
+DELETE {{url}}/materias/4
+
+### Quitar materia con calificaciones (error 409, ejecutar despues de crear calificaciones)
+DELETE {{url}}/materias/1
