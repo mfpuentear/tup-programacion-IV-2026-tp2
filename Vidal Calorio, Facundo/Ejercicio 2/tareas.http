@@ -1,0 +1,104 @@
+@url=http://localhost:3001
+
+### Crear tarea pendiente
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Leer apuntes",
+    "completada": false
+}
+
+### Crear tarea completada
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Entregar resumen",
+    "completada": true
+}
+
+### Crear otra tarea pendiente
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Practicar ejercicios",
+    "completada": false
+}
+
+### Listar tareas
+GET {{url}}/tareas
+
+### Listar tareas completadas
+GET {{url}}/tareas?estado=completadas
+
+### Listar tareas pendientes
+GET {{url}}/tareas?estado=pendientes
+
+### Consultar tarea por id
+GET {{url}}/tareas/1
+
+### Modificar tarea completa
+PUT {{url}}/tareas/1
+Content-Type: application/json
+
+{
+    "nombre": "Leer apuntes actualizados",
+    "completada": true
+}
+
+### Consultar tarea modificada
+GET {{url}}/tareas/1
+
+### Actualizar solo el estado
+PATCH {{url}}/tareas/3/estado
+Content-Type: application/json
+
+{
+    "completada": true
+}
+
+### Eliminar tarea
+DELETE {{url}}/tareas/2
+
+### Error: tarea duplicada
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "leer apuntes actualizados",
+    "completada": false
+}
+
+### Error: falta nombre
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "completada": false
+}
+
+### Error: nombre demasiado corto
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "TP",
+    "completada": false
+}
+
+### Error: completada no es booleano
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Revisar material",
+    "completada": "si"
+}
+
+### Error: filtro invalido
+GET {{url}}/tareas?estado=todas
+
+### Error: id invalido
+GET {{url}}/tareas/abc
