@@ -1,0 +1,45 @@
+### 1. Obtener todos los rectangulos
+GET http://localhost:3000/rectangulos
+
+### 2. Crear rectangulo OK
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+    "lado_a": 5,
+    "lado_b": 10
+}
+
+### 3. Error: Enviar perimetro o superficie (Rechazado por el servidor)
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+    "lado_a": 5,
+    "lado_b": 10,
+    "perimetro": 30
+}
+
+### 4. Error: Lados invalidos o menores/iguales a 0
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+    "lado_a": -2,
+    "lado_b": 0
+}
+
+### 5. Obtener rectangulo por ID
+GET http://localhost:3000/rectangulos/1
+
+### 6. Modificar rectangulo por ID
+PUT http://localhost:3000/rectangulos/1
+Content-Type: application/json
+
+{
+    "lado_a": 8,
+    "lado_b": 4
+}
+
+### 7. Eliminar rectangulo por ID
+DELETE http://localhost:3000/rectangulos/1

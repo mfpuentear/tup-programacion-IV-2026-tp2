@@ -1,0 +1,65 @@
+### 1. Obtener todos los registros
+GET http://localhost:3002/calificaciones
+
+### 2. Crear un registro valido (Materia 1: Ingles)
+POST http://localhost:3002/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Juan Perez",
+    "materia_id": 1,
+    "nota1": 7.5,
+    "nota2": 8,
+    "nota3": 9
+}
+
+### 3. Error: Mismo alumno en la misma materia
+POST http://localhost:3002/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "juan PEREZ",
+    "materia_id": 1,
+    "nota1": 6,
+    "nota2": 6,
+    "nota3": 6
+}
+
+### 4. Error: Materia no existe
+POST http://localhost:3002/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Maria Gomez",
+    "materia_id": 99,
+    "nota1": 10,
+    "nota2": 10,
+    "nota3": 10
+}
+
+### 5. Error: Notas fuera de rango (escala del 1 al 10)
+POST http://localhost:3002/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Carlos Lopez",
+    "materia_id": 2,
+    "nota1": 11,
+    "nota2": -1,
+    "nota3": 5
+}
+
+### 6. Modificar registro
+PUT http://localhost:3002/calificaciones/1
+Content-Type: application/json
+
+{
+    "alumno": "Juan Perez",
+    "materia_id": 1,
+    "nota1": 10,
+    "nota2": 10,
+    "nota3": 10
+}
+
+### 7. Eliminar registro
+DELETE http://localhost:3002/calificaciones/1

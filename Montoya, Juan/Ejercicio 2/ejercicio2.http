@@ -1,0 +1,40 @@
+### 1. Obtener todas las tareas
+GET http://localhost:3001/tareas
+
+### 2. Filtrar solo completadas
+GET http://localhost:3001/tareas?completada=true
+
+### 3. Filtrar solo pendientes
+GET http://localhost:3001/tareas?completada=false
+
+### 4. Crear tarea exitosamente
+POST http://localhost:3001/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Hacer las compras",
+    "completada": false
+}
+
+### 5. Error: Evitar nombre duplicado (Probando criterio de comparacion)
+POST http://localhost:3001/tareas
+Content-Type: application/json
+
+{
+    "nombre": "  hacer las COMPRAS   "
+}
+
+### 6. Error: Filtro invalido (No es booleano)
+GET http://localhost:3001/tareas?completada=pendiente
+
+### 7. Modificar tarea (Marcando como completada)
+PUT http://localhost:3001/tareas/1
+Content-Type: application/json
+
+{
+    "nombre": "Hacer las compras",
+    "completada": true
+}
+
+### 8. Eliminar tarea
+DELETE http://localhost:3001/tareas/1
