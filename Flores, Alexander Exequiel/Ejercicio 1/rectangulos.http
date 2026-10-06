@@ -1,0 +1,87 @@
+### Listar todos los rectángulos
+GET http://localhost:3000/rectangulos
+
+### Crear un rectángulo
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+  "lado_a": 5,
+  "lado_b": 3
+}
+
+### Crear un cuadrado (lado_a = lado_b)
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+  "lado_a": 4,
+  "lado_b": 4
+}
+
+### Consultar un rectángulo
+GET http://localhost:3000/rectangulos/1
+
+### Modificar un rectángulo
+PUT http://localhost:3000/rectangulos/1
+Content-Type: application/json
+
+{
+  "lado_a": 6,
+  "lado_b": 2
+}
+
+### Eliminar un rectángulo
+DELETE http://localhost:3000/rectangulos/1
+
+### ERROR 400: falta lado_b
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+  "lado_a": 5
+}
+
+### ERROR 400: lado negativo
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+  "lado_a": -2,
+  "lado_b": 3
+}
+
+### ERROR 400: lado en cero
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+  "lado_a": 0,
+  "lado_b": 3
+}
+
+### ERROR 400: lado no numérico
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+  "lado_a": "abc",
+  "lado_b": 3
+}
+
+### ERROR 400: intentar enviar perímetro/superficie (se ignoran, no rompen nada)
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+  "lado_a": 5,
+  "lado_b": 3,
+  "perimetro": 999,
+  "superficie": 999
+}
+
+### ERROR 400: id inválido
+GET http://localhost:3000/rectangulos/abc
+
+### ERROR 404: rectángulo inexistente
+GET http://localhost:3000/rectangulos/999
