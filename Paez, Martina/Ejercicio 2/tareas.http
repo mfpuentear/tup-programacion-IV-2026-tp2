@@ -1,0 +1,111 @@
+@baseUrl = http://localhost:3001
+
+### Listar todas las tareas
+GET {{baseUrl}}/tareas
+
+### Crear una tarea valida
+POST {{baseUrl}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Lavar los platos"
+}
+
+### Crear otra tarea
+POST {{baseUrl}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Estudiar para el parcial"
+}
+
+### Crear: nombre duplicado exacto -> 400
+POST {{baseUrl}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Lavar los platos"
+}
+
+### Crear: nombre duplicado segun el criterio (distintas mayusculas/espacios) -> 400
+POST {{baseUrl}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "  lavar LOS PLATOS  "
+}
+
+### Crear: falta el nombre -> 400
+POST {{baseUrl}}/tareas
+Content-Type: application/json
+
+{
+}
+
+### Crear: nombre vacio -> 400
+POST {{baseUrl}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "   "
+}
+
+### Obtener una tarea por id (ajustar segun lo creado)
+GET {{baseUrl}}/tareas/1
+
+### Obtener con id inexistente -> 404
+GET {{baseUrl}}/tareas/9999
+
+### Filtrar tareas completadas
+GET {{baseUrl}}/tareas?completada=true
+
+### Filtrar tareas pendientes
+GET {{baseUrl}}/tareas?completada=false
+
+### Filtrar con un valor invalido -> 400
+GET {{baseUrl}}/tareas?completada=si
+
+### Marcar una tarea como completada (ajustar el id)
+PATCH {{baseUrl}}/tareas/1
+Content-Type: application/json
+
+{
+  "completada": true
+}
+
+### Cambiar solo el nombre de una tarea (ajustar el id)
+PATCH {{baseUrl}}/tareas/2
+Content-Type: application/json
+
+{
+  "nombre": "Estudiar para el final"
+}
+
+### Modificar: completada con un valor no booleano -> 400
+PATCH {{baseUrl}}/tareas/1
+Content-Type: application/json
+
+{
+  "completada": "si"
+}
+
+### Modificar: sin enviar ningun campo -> 400
+PATCH {{baseUrl}}/tareas/1
+Content-Type: application/json
+
+{
+}
+
+### Modificar una tarea inexistente -> 404
+PATCH {{baseUrl}}/tareas/9999
+Content-Type: application/json
+
+{
+  "completada": true
+}
+
+### Eliminar una tarea (ajustar el id)
+DELETE {{baseUrl}}/tareas/2
+
+### Eliminar una tarea inexistente -> 404
+DELETE {{baseUrl}}/tareas/9999

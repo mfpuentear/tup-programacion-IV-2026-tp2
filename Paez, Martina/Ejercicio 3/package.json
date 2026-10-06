@@ -1,0 +1,17 @@
+{
+  "name": "ejercicio3-calificaciones",
+  "version": "1.0.0",
+  "description": "API para gestionar alumnos, materias y calificaciones, persistida en MySQL",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-async-errors": "^3.1.1",
+    "express-validator": "^7.2.0",
+    "mysql2": "^3.11.0",
+    "dotenv": "^16.4.5"
+  }
+}

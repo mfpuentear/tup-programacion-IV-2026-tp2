@@ -1,0 +1,174 @@
+@baseUrl = http://localhost:3002
+
+### ===== MATERIAS =====
+
+### Listar materias
+GET {{baseUrl}}/materias
+
+### Crear materia: Programacion IV
+POST {{baseUrl}}/materias
+Content-Type: application/json
+
+{
+  "nombre": "Programacion IV"
+}
+
+### Crear materia: Base de Datos
+POST {{baseUrl}}/materias
+Content-Type: application/json
+
+{
+  "nombre": "Base de Datos"
+}
+
+### Crear materia duplicada -> 400
+POST {{baseUrl}}/materias
+Content-Type: application/json
+
+{
+  "nombre": "Programacion IV"
+}
+
+### Crear materia sin nombre -> 400
+POST {{baseUrl}}/materias
+Content-Type: application/json
+
+{
+}
+
+### Obtener materia por id (ajustar)
+GET {{baseUrl}}/materias/1
+
+### Obtener materia inexistente -> 404
+GET {{baseUrl}}/materias/9999
+
+
+### ===== CALIFICACIONES =====
+
+### Listar calificaciones
+GET {{baseUrl}}/calificaciones
+
+### Crear calificacion valida (ajustar materiaId segun lo creado arriba)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Martina Paez",
+  "materiaId": 2,
+  "notas": [8, 7, 9]
+}
+
+### Crear calificacion: mismo alumno, otra materia (valido)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Martina Paez",
+  "materiaId": 3,
+  "notas": [6, 6, 7]
+}
+
+### Crear: combinacion alumno-materia repetida (incluso con mayusculas/espacios distintos) -> 400
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "  MARTINA paez  ",
+  "materiaId": 3,
+  "notas": [5, 5, 5]
+}
+
+### Crear: materia inexistente -> 400
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Otro Alumno",
+  "materiaId": 9999,
+  "notas": [7, 7, 7]
+}
+
+### Crear: menos de tres notas -> 400
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Otro Alumno",
+  "materiaId": 1,
+  "notas": [7, 8]
+}
+
+### Crear: nota fuera de escala (11, fuera de 1-10) -> 400
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Otro Alumno",
+  "materiaId": 1,
+  "notas": [7, 8, 11]
+}
+
+### Crear: nota fuera de escala (0, fuera de 1-10) -> 400
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Otro Alumno",
+  "materiaId": 1,
+  "notas": [0, 8, 9]
+}
+
+### Crear: falta el alumno -> 400
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{
+  "materiaId": 2,
+  "notas": [7, 8, 9]
+}
+
+### Obtener calificacion por id (ajustar)
+GET {{baseUrl}}/calificaciones/1
+
+### Obtener calificacion inexistente -> 404
+GET {{baseUrl}}/calificaciones/9999
+
+### Modificar solo las notas (ajustar id)
+PATCH {{baseUrl}}/calificaciones/1
+Content-Type: application/json
+
+{
+  "notas": [9, 9, 10]
+}
+
+### Modificar: mover a una materia donde ya existe la combinacion -> 400
+PATCH {{baseUrl}}/calificaciones/2
+Content-Type: application/json
+
+{
+  "materiaId": 1
+}
+
+### Modificar sin enviar ningun campo -> 400
+PATCH {{baseUrl}}/calificaciones/1
+Content-Type: application/json
+
+{
+}
+
+### Modificar calificacion inexistente -> 404
+PATCH {{baseUrl}}/calificaciones/9999
+Content-Type: application/json
+
+{
+  "notas": [5, 5, 5]
+}
+
+### Eliminar una calificacion (ajustar id)
+DELETE {{baseUrl}}/calificaciones/2
+
+### Eliminar calificacion inexistente -> 404
+DELETE {{baseUrl}}/calificaciones/9999
+
+### Intentar eliminar una materia con calificaciones asociadas -> 409
+DELETE {{baseUrl}}/materias/1

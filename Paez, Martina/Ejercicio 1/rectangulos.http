@@ -1,0 +1,83 @@
+@baseUrl = http://localhost:3000
+
+### Listar todos los rectangulos
+GET {{baseUrl}}/rectangulos
+
+### Crear un rectangulo valido (4 x 6)
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{
+  "lado_a": 4,
+  "lado_b": 6
+}
+
+### Crear un rectangulo que ademas es cuadrado (5 x 5)
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{
+  "lado_a": 5,
+  "lado_b": 5
+}
+
+### Crear: falta lado_b -> 400
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{
+  "lado_a": 4
+}
+
+### Crear: lado_a negativo -> 400
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{
+  "lado_a": -3,
+  "lado_b": 5
+}
+
+### Crear: se intenta mandar perimetro/superficie -> se ignoran, igual se recalculan
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{
+  "lado_a": 2,
+  "lado_b": 3,
+  "perimetro": 999,
+  "superficie": 999
+}
+
+### Obtener un rectangulo por id (ajustar el id segun lo creado)
+GET {{baseUrl}}/rectangulos/1
+
+### Obtener un rectangulo con id inexistente -> 404
+GET {{baseUrl}}/rectangulos/9999
+
+### Obtener con id invalido (no numerico) -> 400
+GET {{baseUrl}}/rectangulos/abc
+
+### Modificar un rectangulo existente 
+PUT {{baseUrl}}/rectangulos/1
+Content-Type: application/json
+
+{
+  "lado_a": 10,
+  "lado_b": 10
+}
+
+### Modificar un rectangulo inexistente -> 404
+PUT {{baseUrl}}/rectangulos/9999
+Content-Type: application/json
+
+{
+  "lado_a": 1,
+  "lado_b": 2
+}
+
+### Eliminar un rectangulo 
+DELETE {{baseUrl}}/rectangulos/1
+
+### Eliminar un rectangulo inexistente -> 404
+DELETE {{baseUrl}}/rectangulos/9999
