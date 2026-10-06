@@ -1,0 +1,62 @@
+### 
+@host = http://localhost:3000/api/rectangulos
+
+### 
+GET {{host}}
+Content-Type: application/json
+
+###
+
+### 
+POST {{host}}
+Content-Type: application/json
+
+{
+  "lado_a": 4,
+  "lado_b": 5
+}
+
+###
+
+### 
+POST {{host}}
+Content-Type: application/json
+
+{
+  "lado_a": 4,
+  "lado_b": 5,
+  "perimetro": 18
+}
+
+###
+
+POST {{host}}
+Content-Type: application/json
+
+{
+  "lado_a": -2,
+  "lado_b": "cinco"
+}
+
+###
+
+### 
+GET {{host}}/1
+Content-Type: application/json
+
+###
+
+### 
+PUT {{host}}/1
+Content-Type: application/json
+
+{
+  "lado_a": 10,
+  "lado_b": 2.5
+}
+
+###
+
+### 
+DELETE {{host}}/1
+Content-Type: application/json

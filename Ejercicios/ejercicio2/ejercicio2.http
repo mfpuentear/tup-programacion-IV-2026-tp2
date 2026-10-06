@@ -1,0 +1,50 @@
+### 
+@host = http://localhost:3000/api/tareas
+
+### 
+GET {{host}}
+
+### 
+POST {{host}}
+Content-Type: application/json
+
+{
+  "nombre": "Estudiar para Programacion 4"
+}
+
+### 
+POST {{host}}
+Content-Type: application/json
+
+{
+  "nombre": "Instalar DBeaver",
+  "completada": true
+}
+
+### 
+POST {{host}}
+Content-Type: application/json
+
+{
+  "nombre": "  estudiar para programacion 4 "
+}
+
+### 
+GET {{host}}?completada=true
+
+### 
+GET {{host}}?completada=false
+
+### 
+GET {{host}}?completada=no_booleano
+
+### 
+PUT {{host}}/1
+Content-Type: application/json
+
+{
+  "completada": true
+}
+
+### 
+DELETE {{host}}/2
