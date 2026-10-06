@@ -1,0 +1,130 @@
+@baseUrl = http://localhost:3000
+
+### Crear tarea válida (201)
+POST {{baseUrl}}/tareas
+Content-Type: application/json
+
+{ "nombre": "Comprar pan" }
+
+### Mismo nombre, otras mayúsculas y espacios de más (409)
+POST {{baseUrl}}/tareas
+Content-Type: application/json
+
+{ "nombre": "  COMPRAR    pan  " }
+
+### Mismo nombre con una tilde (409)
+POST {{baseUrl}}/tareas
+Content-Type: application/json
+
+{ "nombre": "Comprár pan" }
+
+### Crear con estado completada (201)
+POST {{baseUrl}}/tareas
+Content-Type: application/json
+
+{ "nombre": "Estudiar Express", "completada": true }
+
+### Sin nombre (400)
+POST {{baseUrl}}/tareas
+Content-Type: application/json
+
+{ "completada": false }
+
+### Nombre vacío (400)
+POST {{baseUrl}}/tareas
+Content-Type: application/json
+
+{ "nombre": "     " }
+
+### Nombre que no es texto (400)
+POST {{baseUrl}}/tareas
+Content-Type: application/json
+
+{ "nombre": 123 }
+
+### completada que no es booleano (400)
+POST {{baseUrl}}/tareas
+Content-Type: application/json
+
+{ "nombre": "Lavar el auto", "completada": "si" }
+
+### Listar todas (200)
+GET {{baseUrl}}/tareas
+
+### Solo completadas (200)
+GET {{baseUrl}}/tareas?estado=completadas
+
+### Solo pendientes (200)
+GET {{baseUrl}}/tareas?estado=pendientes
+
+### Estado no admitido (400)
+GET {{baseUrl}}/tareas?estado=terminadas
+
+### Estado vacío (400)
+GET {{baseUrl}}/tareas?estado=
+
+### Obtener una existente (200)
+GET {{baseUrl}}/tareas/1
+
+### id inválido (400)
+GET {{baseUrl}}/tareas/abc
+
+### id inexistente (404)
+GET {{baseUrl}}/tareas/9999
+
+### Modificar nombre y estado (200)
+PUT {{baseUrl}}/tareas/1
+Content-Type: application/json
+
+{ "nombre": "Comprar pan integral", "completada": true }
+
+### Mismo nombre de la propia tarea, con otras mayúsculas, cambiando solo el estado (200)
+PUT {{baseUrl}}/tareas/1
+Content-Type: application/json
+
+{ "nombre": "comprar PAN integral", "completada": false }
+
+### Nombre que ya tiene otra tarea (409)
+PUT {{baseUrl}}/tareas/1
+Content-Type: application/json
+
+{ "nombre": "estudiar EXPRESS", "completada": false }
+
+### id inexistente (404)
+PUT {{baseUrl}}/tareas/9999
+Content-Type: application/json
+
+{ "nombre": "Tarea nueva", "completada": false }
+
+### Sin completada (400)
+PUT {{baseUrl}}/tareas/1
+Content-Type: application/json
+
+{ "nombre": "Comprar pan" }
+
+### Nombre vacío (400)
+PUT {{baseUrl}}/tareas/1
+Content-Type: application/json
+
+{ "nombre": "   ", "completada": false }
+
+### id inválido (400)
+PUT {{baseUrl}}/tareas/abc
+Content-Type: application/json
+
+{ "nombre": "Comprar pan", "completada": false }
+
+### Crear una tarea para eliminar (201)
+POST {{baseUrl}}/tareas
+Content-Type: application/json
+
+{ "nombre": "Tarea descartable" }
+
+### Eliminar existente (204), cambiá el 3 por el id que devolvió la prueba anterior
+DELETE {{baseUrl}}/tareas/3
+
+### Eliminar la misma otra vez (404)
+DELETE {{baseUrl}}/tareas/3
+
+### Eliminar con id inválido (400)
+DELETE {{baseUrl}}/tareas/abc

@@ -1,0 +1,374 @@
+@baseUrl = http://localhost:3000
+
+### 1. Crear materia (201)
+POST {{baseUrl}}/materias
+Content-Type: application/json
+
+{ "nombre": "Programación IV" }
+
+### 2. Crear otra materia (201)
+POST {{baseUrl}}/materias
+Content-Type: application/json
+
+{ "nombre": "Base de Datos" }
+
+### 3. Listar materias (200)
+GET {{baseUrl}}/materias
+
+### 4. Obtener materia por id (200)
+GET {{baseUrl}}/materias/1
+
+### 5. Modificar materia (200)
+PUT {{baseUrl}}/materias/1
+Content-Type: application/json
+
+{ "nombre": "Programación IV" }
+
+### 6. Crear repetida, distinto formato (409)
+POST {{baseUrl}}/materias
+Content-Type: application/json
+
+{ "nombre": "  programacion   iv " }
+
+### 7. Modificar con el nombre de otra materia (409)
+PUT {{baseUrl}}/materias/1
+Content-Type: application/json
+
+{ "nombre": "base de datos" }
+
+### 8. nombre ausente (400)
+POST {{baseUrl}}/materias
+Content-Type: application/json
+
+{ }
+
+### 9. nombre no es texto (400)
+POST {{baseUrl}}/materias
+Content-Type: application/json
+
+{ "nombre": 123 }
+
+### 10. nombre vacío (400)
+POST {{baseUrl}}/materias
+Content-Type: application/json
+
+{ "nombre": "   " }
+
+### 11. nombre demasiado largo (400)
+POST {{baseUrl}}/materias
+Content-Type: application/json
+
+{ "nombre": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }
+
+### 12. id inválido (400)
+GET {{baseUrl}}/materias/abc
+
+### 13. id en cero (400)
+GET {{baseUrl}}/materias/0
+
+### 14. id válido que no existe (404)
+GET {{baseUrl}}/materias/9999
+
+### 15. Modificar id que no existe (404)
+PUT {{baseUrl}}/materias/9999
+Content-Type: application/json
+
+{ "nombre": "Inexistente" }
+
+### 16. Eliminar id que no existe (404)
+DELETE {{baseUrl}}/materias/9999
+
+### 17. JSON mal formado (400)
+POST {{baseUrl}}/materias
+Content-Type: application/json
+
+{ "nombre": 
+
+### 18. Eliminar materia (204)
+DELETE {{baseUrl}}/materias/2
+
+##########  ALUMNOS  ##########
+
+### A1. Crear alumno (201)
+POST {{baseUrl}}/alumnos
+Content-Type: application/json
+
+{ "nombre": "Ana Pérez" }
+
+### A2. Crear otro alumno (201)
+POST {{baseUrl}}/alumnos
+Content-Type: application/json
+
+{ "nombre": "Juan Gómez" }
+
+### A3. Crear alumno para borrar después (201)
+POST {{baseUrl}}/alumnos
+Content-Type: application/json
+
+{ "nombre": "Temporal Borrar" }
+
+### A4. Listar alumnos (200)
+GET {{baseUrl}}/alumnos
+
+### A5. Obtener alumno por id (200)
+GET {{baseUrl}}/alumnos/1
+
+### A6. Modificar alumno con su mismo nombre (200, la propia fila no cuenta como duplicada)
+PUT {{baseUrl}}/alumnos/1
+Content-Type: application/json
+
+{ "nombre": "Ana Pérez" }
+
+### A7. Crear repetido, distinto formato y sin acento (409)
+POST {{baseUrl}}/alumnos
+Content-Type: application/json
+
+{ "nombre": "  ana   perez " }
+
+### A8. Modificar con el nombre de otro alumno (409)
+PUT {{baseUrl}}/alumnos/1
+Content-Type: application/json
+
+{ "nombre": "juan gomez" }
+
+### A9. nombre ausente (400)
+POST {{baseUrl}}/alumnos
+Content-Type: application/json
+
+{ }
+
+### A10. nombre no es texto (400)
+POST {{baseUrl}}/alumnos
+Content-Type: application/json
+
+{ "nombre": 123 }
+
+### A11. nombre vacío (400)
+POST {{baseUrl}}/alumnos
+Content-Type: application/json
+
+{ "nombre": "   " }
+
+### A12. nombre con números (400)
+POST {{baseUrl}}/alumnos
+Content-Type: application/json
+
+{ "nombre": "1234" }
+
+### A13. nombre con símbolos (400)
+POST {{baseUrl}}/alumnos
+Content-Type: application/json
+
+{ "nombre": "Ana<script>" }
+
+### A14. nombre demasiado largo (400)
+POST {{baseUrl}}/alumnos
+Content-Type: application/json
+
+{ "nombre": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }
+
+### A15. id inválido (400)
+GET {{baseUrl}}/alumnos/abc
+
+### A16. id válido que no existe (404)
+GET {{baseUrl}}/alumnos/9999
+
+### A17. Modificar id que no existe (404)
+PUT {{baseUrl}}/alumnos/9999
+Content-Type: application/json
+
+{ "nombre": "Inexistente" }
+
+### A18. Eliminar id que no existe (404)
+DELETE {{baseUrl}}/alumnos/9999
+
+### A19. Eliminar alumno sin calificaciones (204)
+DELETE {{baseUrl}}/alumnos/3
+
+##########  CALIFICACIONES  ##########
+
+### C0. Crear segunda materia para probar (201)
+POST {{baseUrl}}/materias
+Content-Type: application/json
+
+{ "nombre": "Base de Datos" }
+
+### C1. Crear calificación (201)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "alumno_id": 1, "materia_id": 1, "notas": [7, 8.5, 6.25] }
+
+### C2. Crear otra, mismo alumno y otra materia (201)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "alumno_id": 1, "materia_id": 3, "notas": [9, 10, 8] }
+
+### C3. Crear otra, otro alumno (201)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "alumno_id": 2, "materia_id": 1, "notas": [5, 6, 7] }
+
+### C4. Listar (200)
+GET {{baseUrl}}/calificaciones
+
+### C5. Filtrar por alumno (200)
+GET {{baseUrl}}/calificaciones?alumno_id=1
+
+### C6. Filtrar por materia (200)
+GET {{baseUrl}}/calificaciones?materia_id=1
+
+### C7. Filtrar por alumno y materia (200)
+GET {{baseUrl}}/calificaciones?alumno_id=1&materia_id=1
+
+### C8. Obtener por id (200)
+GET {{baseUrl}}/calificaciones/1
+
+### C9. Modificar con su misma combinación y otras notas (200, la propia fila no cuenta como duplicada)
+PUT {{baseUrl}}/calificaciones/1
+Content-Type: application/json
+
+{ "alumno_id": 1, "materia_id": 1, "notas": [8, 9, 7.5] }
+
+### C10. Modificar a una combinación que ya tiene otro registro (409)
+PUT {{baseUrl}}/calificaciones/1
+Content-Type: application/json
+
+{ "alumno_id": 1, "materia_id": 3, "notas": [8, 9, 7.5] }
+
+### C11. Modificar a una combinación libre (200)
+PUT {{baseUrl}}/calificaciones/3
+Content-Type: application/json
+
+{ "alumno_id": 2, "materia_id": 3, "notas": [5, 6, 7] }
+
+### C12. Crear combinación repetida (409)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "alumno_id": 1, "materia_id": 1, "notas": [1, 2, 3] }
+
+### C13. Alumno inexistente (404)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "alumno_id": 9999, "materia_id": 1, "notas": [7, 8, 9] }
+
+### C14. Materia inexistente (404)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "alumno_id": 1, "materia_id": 9999, "notas": [7, 8, 9] }
+
+### C15. Alumno y materia inexistentes (404)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "alumno_id": 9999, "materia_id": 9999, "notas": [7, 8, 9] }
+
+### C16. Solo dos notas (400)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "alumno_id": 2, "materia_id": 1, "notas": [7, 8] }
+
+### C17. Cuatro notas (400)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "alumno_id": 2, "materia_id": 1, "notas": [7, 8, 9, 10] }
+
+### C18. Arreglo vacío (400)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "alumno_id": 2, "materia_id": 1, "notas": [] }
+
+### C19. notas no es un arreglo (400)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "alumno_id": 2, "materia_id": 1, "notas": 7 }
+
+### C20. Una nota como texto (400)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "alumno_id": 2, "materia_id": 1, "notas": [7, "8", 9] }
+
+### C21. Nota mayor a 10 (400)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "alumno_id": 2, "materia_id": 1, "notas": [7, 11, 9] }
+
+### C22. Nota negativa (400)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "alumno_id": 2, "materia_id": 1, "notas": [7, -1, 9] }
+
+### C23. Nota con 3 decimales (400)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "alumno_id": 2, "materia_id": 1, "notas": [7, 8.555, 9] }
+
+### C24. Nota null (400)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "alumno_id": 2, "materia_id": 1, "notas": [7, null, 9] }
+
+### C25. Falta notas (400)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "alumno_id": 2, "materia_id": 1 }
+
+### C26. Falta alumno_id (400)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "materia_id": 1, "notas": [7, 8, 9] }
+
+### C27. alumno_id como texto (400)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "alumno_id": "1", "materia_id": 1, "notas": [7, 8, 9] }
+
+### C28. materia_id en cero (400)
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{ "alumno_id": 1, "materia_id": 0, "notas": [7, 8, 9] }
+
+### C29. Filtro inválido (400)
+GET {{baseUrl}}/calificaciones?alumno_id=abc
+
+### C30. id inválido (400)
+GET {{baseUrl}}/calificaciones/abc
+
+### C31. id válido que no existe (404)
+GET {{baseUrl}}/calificaciones/9999
+
+### C32. Modificar id que no existe (404, usa la combinación alumno 2 / materia 1, libre después de C11)
+PUT {{baseUrl}}/calificaciones/9999
+Content-Type: application/json
+
+{ "alumno_id": 2, "materia_id": 1, "notas": [7, 8, 9] }
+
+### C33. Eliminar id que no existe (404)
+DELETE {{baseUrl}}/calificaciones/9999
+
+### C34. Eliminar alumno con calificaciones (409)
+DELETE {{baseUrl}}/alumnos/1
+
+### C35. Eliminar materia con calificaciones (409)
+DELETE {{baseUrl}}/materias/1
+
+### C36. Eliminar calificación (204)
+DELETE {{baseUrl}}/calificaciones/3

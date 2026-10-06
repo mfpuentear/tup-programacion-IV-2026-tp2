@@ -1,0 +1,88 @@
+@baseUrl = http://localhost:3000
+
+### Crear rectángulo válido (201)
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{ "lado_a": 5, "lado_b": 3 }
+
+### Falta lado_b (400)
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{ "lado_a": 5 }
+
+### Lado negativo (400)
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{ "lado_a": -2, "lado_b": 3 }
+
+### Lado como texto (400)
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{ "lado_a": "cinco", "lado_b": 3 }
+
+### Intenta mandar perimetro (400)
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{ "lado_a": 5, "lado_b": 3, "perimetro": 100 }
+
+### Listar todos (200)
+GET {{baseUrl}}/rectangulos
+
+### Obtener uno existente (200)
+GET {{baseUrl}}/rectangulos/1
+
+### id inválido (400)
+GET {{baseUrl}}/rectangulos/abc
+
+### id inexistente (404)
+GET {{baseUrl}}/rectangulos/9999
+
+### Modificar rectángulo existente (200)
+PUT {{baseUrl}}/rectangulos/1
+Content-Type: application/json
+
+{ "lado_a": 10, "lado_b": 4 }
+
+### Modificar con id inexistente (404)
+PUT {{baseUrl}}/rectangulos/9999
+Content-Type: application/json
+
+{ "lado_a": 10, "lado_b": 4 }
+
+### Modificar con lado inválido (400)
+PUT {{baseUrl}}/rectangulos/1
+Content-Type: application/json
+
+{ "lado_a": 0, "lado_b": 4 }
+
+### Modificar con id inválido (400)
+PUT {{baseUrl}}/rectangulos/abc
+Content-Type: application/json
+
+{ "lado_a": 10, "lado_b": 4 }
+
+### Modificar intentando mandar superficie (400)
+PUT {{baseUrl}}/rectangulos/1
+Content-Type: application/json
+
+{ "lado_a": 10, "lado_b": 4, "superficie": 999 }
+
+### Crear uno para eliminar (201)
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{ "lado_a": 2, "lado_b": 2 }
+
+### Eliminar existente (204), cambiá el 2 por el id que te devolvió la prueba anterior
+DELETE {{baseUrl}}/rectangulos/2
+
+### Eliminar el mismo otra vez (404)
+DELETE {{baseUrl}}/rectangulos/2
+
+### Eliminar con id inválido (400)
+DELETE {{baseUrl}}/rectangulos/abc
