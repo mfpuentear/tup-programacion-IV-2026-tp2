@@ -1,0 +1,122 @@
+### Listar materias
+GET http://localhost:3002/materias
+
+### Crear una materia
+POST http://localhost:3002/materias
+Content-Type: application/json
+
+{
+  "nombre": "Programación IV"
+}
+
+### Listar calificaciones
+GET http://localhost:3002/calificaciones
+
+### Crear una calificación (promocionado)
+POST http://localhost:3002/calificaciones
+Content-Type: application/json
+
+{
+  "alumno_nombre": "Ana Pérez",
+  "materia_id": 1,
+  "notas": [9, 8, 10]
+}
+
+### Crear una calificación (aprobado)
+POST http://localhost:3002/calificaciones
+Content-Type: application/json
+
+{
+  "alumno_nombre": "Luis Gómez",
+  "materia_id": 1,
+  "notas": [6, 7, 7]
+}
+
+### Crear una calificación (reprobado)
+POST http://localhost:3002/calificaciones
+Content-Type: application/json
+
+{
+  "alumno_nombre": "Marta Ruiz",
+  "materia_id": 2,
+  "notas": [4, 5, 3]
+}
+
+### Consultar una calificación
+GET http://localhost:3002/calificaciones/1
+
+### Modificar una calificación
+PUT http://localhost:3002/calificaciones/1
+Content-Type: application/json
+
+{
+  "alumno_nombre": "Ana Pérez",
+  "materia_id": 1,
+  "notas": [10, 10, 10]
+}
+
+### Eliminar una calificación
+DELETE http://localhost:3002/calificaciones/3
+
+### ERROR 409: combinación alumno-materia repetida
+POST http://localhost:3002/calificaciones
+Content-Type: application/json
+
+{
+  "alumno_nombre": "ana pérez",
+  "materia_id": 1,
+  "notas": [5, 5, 5]
+}
+
+### ERROR 400: materia inexistente
+POST http://localhost:3002/calificaciones
+Content-Type: application/json
+
+{
+  "alumno_nombre": "Carlos López",
+  "materia_id": 999,
+  "notas": [7, 8, 9]
+}
+
+### ERROR 400: faltan notas
+POST http://localhost:3002/calificaciones
+Content-Type: application/json
+
+{
+  "alumno_nombre": "Carlos López",
+  "materia_id": 1,
+  "notas": [7, 8]
+}
+
+### ERROR 400: nota fuera de escala
+POST http://localhost:3002/calificaciones
+Content-Type: application/json
+
+{
+  "alumno_nombre": "Carlos López",
+  "materia_id": 1,
+  "notas": [7, 11, -1]
+}
+
+### ERROR 400: falta alumno_nombre
+POST http://localhost:3002/calificaciones
+Content-Type: application/json
+
+{
+  "materia_id": 1,
+  "notas": [7, 8, 9]
+}
+
+### ERROR 409: nombre de materia repetido
+POST http://localhost:3002/materias
+Content-Type: application/json
+
+{
+  "nombre": "programación iv"
+}
+
+### ERROR 400: id inválido
+GET http://localhost:3002/calificaciones/abc
+
+### ERROR 404: calificación inexistente
+GET http://localhost:3002/calificaciones/999
