@@ -1,0 +1,78 @@
+### Alumnos
+GET http://localhost:3000/alumnos
+
+### Crear alumno
+POST http://localhost:3000/alumnos
+Content-Type: application/json
+
+{
+  "nombre": "Ana García"
+}
+
+### Obtener alumno por id
+GET http://localhost:3000/alumnos/1
+
+### Actualizar alumno
+PUT http://localhost:3000/alumnos/1
+Content-Type: application/json
+
+{
+  "nombre": "Ana García Lopez"
+}
+
+### Eliminar alumno
+DELETE http://localhost:3000/alumnos/1
+
+### Materias
+GET http://localhost:3000/materias
+
+### Crear materia
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+  "nombre": "Programación IV"
+}
+
+### Obtener materia por id
+GET http://localhost:3000/materias/1
+
+### Actualizar materia
+PUT http://localhost:3000/materias/1
+Content-Type: application/json
+
+{
+  "nombre": "Programación IV - Taller"
+}
+
+### Eliminar materia
+DELETE http://localhost:3000/materias/1
+
+### Calificaciones
+GET http://localhost:3000/calificaciones
+
+### Crear calificación
+POST http://localhost:3000/calificaciones
+Content-Type: application/json
+
+{
+  "alumnoId": 1,
+  "materiaId": 1,
+  "notas": [8, 9, 10]
+}
+
+### Obtener calificación por id
+GET http://localhost:3000/calificaciones/1
+
+### Actualizar calificación
+PUT http://localhost:3000/calificaciones/1
+Content-Type: application/json
+
+{
+  "alumnoId": 1,
+  "materiaId": 1,
+  "notas": [7, 8, 9]
+}
+
+### Eliminar calificación
+DELETE http://localhost:3000/calificaciones/1

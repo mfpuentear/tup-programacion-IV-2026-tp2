@@ -1,0 +1,20 @@
+### URL Base
+@URL = http://localhost:3000
+
+### GET Inicio
+GET {{URL}}
+
+### GET Tareas
+GET {{URL}}/tareas
+
+### GET Tareas por estado
+GET {{URL}}/tareas?estado=false
+
+### POST Tareas
+POST {{URL}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Tarea 3",
+  "estado": false
+}
