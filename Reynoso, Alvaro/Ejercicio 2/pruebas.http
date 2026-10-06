@@ -1,0 +1,48 @@
+### Obtener todas las tareas
+GET http://localhost:3000/tareas
+
+
+### Obtener una tarea
+GET http://localhost:3000/tareas/1
+
+
+### Crear una tarea pendiente
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar programación",
+    "completada": false
+}
+
+
+### Crear una tarea completada
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Hacer TP",
+    "completada": true
+}
+
+
+### Modificar una tarea
+PUT http://localhost:3000/tareas/1
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar programación",
+    "completada": true
+}
+
+
+### Filtrar tareas pendientes
+GET http://localhost:3000/tareas/estado?completada=false
+
+
+### Filtrar tareas completadas
+GET http://localhost:3000/tareas/estado?completada=true
+
+
+### Eliminar una tarea
+DELETE http://localhost:3000/tareas/1

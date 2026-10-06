@@ -1,0 +1,74 @@
+### Obtener todas las materias
+GET http://localhost:3000/materias
+
+
+### Obtener una materia
+GET http://localhost:3000/materias/1
+
+
+### Crear una materia
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "nombre": "Inglés"
+}
+
+
+### Modificar una materia
+PUT http://localhost:3000/materias/1
+Content-Type: application/json
+
+{
+    "nombre": "Programación Avanzada"
+}
+
+
+### Obtener todos los alumnos
+GET http://localhost:3000/alumnos
+
+
+### Obtener calificaciones de un alumno
+GET http://localhost:3000/alumnos/Juan%20Perez
+
+
+### Obtener todas las calificaciones
+GET http://localhost:3000/calificaciones
+
+
+### Obtener una calificación
+GET http://localhost:3000/calificaciones/1
+
+
+### Crear una calificación
+POST http://localhost:3000/calificaciones
+Content-Type: application/json
+
+{
+    "nombreAlumno": "Juan Perez",
+    "materiaId": 1,
+    "nota1": 8,
+    "nota2": 7.5,
+    "nota3": 9
+}
+
+
+### Modificar una calificación
+PUT http://localhost:3000/calificaciones/1
+Content-Type: application/json
+
+{
+    "nombreAlumno": "Juan Perez",
+    "materiaId": 1,
+    "nota1": 9,
+    "nota2": 8,
+    "nota3": 10
+}
+
+
+### Eliminar una calificación
+DELETE http://localhost:3000/calificaciones/1
+
+
+### Eliminar una materia
+DELETE http://localhost:3000/materias/1

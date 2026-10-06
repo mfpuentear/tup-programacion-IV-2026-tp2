@@ -1,0 +1,30 @@
+### Obtener todos
+GET http://localhost:3000/rectangulos
+
+
+### Obtener uno
+GET http://localhost:3000/rectangulos/1
+
+
+### Crear
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+    "ladoA": 10,
+    "ladoB": 5
+}
+
+
+### Modificar
+PUT http://localhost:3000/rectangulos/1
+Content-Type: application/json
+
+{
+    "ladoA": 20,
+    "ladoB": 10
+}
+
+
+### Eliminar
+DELETE http://localhost:3000/rectangulos/1

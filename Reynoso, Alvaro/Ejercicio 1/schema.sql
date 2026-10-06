@@ -1,0 +1,11 @@
+CREATE DATABASE IF NOT EXISTS ejercicio1;
+
+USE ejercicio1;
+
+CREATE TABLE IF NOT EXISTS rectangulos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    ladoA DOUBLE NOT NULL,
+    ladoB DOUBLE NOT NULL,
+    perimetro DOUBLE NOT NULL,
+    superficie DOUBLE NOT NULL
+);
