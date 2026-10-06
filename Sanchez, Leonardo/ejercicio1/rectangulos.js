@@ -13,17 +13,18 @@ const validarSolicitud = (req, res, next) => {
     next()
 }
 
-// Validaciones de lados
 const validacionesLados = [
     body("lado1")
-        .exists().withMessage("Lado1 es obligatorio")
-        .isFloat({ gt: 0}).withMessage("lado1 tiene que ser positivo")
+        .notEmpty().withMessage("Lado1 es obligatorio")
+        .bail()
+        .isFloat({ gt: 0 }).withMessage("lado1 tiene que ser positivo")
         .toFloat(),
     body("lado2")
-        .exists().withMessage("Lado2 es obligatorio")
-        .isFloat({ gt:0 }).withMessage("Lado2 debe ser mayor a 0")
+        .notEmpty().withMessage("Lado2 es obligatorio")
+        .bail()
+        .isFloat({ gt: 0 }).withMessage("Lado2 debe ser mayor a 0")
         .toFloat()
-]
+];
 
 // Validar id para los parametros de la URL
 const validacionId = [
