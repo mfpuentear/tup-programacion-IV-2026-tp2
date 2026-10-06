@@ -1,0 +1,94 @@
+@url=http://localhost:3000
+
+### listado de rectangulos
+GET {{url}}/rectangulos
+
+### Listado con superficie minima
+GET {{url}}/rectangulos?superficieMin=10
+
+### Listado con superficies minima y maxima
+GET {{url}}/rectangulos?superficieMin=10&superficieMax=50
+
+### Detalle de rectangulo
+GET {{url}}/rectangulos/5
+
+### crear rectangulo
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "ladoA": 5,
+    "ladoB": 6
+}
+
+### modificar rectangulo
+PUT {{url}}/rectangulos/1
+Content-Type: application/json
+
+{
+    "ladoA": 10, 
+    "ladoB": 6
+}
+
+### Error PUT lado negativo
+PUT {{url}}/rectangulos/5
+Content-Type: application/json
+
+{
+    "ladoA": -5,
+    "ladoB": 3
+}
+
+### Eliminar rectangulo
+DELETE  {{url}}/rectangulos/7
+
+### Error a falta de un lado
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "ladoA": 5
+}
+
+### Error lado negativo
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "ladoA": -2,
+    "ladoB": 3
+}
+
+### Error lado no numerico
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "ladoA": "abcd",
+    "ladoB": 3
+}
+
+### Error mas de 2 decimales
+POST  {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "ladoA": 2.555,
+    "ladoB": 3
+}
+
+###Error intenta enviar superficie
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "ladoA": 2,
+    "ladoB": 3, 
+    "superficie": 123
+}
+
+### Error id invalido
+GET  {{url}}/rectangulos/1abc
+
+### Error de inexistencia
+GET {{url}}/rectangulos/15699

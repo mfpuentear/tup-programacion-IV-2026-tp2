@@ -1,0 +1,158 @@
+@url=http://localhost:3000  
+
+### Listado de calificaciones
+
+GET {{url}}/calificaciones
+
+### Listado filtrado por alumno
+GET {{url}}/calificaciones?alumno=maria
+
+### Listado filtrado por materia
+GET {{url}}/calificaciones?materiaId=1
+
+### Listado filtrado por alumno y materia
+GET {{url}}/calificaciones?alumno=maria&materiaId=1
+
+### Detalle de calificacion
+GET {{url}}/calificaciones/1
+
+### Crear calificacion
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Mirtha Lopez",
+    "materiaId": 1,
+    "notas": [12, 8.5, 9]
+}
+
+### Crear calificacion de otro alumno en la misma materia
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Marcos Castillo",
+    "materiaId": 6,
+    "notas": [7, 4, 10]
+}
+
+### Modificar calificacion
+PUT {{url}}/calificaciones/1
+Content-Type: application/json
+
+{
+    "alumno": "María Pérez",
+    "materiaId": 1,
+    "notas": [8, 8.5, 9.5]
+}
+
+### Eliminar calificacion
+DELETE {{url}}/calificaciones/2
+
+### Error mismo alumno y materia (mayusculas, tildes y espacios distintos)
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "  maria   perez ",
+    "materiaId": 1,
+    "notas": [5, 5, 5]
+}
+
+### Materia inexistente
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Ana López",
+    "materiaId": 881,
+    "notas": [5, 5, 5]
+}
+
+### Error solo dos notas
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Ana López",
+    "materiaId": 1,
+    "notas": [5, 5]
+}
+
+### Error solo cuatro notas
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Ana López",
+    "materiaId": 1,
+    "notas": [5, 5, 5, 5]
+}
+
+### Error nota fuera de la escala, mayor que 10
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Ana López",
+    "materiaId": 1,
+    "notas": [5, 11, 5]
+}
+
+### nota negativa
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Ana López",
+    "materiaId": 1,
+    "notas": [5, -1, 5]
+}
+
+### nota no numerica
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Ana López",
+    "materiaId": 1,
+    "notas": [5, "siete", 5]
+}
+
+### Error mas de 2 decimales
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Ana López",
+    "materiaId": 1,
+    "notas": [5, 7.555, 5]
+}
+
+### falta el alumno
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "materiaId": 1,
+    "notas": [5, 5, 5]
+}
+
+### alumno con numeros
+POST {{url}}/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Ana123",
+    "materiaId": 1,
+    "notas": [5, 5, 5]
+}
+
+### filtro invalido
+GET {{url}}/calificaciones?materiaId=abc
+
+### id invalido
+GET {{url}}/calificaciones/abc
+
+### Calificacion que no existe
+GET {{url}}/calificaciones/123455

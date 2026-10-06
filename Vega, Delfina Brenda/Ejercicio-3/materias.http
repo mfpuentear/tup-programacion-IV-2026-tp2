@@ -1,0 +1,62 @@
+@url=http://localhost:3000
+
+### Listado de materias
+GET {{url}}/materias
+
+### Detalle de materia
+GET {{url}}/materias/1
+
+### Crear materia
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+    "nombre": "Informatica"
+}
+
+### Crear otra materia
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+    "nombre": "Base de Datos"
+}
+
+### Modificar materia
+PUT {{url}}/materias/2
+Content-Type: application/json
+
+{
+    "nombre": "Bases de Datos"
+}
+
+### Eliminar materia
+DELETE {{url}}/materias/2
+
+### Nombre duplicado (mayusculas, tildes y espacios distintos)
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+    "nombre": "  programacion   iv "
+}
+
+### falta el nombre, vacio
+POST {{url}}/materias
+Content-Type: application/json
+
+{}
+
+### nombre con simbolos
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+    "nombre": "Matemática @#$"
+}
+
+### id invalido
+GET {{url}}/materias/abc
+
+### Materia que no existe
+GET {{url}}/materias/99888

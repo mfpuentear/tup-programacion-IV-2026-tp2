@@ -1,0 +1,108 @@
+@url=http://localhost:3000
+
+### Listado de tareas
+GET {{url}}/tareas
+
+### Listado de tareas completadas
+GET {{url}}/tareas?estado=completadas
+
+### Listado de tareas pendientes
+GET {{url}}/tareas?estado=pendientes
+
+### Detalle de tarea
+GET {{url}}/tareas/1
+
+### Crear tarea (completada por defecto false)
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Comprar gaseosa"
+}
+
+### Crear tarea ya completada
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar Algebra",
+    "completada": true
+}
+
+### Modificar tarea
+PUT {{url}}/tareas/6
+Content-Type: application/json
+
+{
+    "nombre": "Comprar gaseosa zero",
+    "completada": false
+}
+
+### Cambiar solo el estado
+PATCH {{url}}/tareas/4
+Content-Type: application/json
+
+{
+    "completada": true
+}
+
+### Eliminar tarea
+DELETE {{url}}/tareas/1
+
+### ERROR por nombre duplicado (mismo nombre)
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Comprar gaseosa"
+}
+
+### Error por nombre duplicado (mayusculas, tildes y espacios distintos)
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "  comprár   GASEOSÁ "
+}
+
+### Error por falta de nombre
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "completada": true
+}
+
+### Error por nombre vacio
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "   "
+}
+
+### Error por nombre que no es texto
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": 154
+}
+
+### Error por tarea completada no es booleano
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Tarea con estado invalido",
+    "completada": "si"
+}
+
+### filtro de estado invalido
+GET {{url}}/tareas?estado=terminadas
+
+### id invalido
+GET {{url}}/tareas/abc
+
+### Tarea que no existe
+GET {{url}}/tareas/56788
