@@ -1,0 +1,20 @@
+{
+  "name": "ejercicio3-calificaciones",
+  "version": "1.0.0",
+  "description": "API REST para gestión de calificaciones de alumnos con ExpressJS y MySQL",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-validator": "^7.0.1",
+    "mysql2": "^3.9.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

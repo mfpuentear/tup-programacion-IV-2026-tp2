@@ -1,0 +1,47 @@
+@url = http://localhost:3000
+
+### Crear rectángulo (Correcto)
+POST {{url}}/api/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 11.5,
+  "lado2": 5.0
+}
+
+### Error: Intentar enviar perimetro o superficie
+POST {{url}}/api/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 10.5,
+  "lado2": 5.0,
+  "perimetro": 31
+}
+
+### Error: Lados menores o iguales a cero
+POST {{url}}/api/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": -2,
+  "lado2": 0
+}
+
+### Obtener todos los rectángulos
+GET {{url}}/api/rectangulos
+
+### Obtener rectángulo por ID
+GET {{url}}/api/rectangulos/12
+
+### Actualizar rectángulo por ID
+PUT {{url}}/api/rectangulos/12
+Content-Type: application/json
+
+{
+  "lado1": 12,
+  "lado2": 8
+}
+
+### Eliminar rectángulo por ID
+DELETE {{url}}/api/rectangulos/12

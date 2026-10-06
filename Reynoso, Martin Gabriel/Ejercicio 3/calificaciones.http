@@ -1,0 +1,68 @@
+### Crear Materias
+POST http://localhost:3000/api/materias
+Content-Type: application/json
+
+{
+  "nombre": "Programación III"
+}
+
+### Obtener todas las materias
+GET http://localhost:3000/api/materias
+
+
+
+### Crear Calificación para Alumno
+POST http://localhost:3000/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Martín Gabriel Reynoso",
+  "materia_id": 1,
+  "nota1": 8.5,
+  "nota2": 9.0,
+  "nota3": 10.0
+}
+
+### Error: Intentar duplicar Alumno y Materia
+POST http://localhost:3000/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "martin gabriel reynoso",
+  "materia_id": 1,
+  "nota1": 7.0,
+  "nota2": 7.0,
+  "nota3": 7.0
+}
+
+### Error: Nota fuera de la escala (1 a 10)
+POST http://localhost:3000/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Juan Pérez",
+  "materia_id": 1,
+  "nota1": 11.5,
+  "nota2": 8.0,
+  "nota3": 9.0
+}
+
+### Obtener todas las calificaciones con JOIN
+GET http://localhost:3000/api/calificaciones
+
+### Filtrar calificaciones por ID de Materia
+GET http://localhost:3000/api/calificaciones?materia_id=1
+
+### Obtener Calificación por ID
+GET http://localhost:3000/api/calificaciones/2
+
+### Actualizar Calificación
+PUT http://localhost:3000/api/calificaciones/2
+Content-Type: application/json
+
+{
+  "nota2": 9.50
+}
+
+### Eliminar Registro de Calificación
+DELETE http://localhost:3000/api/calificaciones/2
