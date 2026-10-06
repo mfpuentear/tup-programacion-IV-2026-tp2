@@ -1,0 +1,47 @@
+@baseUrl = http://localhost:3001
+
+### Listar rectángulos
+GET {{baseUrl}}/rectangulos?limit=20&offset=0
+
+### Crear rectángulo
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{
+  "ladoA": 5,
+  "ladoB": 3
+}
+
+### Rechazar campos calculados enviados por el cliente
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{
+  "ladoA": 5,
+  "ladoB": 3,
+  "superficie": 15
+}
+
+### Obtener por id
+GET {{baseUrl}}/rectangulos/1
+
+### Modificar lados
+PUT {{baseUrl}}/rectangulos/1
+Content-Type: application/json
+
+{
+  "ladoA": 8,
+  "ladoB": 4
+}
+
+### Eliminar
+DELETE {{baseUrl}}/rectangulos/1
+
+### Rechazar lado no válido
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{
+  "ladoA": 0,
+  "ladoB": 4
+}

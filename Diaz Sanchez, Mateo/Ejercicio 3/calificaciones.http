@@ -1,0 +1,62 @@
+@baseUrl = http://localhost:3003
+
+### Listar alumnos
+GET {{baseUrl}}/alumnos
+
+### Crear alumno
+POST {{baseUrl}}/alumnos
+Content-Type: application/json
+
+{
+  "nombre": "Ana Pérez"
+}
+
+### Crear materia
+POST {{baseUrl}}/materias
+Content-Type: application/json
+
+{
+  "nombre": "Programación IV"
+}
+
+### Crear calificación: alumnoId y materiaId deben existir
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumnoId": 1,
+  "materiaId": 1,
+  "notas": [8, 9.5, 10]
+}
+
+### Rechazar notas insuficientes
+POST {{baseUrl}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumnoId": 1,
+  "materiaId": 1,
+  "notas": [8, 9.5]
+}
+
+### Filtrar calificaciones por alumno
+GET {{baseUrl}}/calificaciones?alumnoId=1
+
+### Filtrar calificaciones por materia
+GET {{baseUrl}}/calificaciones?materiaId=1
+
+### Consultar calificación
+GET {{baseUrl}}/calificaciones/1
+
+### Modificar calificación
+PUT {{baseUrl}}/calificaciones/1
+Content-Type: application/json
+
+{
+  "alumnoId": 1,
+  "materiaId": 1,
+  "notas": [7.5, 8, 9]
+}
+
+### Eliminar calificación
+DELETE {{baseUrl}}/calificaciones/1

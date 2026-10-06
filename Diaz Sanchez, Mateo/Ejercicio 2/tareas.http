@@ -1,0 +1,44 @@
+@baseUrl = http://localhost:3002
+
+### Listar todas
+GET {{baseUrl}}/tareas
+
+### Crear tarea
+POST {{baseUrl}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Preparar el informe"
+}
+
+### Crear duplicado (debe responder 409, aunque cambien mayúsculas)
+POST {{baseUrl}}/tareas
+Content-Type: application/json
+
+{
+  "nombre": "  PREPARAR EL INFORME  "
+}
+
+### Filtrar pendientes
+GET {{baseUrl}}/tareas?estado=pendiente
+
+### Filtrar completadas
+GET {{baseUrl}}/tareas?estado=completada
+
+### Consultar tarea
+GET {{baseUrl}}/tareas/1
+
+### Modificar nombre y estado
+PUT {{baseUrl}}/tareas/1
+Content-Type: application/json
+
+{
+  "nombre": "Entregar el informe",
+  "completada": true
+}
+
+### Rechazar filtro inválido
+GET {{baseUrl}}/tareas?estado=si
+
+### Eliminar tarea
+DELETE {{baseUrl}}/tareas/1

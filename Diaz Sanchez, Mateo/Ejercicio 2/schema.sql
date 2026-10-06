@@ -1,0 +1,12 @@
+CREATE DATABASE IF NOT EXISTS tareas_db
+  CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE tareas_db;
+
+CREATE TABLE IF NOT EXISTS tareas (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(120) NOT NULL,
+  nombre_clave VARCHAR(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  completada BOOLEAN NOT NULL DEFAULT FALSE,
+  PRIMARY KEY (id),
+  UNIQUE KEY uq_tareas_nombre_clave (nombre_clave)
+);
