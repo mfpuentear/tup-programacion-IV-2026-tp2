@@ -1,0 +1,46 @@
+### Crear rectángulo
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+    "base": 10,
+    "altura": 5
+}  
+
+### Obtener todos los rectángulos
+GET http://localhost:3000/rectangulos
+
+### Obtener rectángulo por ID
+GET http://localhost:3000/rectangulos/1
+
+### Probar ID inválido
+GET http://localhost:3000/rectangulos/abc
+
+### Modificar rectángulo
+PUT http://localhost:3000/rectangulos/1
+Content-Type: application/json
+
+{
+    "base": 20,
+    "altura": 8
+}
+
+### Eliminar rectángulo
+DELETE http://localhost:3000/rectangulos/1
+
+### Probar base negativa
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+    "base": -5,
+    "altura": 10
+}
+
+### Probar base faltante
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+    "altura": 10
+}

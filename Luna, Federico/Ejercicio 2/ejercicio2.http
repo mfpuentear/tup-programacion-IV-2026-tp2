@@ -1,0 +1,42 @@
+### Crear una tarea
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar JavaScript",
+    "completada": false
+}
+
+### Intentar crear una tarea duplicada
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "nombre": " estudiar javascript ",
+    "completada": true
+}
+
+### Obtener tarea por ID
+GET http://localhost:3000/tareas/1
+
+### Obtener todas las tareas
+GET http://localhost:3000/tareas
+
+### Obtener tareas completadas
+GET http://localhost:3000/tareas?completada=true
+
+### Obtener tareas pendientes
+GET http://localhost:3000/tareas?completada=false
+
+
+### Modificar tarea
+PUT http://localhost:3000/tareas/1
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar Node.js",
+    "completada": true
+}
+
+### Eliminar tarea
+DELETE http://localhost:3000/tareas/1
