@@ -1,0 +1,125 @@
+@host = http://localhost:3000
+
+### 1. Guarda correctamente una tarea -> 201
+POST {{host}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar Node.js"
+}
+
+### 2. Guarda una tarea indicando completada -> 201
+POST {{host}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Hacer la compra",
+    "completada": 1
+}
+
+### 3. Valida el BODY: falta el nombre -> 400
+POST {{host}}/tareas
+Content-Type: application/json
+
+{
+    "completada": 0
+}
+
+### 4. Valida el BODY: nombre vacío o espacios en blanco -> 400
+POST {{host}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "   "
+}
+
+### 5. Valida el BODY: nombre que no es string -> 400
+POST {{host}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": 12345
+}
+
+### 6. Valida el BODY: nombre demasiado largo (más de 100 caracteres) -> 400
+POST {{host}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Esta tarea tiene un nombre extremadamente largo diseñado específicamente para superar el límite máximo de cien caracteres permitidos en la base de datos."
+}
+
+### 7. Valida el BODY: completada con valor inválido (no booleano/ni 0 ni 1) -> 400
+POST {{host}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Pasear al perro",
+    "completada": "dos"
+}
+
+### 8. Valida el BODY: campos extra no permitidos -> 400 (opcional según tu validación)
+POST {{host}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Limpiar la casa",
+    "id": 99
+}
+
+### 9. Se fijan todas las tareas que se guardaron -> 200
+GET {{host}}/tareas
+
+### 10. Busca una tarea específica según el id (ajustar a uno existente) -> 200
+GET {{host}}/tareas/1
+
+### 11. Busca una tarea inexistente -> 404
+GET {{host}}/tareas/9999
+
+### 12. Valida el PARAM: id inválido -> 400
+GET {{host}}/tareas/abc
+
+### 13. Modifica una tarea ya creada (cambiar nombre o estado) -> 200
+PUT {{host}}/tareas/1
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar Node.js y Express",
+    "completada": 1
+}
+
+### 14. Modifica una tarea inexistente -> 404
+PUT {{host}}/tareas/9999
+Content-Type: application/json
+
+{
+    "nombre": "Tarea fantasma"
+}
+
+### 15. Modifica con datos inválidos -> 400
+PUT {{host}}/tareas/1
+Content-Type: application/json
+
+{
+    "nombre": ""
+}
+
+### 16. Modifica con id inválido -> 400
+PUT {{host}}/tareas/abc
+Content-Type: application/json
+
+{
+    "nombre": "Actualizar tarea"
+}
+
+### 17. Ve todas las tareas para comprobar que se actualizó lo que se cambió -> 200
+GET {{host}}/tareas
+
+### 18. Elimina una tarea (ajustar a una existente) -> 204
+DELETE {{host}}/tareas/1
+
+### 19. Elimina una tarea inexistente -> 404
+DELETE {{host}}/tareas/9999
+
+### 20. Elimina con id inválido -> 400
+DELETE {{host}}/tareas/abc
