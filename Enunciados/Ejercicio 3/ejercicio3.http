@@ -1,0 +1,114 @@
+### Variables ejercicio 3
+@api_materias = http://localhost:3002/materias
+@api_calificaciones = http://localhost:3002/calificaciones
+
+### Crear materia
+POST {{api_materias}}
+Content-Type: application/json
+
+{
+  "nombre": "Programación IV"
+}
+
+### Crear otra materia
+POST {{api_materias}}
+Content-Type: application/json
+
+{
+  "nombre": "Legislacion"
+}
+
+### Listar materias
+GET {{api_materias}}
+
+### Registrar calificaciones (Caso de éxito)
+POST {{api_calificaciones}}
+Content-Type: application/json
+
+{
+  "alumno_nombre": "Gustavo Diaz Deusa",
+  "materia_id": 1,
+  "nota1": 8.50,
+  "nota2": 9.00,
+  "nota3": 9.25
+}
+
+### Registrar notas para otro alumno
+POST {{api_calificaciones}}
+Content-Type: application/json
+
+{
+  "alumno_nombre": "Rocio Alem",
+  "materia_id": 1,
+  "nota1": 6.00,
+  "nota2": 6.50,
+  "nota3": 8
+}
+
+### Error: Alumno con notas ya cargadas para la misma materia
+POST {{api_calificaciones}}
+Content-Type: application/json
+
+{
+  "alumno_nombre": "Gustavo Diaz Deusa",
+  "materia_id": 1,
+  "nota1": 8,
+  "nota2": 9,
+  "nota3": 7
+}
+
+### Error: Notas irreales
+POST {{api_calificaciones}}
+Content-Type: application/json
+
+{
+  "alumno_nombre": "Santiago Perez",
+  "materia_id": 2,
+  "nota1": 11,
+  "nota2": -2,
+  "nota3": 8
+}
+
+### Error: Materia inexistente 
+POST {{api_calificaciones}}
+Content-Type: application/json
+
+{
+  "alumno_nombre": "Nelson Alvarez",
+  "materia_id": 999,
+  "nota1": 7,
+  "nota2": 7,
+  "nota3": 8
+}
+
+### Listar todas las calificaciones
+GET {{api_calificaciones}}
+
+### Modificar solo una nota 
+PUT {{api_calificaciones}}/1
+Content-Type: application/json
+
+{
+  "nota3": 10
+}
+
+### Modificar alumno y materia a la vez
+PUT {{api_calificaciones}}/1
+Content-Type: application/json
+
+{
+  "alumno_nombre": "Lucas Gallardo",
+  "materia_id": 2
+}
+
+### Error de unicidad
+PUT {{api_calificaciones}}/2
+Content-Type: application/json
+
+{
+  "alumno_nombre": "Lucas Gallardo",
+  "materia_id": 2
+}
+
+### Eliminar un registro de calificaciones 
+DELETE {{api_calificaciones}}/1

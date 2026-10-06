@@ -1,0 +1,55 @@
+### Variables
+@api = http://localhost:3001/tareas
+
+### Crear tarea exitosamente
+POST {{api}}
+Content-Type: application/json
+
+{
+  "nombre": "Estudiar Node"
+}
+
+### Error por nombre duplicado 
+POST {{api}}
+Content-Type: application/json
+
+{
+  "nombre": "   estudiar NODE   "
+}
+
+### Error de validación (No booleano)
+POST {{api}}
+Content-Type: application/json
+
+{
+  "nombre": "Hacer las compras",
+  "estado": "completado"
+}
+
+### Marcar tarea como completada (Actualiza estado)
+PUT {{api}}/1
+Content-Type: application/json
+
+{
+  "estado": true
+}
+
+### Modificar nombre y estado a la vez
+PUT {{api}}/1
+Content-Type: application/json
+
+{
+  "nombre": "Aprender Express avanzado",
+  "estado": false
+}
+
+### Error por intentar usar el nombre de otra tarea
+PUT {{api}}/1
+Content-Type: application/json
+
+{
+  "nombre": "Estudiar Node" 
+}
+
+### Eliminar una tarea existente 
+DELETE {{api}}/1
