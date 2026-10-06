@@ -1,0 +1,41 @@
+@url = http://localhost:3000
+
+### 1. Obtener todas las tareas
+GET {{url}}/tareas
+
+### 2. Crear nueva tarea pendiente
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar para el parcial de Backend",
+    "completada": false
+}
+
+### 3. Intentar crear tarea duplicada (Debe dar Error 400 por unicidad)
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "estudiar para el parcial de backend"
+}
+
+### 4. Filtrar tareas completadas
+GET {{url}}/tareas?completada=true
+
+### 5. Filtrar tareas pendientes
+GET {{url}}/tareas?completada=false
+
+### 6. Intentar filtrar con un estado inválido (Debe dar Error 400)
+GET {{url}}/tareas?completada=talvez
+
+### 7. Actualizar tarea a completada
+PUT {{url}}/tareas/1
+Content-Type: application/json
+
+{
+    "completada": true
+}
+
+### 8. Eliminar tarea
+DELETE {{url}}/tareas/1
