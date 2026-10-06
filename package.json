@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:ej1": "node \"Flores, Alexander Exequiel/Ejercicio 1/app.js\"",
-    "start:ej2": "node \"Flores, Alexander Exequiel/Ejercicio 2/app.js\""
+    "start:ej2": "node \"Flores, Alexander Exequiel/Ejercicio 2/app.js\"",
+    "start:ej3": "node \"Flores, Alexander Exequiel/Ejercicio 3/app.js\""
   },
   "repository": {
     "type": "git",
