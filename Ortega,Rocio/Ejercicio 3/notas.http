@@ -1,0 +1,139 @@
+### 1. Ver todas las notas
+
+GET http://localhost:3000/notas
+
+
+### 2. Ver una nota por ID
+
+GET http://localhost:3000/notas/1
+
+
+### 3. Crear un registro de notas
+
+POST http://localhost:3000/notas
+Content-Type: application/json
+
+{
+    "estudiante": "Maria Lopez",
+    "materia_id": 3,
+    "notas": [8, 9, 7]
+}
+
+
+### 4. Intentar crear el mismo estudiante y materia
+
+POST http://localhost:3000/notas
+Content-Type: application/json
+
+{
+    "estudiante": "Maria Lopez",
+    "materia_id": 3,
+    "notas": [6, 6, 6]
+}
+
+
+### 5. Crear con menos de 3 notas
+
+POST http://localhost:3000/notas
+Content-Type: application/json
+
+{
+    "estudiante": "Juan Perez",
+    "materia_id": 2,
+    "notas": [8, 7]
+}
+
+
+### 6. Crear con una nota fuera de rango
+
+POST http://localhost:3000/notas
+Content-Type: application/json
+
+{
+    "estudiante": "Juan Perez",
+    "materia_id": 2,
+    "notas": [8, 11, 7]
+}
+
+
+### 7. Crear con una materia que no existe
+
+POST http://localhost:3000/notas
+Content-Type: application/json
+
+{
+    "estudiante": "Juan Perez",
+    "materia_id": 99,
+    "notas": [8, 7, 9]
+}
+
+
+### 8. Filtrar por estudiante
+
+GET http://localhost:3000/notas?estudiante_id=1
+
+
+### 9. Filtrar por materia
+
+GET http://localhost:3000/notas?materia_id=1
+
+
+### 10. Filtro inválido
+
+GET http://localhost:3000/notas?estudiante_id=hola
+
+
+### 11. Modificar un registro
+
+PUT http://localhost:3000/notas/1
+Content-Type: application/json
+
+{
+    "estudiante": "Rocio Ortega",
+    "materia_id": 1,
+    "notas": [9, 8, 10]
+}
+
+
+### 12. Modificar con menos de 3 notas
+
+PUT http://localhost:3000/notas/1
+Content-Type: application/json
+
+{
+    "estudiante": "Rocio Ortega",
+    "materia_id": 1,
+    "notas": [8, 9]
+}
+
+
+### 13. Buscar un registro que no existe
+
+GET http://localhost:3000/notas/999
+
+
+### 14. Modificar un registro que no existe
+
+PUT http://localhost:3000/notas/999
+Content-Type: application/json
+
+{
+    "estudiante": "Pedro Gomez",
+    "materia_id": 1,
+    "notas": [7, 8, 9]
+}
+
+
+### 15. Eliminar un registro
+
+DELETE http://localhost:3000/notas/2
+
+
+### 16. Intentar eliminar un registro que no existe
+
+DELETE http://localhost:3000/notas/999
+
+
+### 17. Ver todas las notas al final
+
+GET http://localhost:3000/notas

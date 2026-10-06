@@ -1,0 +1,120 @@
+### 1. Ver todas las tareas
+
+GET http://localhost:3000/tareas
+
+
+### 2. Ver una tarea por ID
+
+GET http://localhost:3000/tareas/1
+
+
+### 3. Crear una tarea
+
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Comprar alimentos",
+    "completada": false
+}
+
+
+### 4. Intentar crear una tarea con nombre repetido
+
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Comprar alimentos",
+    "completada": true
+}
+
+
+### 5. Crear una tarea con datos inválidos
+
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "nombre": "",
+    "completada": "hola"
+}
+
+
+### 6. Ver tareas pendientes
+
+GET http://localhost:3000/tareas?completada=false
+
+
+### 7. Ver tareas completadas
+
+GET http://localhost:3000/tareas?completada=true
+
+
+### 8. Filtro inválido
+
+GET http://localhost:3000/tareas?completada=hola
+
+
+### 9. Modificar una tarea
+
+PUT http://localhost:3000/tareas/1
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar para el parcial",
+    "completada": true
+}
+
+
+### 10. Intentar modificar con un nombre repetido
+
+PUT http://localhost:3000/tareas/1
+Content-Type: application/json
+
+{
+    "nombre": "Comprar alimentos",
+    "completada": true
+}
+
+
+### 11. Modificar con datos inválidos
+
+PUT http://localhost:3000/tareas/1
+Content-Type: application/json
+
+{
+    "nombre": "",
+    "completada": "hola"
+}
+
+
+### 12. Buscar una tarea que no existe
+
+GET http://localhost:3000/tareas/999
+
+
+### 13. Modificar una tarea que no existe
+
+PUT http://localhost:3000/tareas/999
+Content-Type: application/json
+
+{
+    "nombre": "Nueva tarea",
+    "completada": false
+}
+
+
+### 14. Eliminar una tarea
+
+DELETE http://localhost:3000/tareas/2
+
+
+### 15. Intentar eliminar una tarea que no existe
+
+DELETE http://localhost:3000/tareas/999
+
+
+### 16. Ver todas las tareas al final
+
+GET http://localhost:3000/tareas
