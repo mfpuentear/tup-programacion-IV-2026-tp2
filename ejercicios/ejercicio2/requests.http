@@ -1,0 +1,62 @@
+### 
+@baseUrl = http://localhost:3000/api/tasks
+
+### 
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "title": "  Estudiar   ExpressJS  ",
+  "completed": false
+}
+
+### 
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "title": "Configurar DBeaver con MySQL"
+}
+
+### 
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "title": "estudiar expressjs"
+}
+
+### 
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "title": "   ",
+  "completed": "no_booleano"
+}
+
+### GET {{baseUrl}}
+
+### 
+GET {{baseUrl}}?completed=false
+
+### 
+GET {{baseUrl}}?completed=true
+
+### 
+GET {{baseUrl}}?completed=invalid_status
+
+### 
+GET {{baseUrl}}/1
+
+### 
+PUT {{baseUrl}}/1
+Content-Type: application/json
+
+{
+  "title": "Estudiar ExpressJS y MySQL",
+  "completed": true
+}
+
+### 
+DELETE {{baseUrl}}/1

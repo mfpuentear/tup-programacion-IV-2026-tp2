@@ -1,0 +1,27 @@
+{
+  "name": "ejercicio3",
+  "version": "1.0.0",
+  "description": "API RESTful con ExpressJS y MySQL para gestión de calificaciones de alumnos y materias (Prog4 TP2)",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [
+    "express",
+    "mysql2",
+    "express-validator",
+    "api-rest"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-validator": "^7.1.0",
+    "mysql2": "^3.9.8"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

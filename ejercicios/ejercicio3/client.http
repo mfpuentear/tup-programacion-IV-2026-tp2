@@ -1,0 +1,137 @@
+### Configuración de Variables
+@host = http://localhost:3000/api
+
+
+### 
+GET {{host}}/materias
+Content-Type: application/json
+
+### 
+POST {{host}}/materias
+Content-Type: application/json
+
+{
+  "nombre": "Programación IV"
+}
+
+### 
+POST {{host}}/materias
+Content-Type: application/json
+
+{
+  "nombre": "Metodología de Sistemas I"
+}
+
+### 
+POST {{host}}/materias
+Content-Type: application/json
+
+{
+  "nombre": ""
+}
+
+### 
+POST {{host}}/materias
+Content-Type: application/json
+
+{
+  "nombre": "Programación IV"
+}
+
+
+
+### 
+GET {{host}}/calificaciones
+Content-Type: application/json
+
+### 
+GET {{host}}/calificaciones?materia_id=1
+Content-Type: application/json
+
+### 
+POST {{host}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno_nombre": "Carlos Pérez",
+  "materia_id": 1,
+  "nota1": 8.50,
+  "nota2": 7.00,
+  "nota3": 9.00
+}
+
+### 
+POST {{host}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno_nombre": "María Gómez",
+  "materia_id": 1,
+  "nota1": 10.00,
+  "nota2": 9.50,
+  "nota3": 8.00
+}
+
+### 
+POST {{host}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno_nombre": "Carlos Pérez",
+  "materia_id": 1,
+  "nota1": 6.00,
+  "nota2": 6.00,
+  "nota3": 6.00
+}
+
+###
+POST {{host}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno_nombre": "Juan López",
+  "materia_id": 999,
+  "nota1": 7.00,
+  "nota2": 7.00,
+  "nota3": 7.00
+}
+
+### POST {{host}}/calificaciones
+Content-Type: application/json
+
+{
+  "alumno_nombre": "Ana Martínez",
+  "materia_id": 1,
+  "nota1": 12.00,
+  "nota2": 7.00,
+  "nota3": -2.00
+}
+
+### 
+PUT {{host}}/calificaciones/1
+Content-Type: application/json
+
+{
+  "alumno_nombre": "Carlos Pérez",
+  "materia_id": 1,
+  "nota1": 9.00,
+  "nota2": 8.50,
+  "nota3": 9.50
+}
+
+### 
+PUT {{host}}/calificaciones/2
+Content-Type: application/json
+
+{
+  "alumno_nombre": "Carlos Pérez",
+  "materia_id": 1,
+  "nota1": 7.00,
+  "nota2": 7.00,
+  "nota3": 7.00
+}
+
+### 
+
+DELETE {{host}}/calificaciones/1
+Content-Type: application/json

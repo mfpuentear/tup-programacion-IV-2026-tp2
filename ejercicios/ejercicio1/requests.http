@@ -1,0 +1,58 @@
+### Variables Globales
+@host = http://localhost:3000
+@endpoint = /api/rectangulos
+@baseUrl = {{host}}{{endpoint}}
+
+### 1. Crear Rectángulo 1 (Lados 5 y 10 -> Perímetro: 30, Superficie: 50)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "lado_a": 5,
+  "lado_b": 10
+}
+
+### 2. Crear Rectángulo 2 con decimales (Lados 3.5 y 2.5)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "lado_a": 3.5,
+  "lado_b": 2.5
+}
+
+### 3. Prueba de Validación: Lados menores o iguales a 0 (Falla con 400)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "lado_a": -2,
+  "lado_b": 0
+}
+
+### 4. Prueba de Validación: Intentar enviar perímetro desde cliente (Falla con 400)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "lado_a": 4,
+  "lado_b": 5,
+  "perimetro": 18
+}
+
+### 5. Obtener todos los rectángulos
+GET {{baseUrl}}
+
+### 6. Obtener rectángulo por ID
+GET {{baseUrl}}/1
+
+### 7. Actualizar un lado del rectángulo con ID 1 (Lado A pasa a 8, recalculando)
+PUT {{baseUrl}}/1
+Content-Type: application/json
+
+{
+  "lado_a": 8
+}
+
+### 8. Eliminar rectángulo por ID
+DELETE {{baseUrl}}/1

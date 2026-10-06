@@ -1,0 +1,30 @@
+CREATE DATABASE IF NOT EXISTS prog4_tp2;
+USE prog4_tp2;
+
+
+CREATE TABLE IF NOT EXISTS materias (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE IF NOT EXISTS calificaciones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    alumno_nombre VARCHAR(100) NOT NULL,
+    materia_id INT NOT NULL,
+    nota1 DECIMAL(4,2) NOT NULL,
+    nota2 DECIMAL(4,2) NOT NULL,
+    nota3 DECIMAL(4,2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+   
+    CONSTRAINT fk_calificaciones_materias
+        FOREIGN KEY (materia_id) 
+        REFERENCES materias(id)
+        ON DELETE RESTRICT ON UPDATE CASCADE,
+        
+    
+    CONSTRAINT uq_alumno_materia UNIQUE (alumno_nombre, materia_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
