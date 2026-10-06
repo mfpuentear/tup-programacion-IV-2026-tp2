@@ -1,0 +1,22 @@
+###
+@host = http://localhost:3000/api/rectangulos
+
+###
+GET {{host}}
+
+### 
+POST {{host}}
+Content-Type: application/json
+
+{
+  "lado_a": 5.0,
+  "lado_b": 10.0
+}
+###
+POST {{host}}
+Content-Type: application/json
+
+{
+  "lado_a": -2,
+  "lado_b": 0
+}

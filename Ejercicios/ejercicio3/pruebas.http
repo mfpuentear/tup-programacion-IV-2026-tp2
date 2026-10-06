@@ -1,0 +1,40 @@
+@host = http://localhost:3000/api/calificaciones
+
+### 
+GET {{host}}
+
+### 
+POST {{host}}
+Content-Type: application/json
+
+{
+  "alumno": "Nabila Campo Jatuff",
+  "materia_id": 1,
+  "nota1": 8.5,
+  "nota2": 9.0,
+  "nota3": 10.0
+}
+
+### 
+POST {{host}}
+Content-Type: application/json
+
+{
+  "alumno": "gonzalez dardo",
+  "materia_id": 1,
+  "nota1": 7,
+  "nota2": 7,
+  "nota3": 7
+}
+
+### 
+POST {{host}}
+Content-Type: application/json
+
+{
+  "alumno": "lino aldinati",
+  "materia_id": 2,
+  "nota1": 11,
+  "nota2": 5,
+  "nota3": 6
+}

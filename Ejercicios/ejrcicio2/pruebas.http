@@ -1,0 +1,27 @@
+@host = http://localhost:3000/api/tareas
+
+### 
+GET {{host}}
+
+### 
+GET {{host}}?completada=true
+
+### 
+GET {{host}}?completada=false
+
+### 
+POST {{host}}
+Content-Type: application/json
+
+{
+  "nombre": "Estudiar para Programacion 4",
+  "completada": false
+}
+
+### 
+POST {{host}}
+Content-Type: application/json
+
+{
+  "nombre": "estudiar para programacion 4"
+}
