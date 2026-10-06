@@ -1,0 +1,25 @@
+### 1. Obtener todas las materias
+GET http://localhost:3000/api/materias
+
+### 2. Crear materia (OBLIGATORIO antes de asignar una calificación)
+POST http://localhost:3000/api/materias
+Content-Type: application/json
+
+{
+  "nombre": "Programación IV"
+}
+
+### 3. Obtener todas las calificaciones
+GET http://localhost:3000/api/calificaciones
+
+### 4. Crear calificación
+POST http://localhost:3000/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Thiago Quintero",
+  "materia_id": 1,
+  "nota1": 9,
+  "nota2": 8.5,
+  "nota3": 10
+}
