@@ -11,12 +11,12 @@ POST {{url}}/rectangulos/
 Content-Type: application/json
 
 {
-  "lado1": 7,
-  "lado2": 2
+  "lado1": "",
+  "lado2": ""
 }
 
 ### Modificar rectángulo por ID
-PUT {{url}}/rectangulos/1
+PUT {{url}}/rectangulos/
 Content-Type: application/json
 
 {
@@ -25,4 +25,4 @@ Content-Type: application/json
 }
 
 ### Eliminar rectángulo por ID
-DELETE {{url}}/rectangulos/3
+DELETE {{url}}/rectangulos/4
