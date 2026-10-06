@@ -1,0 +1,82 @@
+@url = http://localhost:3000/api/tareas
+
+### 1. Obtener todas las tareas
+GET {{url}}
+
+### 2. Filtrar tareas completadas
+GET {{url}}?estado=completadas
+
+### 3. Filtrar tareas pendientes
+GET {{url}}?estado=pendientes
+
+### 4. Error: Filtro de estado inválido (HTTP 400)
+GET {{url}}?estado=invalido
+
+### 5. Crear tarea 1: Gym (Pendiente)
+POST {{url}}
+Content-Type: application/json
+
+{
+    "nombre": "Ir al gym - Rutina de piernas",
+    "estado": false
+}
+
+### 6. Crear tarea 2: Gaming (Pendiente)
+POST {{url}}
+Content-Type: application/json
+
+{
+    "nombre": "Jugar unos CS con los pibes",
+    "estado": false
+}
+
+### 7. Crear tarea 3: Estudio (Completada)
+POST {{url}}
+Content-Type: application/json
+
+{
+    "nombre": "Subir el Ejercicio 1 a GitHub",
+    "estado": true
+}
+
+### 8. Crear tarea 4: Compras (Pendiente)
+POST {{url}}
+Content-Type: application/json
+
+{
+    "nombre": "Comprar la creatina y la proteina",
+    "estado": false
+}
+
+### 9. Error: Crear tarea duplicada (HTTP 400 - case insensitive)
+POST {{url}}
+Content-Type: application/json
+
+{
+    "nombre": "  ir al gym - rutina de piernas  ",
+    "estado": false
+}
+
+### 10. Error: Crear tarea con estado inválido (HTTP 400)
+POST {{url}}
+Content-Type: application/json
+
+{
+    "nombre": "Sacar a pasear al perro",
+    "estado": "no-booleano"
+}
+
+### 11. Obtener tarea por ID / 1
+GET {{url}}/1
+
+### 12. Actualizar tarea (Marcar el gym como completado)
+PUT {{url}}/1
+Content-Type: application/json
+
+{
+    "nombre": "Ir al gym - Rutina de piernas",
+    "estado": true
+}
+
+### 13. Eliminar tarea por ID / 1
+DELETE {{url}}/1
