@@ -1,0 +1,91 @@
+### Obtener materias
+GET http://localhost:3000/api/materias
+
+### Crear materia 1
+POST http://localhost:3000/api/materias
+Content-Type: application/json
+
+{
+  "nombre": "Programación IV"
+}
+
+### Crear materia 2
+POST http://localhost:3000/api/materias
+Content-Type: application/json
+
+{
+  "nombre": "Bases de Datos"
+}
+
+### Obtener todas las calificaciones
+GET http://localhost:3000/api/calificaciones
+
+### Crear calificación (Válida)
+POST http://localhost:3000/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Veronica Velez",
+  "materiaId": 1,
+  "notas": [8, 9, 10]
+}
+
+### Crear calificación (Inválida - Materia no existe)
+POST http://localhost:3000/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Juan Perez",
+  "materiaId": 99,
+  "notas": [7, 7, 7]
+}
+
+### Crear calificación (Inválida - Mismo alumno y materia)
+POST http://localhost:3000/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "veronica velez",
+  "materiaId": 1,
+  "notas": [5, 5, 5]
+}
+
+### Crear calificación (Inválida - Faltan notas)
+POST http://localhost:3000/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Maria Garcia",
+  "materiaId": 1,
+  "notas": [8, 9]
+}
+
+### Crear calificación (Inválida - Nota fuera de rango)
+POST http://localhost:3000/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Pedro Martinez",
+  "materiaId": 1,
+  "notas": [8, 11, 10]
+}
+
+### Actualizar calificación
+PUT http://localhost:3000/api/calificaciones/1
+Content-Type: application/json
+
+{
+  "notas": [10, 10, 10]
+}
+
+### Actualizar calificación (Rompe unicidad)
+PUT http://localhost:3000/api/calificaciones/2
+Content-Type: application/json
+
+{
+  "alumno": "veronica velez",
+  "materiaId": 1
+}
+
+### Eliminar calificación
+DELETE http://localhost:3000/api/calificaciones/1

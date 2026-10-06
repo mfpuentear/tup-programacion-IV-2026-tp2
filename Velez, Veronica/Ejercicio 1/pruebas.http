@@ -1,0 +1,56 @@
+### Obtener todos los rectángulos
+GET http://localhost:3000/api/rectangulos
+
+### Obtener rectángulo por id (valido)
+GET http://localhost:3000/api/rectangulos/1
+
+### Obtener rectángulo por id (invalido)
+GET http://localhost:3000/api/rectangulos/abc
+
+### Crear rectángulo válido
+POST http://localhost:3000/api/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 10,
+  "lado2": 5
+}
+
+### Crear rectángulo inválido (faltan lados)
+POST http://localhost:3000/api/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 10
+}
+
+### Crear rectángulo inválido (lados negativos)
+POST http://localhost:3000/api/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": -10,
+  "lado2": 5
+}
+
+### Crear rectángulo inválido (incluye perimetro - debe ser rechazado)
+POST http://localhost:3000/api/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 10,
+  "lado2": 5,
+  "perimetro": 30
+}
+
+### Actualizar rectángulo válido
+PUT http://localhost:3000/api/rectangulos/1
+Content-Type: application/json
+
+{
+  "lado1": 20,
+  "lado2": 15
+}
+
+### Eliminar rectángulo
+DELETE http://localhost:3000/api/rectangulos/1
