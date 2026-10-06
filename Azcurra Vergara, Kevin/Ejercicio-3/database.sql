@@ -1,0 +1,29 @@
+CREATE DATABASE IF NOT EXISTS notas_db;
+
+USE notas_db;
+
+DROP TABLE IF EXISTS calificaciones;
+DROP TABLE IF EXISTS materias;
+
+CREATE TABLE materias (
+id INT AUTO_INCREMENT PRIMARY KEY,
+nombre VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_es_0900_ai_ci NOT NULL,
+UNIQUE KEY nombre_materia (nombre)
+);
+
+CREATE TABLE calificaciones (
+id INT AUTO_INCREMENT PRIMARY KEY,
+alumno VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_es_0900_ai_ci NOT NULL,
+materia_id INT NOT NULL,
+nota1 DECIMAL(4, 2) NOT NULL,
+nota2 DECIMAL(4, 2) NOT NULL,
+nota3 DECIMAL(4, 2) NOT NULL,
+UNIQUE KEY alumno_materia (alumno, materia_id),
+CONSTRAINT materia_calificacion FOREIGN KEY (materia_id)
+REFERENCES materias (id)
+ON DELETE RESTRICT
+ON UPDATE CASCADE,
+CONSTRAINT nota1_valida CHECK (nota1 BETWEEN 0 AND 10),
+CONSTRAINT nota2_valida CHECK (nota2 BETWEEN 0 AND 10),
+CONSTRAINT nota3_valida CHECK (nota3 BETWEEN 0 AND 10)
+);
