@@ -1,0 +1,35 @@
+### 1. Obtener todos los rectángulos
+GET http://localhost:3000/api/rectangulos
+
+### 2. Obtener un rectángulo por ID
+GET http://localhost:3000/api/rectangulos/1
+
+### 3. Crear un rectángulo
+POST http://localhost:3000/api/rectangulos
+Content-Type: application/json
+
+{
+  "lado_a": 5,
+  "lado_b": 10
+}
+
+### 4. Probar validación express-validator
+POST http://localhost:3000/api/rectangulos
+Content-Type: application/json
+
+{
+  "lado_a": -3,
+  "lado_b": 0
+}
+
+### 5. Actualizar un rectángulo
+PUT http://localhost:3000/api/rectangulos/1
+Content-Type: application/json
+
+{
+  "lado_a": 4,
+  "lado_b": 8
+}
+
+### 6. Eliminar un rectángulo
+DELETE http://localhost:3000/api/rectangulos/1

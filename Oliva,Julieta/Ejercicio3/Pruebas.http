@@ -1,0 +1,52 @@
+### Obtener el listado de materias
+GET http://localhost:3000/api/materias
+
+### Crear una materia nueva
+POST http://localhost:3000/api/materias
+Content-Type: application/json
+
+{
+  "nombre": "Sistemas Operativos"
+}
+
+### Traer todas las calificaciones registradas
+GET http://localhost:3000/api/calificaciones
+
+### Cargar notas para un alumno
+POST http://localhost:3000/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno_nombre": "Julieta Oliva",
+  "materia_id": 1,
+  "nota1": 9,
+  "nota2": 8.50,
+  "nota3": 10
+}
+
+### Probar duplicado de alumno/materia 
+POST http://localhost:3000/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno_nombre": "  julieta oliva  ",
+  "materia_id": 1,
+  "nota1": 7,
+  "nota2": 8,
+  "nota3": 9
+}
+
+### Actualizar un registro por ID
+PUT http://localhost:3000/api/calificaciones/1
+Content-Type: application/json
+
+{
+  "alumno_nombre": "Julieta Oliva",
+  "materia_id": 1,
+  "nota1": 10,
+  "nota2": 9.50,
+  "nota3": 10
+}
+
+### Eliminar registro de notas
+DELETE http://localhost:3000/api/calificaciones/1
