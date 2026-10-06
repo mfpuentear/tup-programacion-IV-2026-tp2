@@ -1,0 +1,251 @@
+### MATERIAS
+
+### 1. Crear materia - Programación IV
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+  "nombre": "Programación IV"
+}
+
+### 2. Crear materia - Bases de Datos
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+  "nombre": "Bases de Datos"
+}
+
+### 3. Crear materia - Análisis de Datos
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+  "nombre": "Análisis de Datos"
+}
+
+### 4. Obtener todas las materias
+GET http://localhost:3000/materias
+
+### 5. Obtener materia por ID
+GET http://localhost:3000/materias/1
+
+### 6. Modificar materia
+PUT http://localhost:3000/materias/1
+Content-Type: application/json
+
+{
+  "nombre": "Programación IV - API"
+}
+
+### CALIFICACIONES
+
+### 7. Crear calificación
+POST http://localhost:3000/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Isaias Cabrera",
+  "materia_id": 1,
+  "nota1": 7,
+  "nota2": 8,
+  "nota3": 9
+}
+
+### 8. Crear otra calificación
+POST http://localhost:3000/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Uriel Rivero",
+  "materia_id": 1,
+  "nota1": 8,
+  "nota2": 9,
+  "nota3": 10
+}
+
+### 9. Crear calificación de otro alumno
+POST http://localhost:3000/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Kevin Azcurra",
+  "materia_id": 2,
+  "nota1": 6,
+  "nota2": 7,
+  "nota3": 8
+}
+
+### 10. Obtener todas las calificaciones
+GET http://localhost:3000/calificaciones
+
+### 11. Obtener calificación por ID
+GET http://localhost:3000/calificaciones/1
+
+### 12. Filtrar por alumno
+GET http://localhost:3000/calificaciones?alumno=Juan%20Perez
+
+### 13. Filtrar por materia
+GET http://localhost:3000/calificaciones?materia_id=1
+
+### 14. Filtrar por alumno y materia
+GET http://localhost:3000/calificaciones?alumno=Juan%20Perez&materia_id=1
+
+### 15. Modificar calificación
+PUT http://localhost:3000/calificaciones/1
+Content-Type: application/json
+
+{
+  "alumno": "Isaias Cabrera",
+  "materia_id": 1,
+  "nota1": 8,
+  "nota2": 8.5,
+  "nota3": 9
+}
+
+### 16. Eliminar calificación
+DELETE http://localhost:3000/calificaciones/1
+
+
+### PRUEBAS DE VALIDACIÓN
+
+### 17. Alumno vacío
+POST http://localhost:3000/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "",
+  "materia_id": 1,
+  "nota1": 7,
+  "nota2": 8,
+  "nota3": 9
+}
+
+### 18. Materia inexistente
+POST http://localhost:3000/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Victor Leguiza",
+  "materia_id": 999,
+  "nota1": 7,
+  "nota2": 8,
+  "nota3": 9
+}
+
+### 19. Nota fuera de rango
+POST http://localhost:3000/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Victor Leguiza",
+  "materia_id": 1,
+  "nota1": 11,
+  "nota2": 8,
+  "nota3": 9
+}
+
+### 20. Nota negativa
+POST http://localhost:3000/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Victor Leguiza",
+  "materia_id": 1,
+  "nota1": -1,
+  "nota2": 8,
+  "nota3": 9
+}
+
+### 21. Falta nota3
+POST http://localhost:3000/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Victor Leguiza",
+  "materia_id": 1,
+  "nota1": 7,
+  "nota2": 8
+}
+
+### 22. Cuatro notas
+POST http://localhost:3000/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Victor Leguiza",
+  "materia_id": 1,
+  "nota1": 7,
+  "nota2": 8,
+  "nota3": 9,
+  "nota4": 10
+}
+
+### 23. Materia inválida
+POST http://localhost:3000/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Victor Leguiza",
+  "materia_id": "abc",
+  "nota1": 7,
+  "nota2": 8,
+  "nota3": 9
+}
+
+### 24. Alumno + materia duplicados
+POST http://localhost:3000/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Isaias Cabrera",
+  "materia_id": 1,
+  "nota1": 5,
+  "nota2": 5,
+  "nota3": 5
+}
+
+### 25. ID inválido
+GET http://localhost:3000/calificaciones/abc
+
+### 26. ID negativo
+GET http://localhost:3000/calificaciones/-1
+
+### 27. Filtro materia inválido
+GET http://localhost:3000/calificaciones?materia_id=abc
+
+### 28. Campo no permitido
+POST http://localhost:3000/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Victor Leguiza",
+  "materia_id": 1,
+  "nota1": 7,
+  "nota2": 8,
+  "nota3": 9,
+  "promedio": 8
+}
+
+
+### PRUEBAS DE MATERIAS
+
+### 29. Materia duplicada
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+  "nombre": "Bases de Datos"
+}
+
+### 30. Materia inexistente
+GET http://localhost:3000/materias/999
+
+### 31. ID de materia inválido
+GET http://localhost:3000/materias/abc
+
+### 32. Eliminar materia con calificaciones
+DELETE http://localhost:3000/materias/1
+
+### 33. Eliminar materia inexistente
+DELETE http://localhost:3000/materias/999

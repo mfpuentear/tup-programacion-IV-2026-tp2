@@ -1,0 +1,144 @@
+### EJERCICIO 2 - TAREAS
+
+### 1. Obtener todas las tareas
+GET http://localhost:3000/tareas
+
+
+### 2. Crear una tarea
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Estudiar para Programacion IV"
+}
+
+
+### 3. Crear una tarea completada
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Entregar trabajo practico",
+  "completada": true
+}
+
+
+### 4. Crear otra tarea pendiente
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Preparar examen",
+  "completada": false
+}
+
+
+### 5. Obtener una tarea por ID
+GET http://localhost:3000/tareas/1
+
+
+### 6. Obtener tareas pendientes
+GET http://localhost:3000/tareas?completada=false
+
+
+### 7. Obtener tareas completadas
+GET http://localhost:3000/tareas?completada=true
+
+
+### 8. Modificar una tarea
+PUT http://localhost:3000/tareas/1
+Content-Type: application/json
+
+{
+  "nombre": "Estudiar Programacion IV",
+  "completada": true
+}
+
+
+### 9. Eliminar una tarea
+DELETE http://localhost:3000/tareas/1
+
+
+### ==========================================
+### PRUEBAS DE ERRORES
+### ==========================================
+
+
+### 10. Error: nombre faltante
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+  "completada": false
+}
+
+
+### 11. Error: nombre vacío
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+  "nombre": "",
+  "completada": false
+}
+
+
+### 12. Error: estado inválido
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Tarea con estado incorrecto",
+  "completada": "hola"
+}
+
+
+### 13. Error: ID inválido
+GET http://localhost:3000/tareas/abc
+
+
+### 14. Error: ID negativo
+GET http://localhost:3000/tareas/-5
+
+
+### 15. Error: filtro inválido
+GET http://localhost:3000/tareas?completada=hola
+
+
+### 16. Error: nombre duplicado
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Estudiar Programacion IV",
+  "completada": false
+}
+
+
+### 17. Error: campo no permitido
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Tarea nueva",
+  "completada": false,
+  "id": 100
+}
+
+
+### 18. Error: tarea inexistente
+GET http://localhost:3000/tareas/999999
+
+
+### 19. Error: modificar tarea inexistente
+PUT http://localhost:3000/tareas/999999
+Content-Type: application/json
+
+{
+  "nombre": "Tarea inexistente",
+  "completada": true
+}
+
+
+### 20. Error: eliminar tarea inexistente
+DELETE http://localhost:3000/tareas/999999

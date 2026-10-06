@@ -1,0 +1,97 @@
+
+### 1. Listar todos los rectangulos
+GET http://localhost:3000/rectangulos
+
+
+### 2. Crear un rectangulo
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 4,
+  "lado2": 6
+}
+
+
+### 3. Crear otro rectangulo con decimales
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 2.5,
+  "lado2": 3.2
+}
+
+
+### 4. Consultar por ID (reemplazar 1 por un ID existente)
+GET http://localhost:3000/rectangulos/1
+
+
+### 5. Filtrar por lado1
+GET http://localhost:3000/rectangulos?lado1=4
+
+
+### 6. Filtrar por ambos lados
+GET http://localhost:3000/rectangulos?lado1=4&lado2=6
+
+
+### 7. Modificar un rectangulo
+PUT http://localhost:3000/rectangulos/1
+Content-Type: application/json
+
+{
+  "lado1": 5,
+  "lado2": 8
+}
+
+
+### 8. Error: falta lado2
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 4
+}
+
+
+### 9. Error: lado negativo
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": -4,
+  "lado2": 6
+}
+
+
+### 10. Error: lado no numerico
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": "abc",
+  "lado2": 6
+}
+
+
+### 11. Error: se intenta enviar el perimetro
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 4,
+  "lado2": 6,
+  "perimetro": 20
+}
+
+
+### 12. Error: ID invalido
+GET http://localhost:3000/rectangulos/abc
+
+
+### 13. Error: rectangulo inexistente
+GET http://localhost:3000/rectangulos/999999
+
+
+### 14. Eliminar un rectangulo
+DELETE http://localhost:3000/rectangulos/1

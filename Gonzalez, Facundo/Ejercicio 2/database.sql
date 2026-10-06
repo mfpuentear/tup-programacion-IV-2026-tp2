@@ -1,0 +1,9 @@
+USE Tareas;
+
+CREATE TABLE IF NOT EXISTS tareas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    completada BOOLEAN NOT NULL DEFAULT FALSE,
+
+    CONSTRAINT uk_tareas_nombre UNIQUE (nombre)
+);
