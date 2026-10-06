@@ -1,0 +1,26 @@
+@url = http://localhost:3000
+
+### GET materias
+GET {{url}}/materias
+
+### GET materia id
+GET {{url}}/materias/2
+
+### add materia
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+    "materia": "metodologia"
+}
+
+### modificar materias
+PUT {{url}}/materias/2
+Content-Type: application/json
+
+{
+    "materia": "laboratorio"
+}
+
+### Eliminar una materia
+DELETE {{url}}/materias/2
