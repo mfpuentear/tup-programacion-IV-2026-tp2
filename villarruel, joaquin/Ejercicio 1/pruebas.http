@@ -1,0 +1,94 @@
+### CREAR RECTÁNGULO
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+    "lado_a": 10,
+    "lado_b": 5
+}
+
+###
+
+### OBTENER TODOS LOS RECTÁNGULOS
+GET http://localhost:3000/rectangulos
+
+###
+
+### OBTENER UN RECTÁNGULO POR ID
+GET http://localhost:3000/rectangulos/1
+
+###
+
+### MODIFICAR RECTÁNGULO
+PUT http://localhost:3000/rectangulos/1
+Content-Type: application/json
+
+{
+    "lado_a": 20,
+    "lado_b": 10
+}
+
+###
+
+### ELIMINAR RECTÁNGULO
+DELETE http://localhost:3000/rectangulos/1
+
+###
+
+### CREAR OTRO RECTÁNGULO
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+    "lado_a": 8,
+    "lado_b": 4
+}
+
+###
+
+### OBTENER TODOS DESPUÉS DE LAS PRUEBAS
+GET http://localhost:3000/rectangulos
+
+###
+
+### VALIDACIÓN - LADO NEGATIVO
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+    "lado_a": -5,
+    "lado_b": 10
+}
+
+###
+
+### VALIDACIÓN - FALTA UN LADO
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+    "lado_a": 10
+}
+
+###
+
+### VALIDACIÓN - LADO IGUAL A CERO
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+    "lado_a": 0,
+    "lado_b": 10
+}
+
+###
+
+### VALIDACIÓN - VALORES NO NUMÉRICOS
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+    "lado_a": "hola",
+    "lado_b": "chau"
+}
+

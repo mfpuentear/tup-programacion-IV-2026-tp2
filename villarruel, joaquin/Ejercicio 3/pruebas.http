@@ -1,0 +1,109 @@
+### CREAR MATERIA
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "nombre": "Programacion"
+}
+
+###
+
+### CREAR OTRA MATERIA
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "nombre": "Base de Datos"
+}
+
+###
+
+### OBTENER MATERIAS
+GET http://localhost:3000/materias
+
+###
+
+### CREAR CALIFICACION
+POST http://localhost:3000/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Joaquin Villarruel",
+    "materia_id": 1,
+    "notas": [8, 9, 7]
+}
+
+###
+
+### OBTENER CALIFICACIONES
+GET http://localhost:3000/calificaciones
+
+###
+
+### OBTENER CALIFICACION POR ID
+GET http://localhost:3000/calificaciones/1
+
+###
+
+### MODIFICAR CALIFICACION
+PUT http://localhost:3000/calificaciones/1
+Content-Type: application/json
+
+{
+    "alumno": "Joaquin Villarruel",
+    "materia_id": 1,
+    "notas": [9, 9, 10]
+}
+
+###
+
+### VALIDACION - MENOS DE TRES NOTAS
+POST http://localhost:3000/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Pedro Perez",
+    "materia_id": 1,
+    "notas": [8, 9]
+}
+
+###
+
+### VALIDACION - NOTA FUERA DE ESCALA
+POST http://localhost:3000/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Pedro Perez",
+    "materia_id": 1,
+    "notas": [8, 15, 7]
+}
+
+###
+
+### VALIDACION - MATERIA INEXISTENTE
+POST http://localhost:3000/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Pedro Perez",
+    "materia_id": 999,
+    "notas": [8, 9, 7]
+}
+
+###
+
+### VALIDACION - REGISTRO DUPLICADO
+POST http://localhost:3000/calificaciones
+Content-Type: application/json
+
+{
+    "alumno": "Joaquin Villarruel",
+    "materia_id": 1,
+    "notas": [6, 7, 8]
+}
+
+###
+
+### ELIMINAR CALIFICACION
+DELETE http://localhost:3000/calificaciones/1

@@ -1,0 +1,81 @@
+### CREAR TAREA
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar programacion",
+    "completada": false
+}
+
+###
+
+### OBTENER TODAS LAS TAREAS
+GET http://localhost:3000/tareas
+
+###
+
+### OBTENER TAREAS PENDIENTES
+GET http://localhost:3000/tareas?estado=false
+
+###
+
+### OBTENER TAREAS COMPLETADAS
+GET http://localhost:3000/tareas?estado=true
+
+###
+
+### OBTENER UNA TAREA POR ID
+GET http://localhost:3000/tareas/1
+
+###
+
+### MODIFICAR TAREA
+PUT http://localhost:3000/tareas/1
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar programacion",
+    "completada": true
+}
+
+###
+
+### ELIMINAR TAREA
+DELETE http://localhost:3000/tareas/1
+
+###
+
+### VALIDACION - NOMBRE FALTANTE
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "completada": false
+}
+
+###
+
+### VALIDACION - ESTADO INVALIDO
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Otra tarea",
+    "completada": "hola"
+}
+
+###
+
+### VALIDACION - FILTRO INVALIDO
+GET http://localhost:3000/tareas?estado=hola
+
+###
+
+### VALIDACION - NOMBRE DUPLICADO
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar programacion",
+    "completada": false
+}
