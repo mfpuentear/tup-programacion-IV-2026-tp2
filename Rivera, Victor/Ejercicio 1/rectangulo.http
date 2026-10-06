@@ -1,0 +1,35 @@
+### 1. Obtener todos los rectangulos
+GET http://localhost:3000/rectangulos
+
+### 2. Crear un nuevo rectangulo valido
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+    "lado1": 10,
+    "lado2": 5
+}
+
+### 3. Crear rectangulo con error de validacion (express-validator)
+POST http://localhost:3000/rectangulos
+Content-Type: application/json
+
+{
+    "lado1": -5,
+    "lado2": 0
+}
+
+### 4. Obtener un rectangulo por ID
+GET http://localhost:3000/rectangulos/1
+
+### 5. Actualizar un rectangulo por ID
+PUT http://localhost:3000/rectangulos/1
+Content-Type: application/json
+
+{
+    "lado1": 20,
+    "lado2": 8
+}
+
+### 6. Eliminar un rectangulo por ID
+DELETE http://localhost:3000/rectangulos/1

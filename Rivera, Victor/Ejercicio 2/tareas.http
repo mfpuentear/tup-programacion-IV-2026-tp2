@@ -1,0 +1,35 @@
+### 1. Crear tarea completada
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Preparar el repositorio del TP2",
+    "completada": true
+}
+
+### 2. Crear tarea pendiente
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar para Programacion IV",
+    "completada": false
+}
+
+### 3. Obtener todas las tareas
+GET http://localhost:3000/tareas
+
+### 4. Filtrar tareas completadas
+GET http://localhost:3000/tareas?completada=true
+
+### 5. Filtrar tareas pendientes
+GET http://localhost:3000/tareas?completada=false
+
+### 6. Probar unicidad de nombre (Debe fallar)
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+    "nombre": "estudiar para programacion iv ",
+    "completada": true
+}
