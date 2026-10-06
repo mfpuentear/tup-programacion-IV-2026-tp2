@@ -1,0 +1,37 @@
+### Variables globales
+@url = http://localhost:3000/api/rectangulos
+
+### 1. Obtener todos los rectángulos
+GET {{url}}
+
+### 2. Crear un nuevo rectángulo
+POST {{url}}
+Content-Type: application/json
+
+{
+  "lado1": 10.5,
+  "lado2": 30
+}
+
+### 3. Obtener un rectángulo por ID
+GET {{url}}/2
+
+### 4. Modificar un rectángulo
+PUT {{url}}/2
+Content-Type: application/json
+
+{
+  "lado1": 8,
+  "lado2": 12.5
+}
+
+### 5. Eliminar un rectángulo
+DELETE {{url}}/2
+
+### 6. Prueba de Validación (debería dar error 400 porque falta el lado 2 y el lado 1 es negativo)
+POST {{url}}
+Content-Type: application/json
+
+{
+  "lado1": -5
+}

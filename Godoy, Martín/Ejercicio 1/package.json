@@ -1,0 +1,19 @@
+{
+  "name": "ejercicio-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+        "dev": "node --env-file=.env --watch index.js"
+  },
+  "keywords": [],
+  "author": "Martín Godoy",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^18.0.5",
+    "express": "^5.2.1",
+    "express-validator": "^7.3.2",
+    "mysql2": "^3.24.5"
+  }
+}

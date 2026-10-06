@@ -1,0 +1,48 @@
+### Variables globales
+@url = http://localhost:3000/api/calificaciones
+
+### 1. Obtener lista de materias disponibles
+GET http://localhost:3000/api/materias
+
+### 2. Obtener todas las calificaciones
+GET {{url}}
+
+### 3. Crear un registro de calificación exitoso
+POST {{url}}
+Content-Type: application/json
+
+{
+  "alumno": "Martín Godoy",
+  "materia_id": 1,
+  "notas": [1, 2.5, 3]
+}
+
+### 4. Prueba de error: Intentar crear el mismo registro (Unicidad)
+POST {{url}}
+Content-Type: application/json
+
+{
+  "alumno": "Martín Godoy",
+  "materia_id": 1,
+  "notas": [6, 7, 8]
+}
+
+### 5. Prueba de error: Materia inexistente y notas fuera de escala
+POST {{url}}
+Content-Type: application/json
+
+{
+  "alumno": "Laura Gomez",
+  "materia_id": 999,
+  "notas": [12, 5]
+}
+
+### 6. Modificar el registro (Reemplaza el '1' por el ID real que te dio el POST)
+PUT {{url}}/1
+Content-Type: application/json
+
+{
+  "alumno": "Martín Godoy",
+  "materia_id": 2,
+  "notas": [10, 10, 9]
+}

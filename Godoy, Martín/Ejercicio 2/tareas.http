@@ -1,0 +1,48 @@
+### Variables
+@url = http://localhost:3000/api/tareas
+
+### 1. Crear una tarea
+POST {{url}}
+Content-Type: application/json
+
+{
+  "nombre": "Aprender Node.js"
+}
+
+### 2. Intentar crear una tarea duplicada (Debe dar error de validación)
+POST {{url}}
+Content-Type: application/json
+
+{
+  "nombre": "  aprender NODE.JS  "
+}
+
+### 3. Crear otra tarea especificando estado
+POST {{url}}
+Content-Type: application/json
+
+{
+  "nombre": "Comprar supermercado",
+  "completada": true
+}
+
+### 4. Obtener todas las tareas
+GET {{url}}
+
+### 5. Obtener tareas completadas (Filtro por Query)
+GET {{url}}?estado=completada
+
+### 6. Obtener tareas pendientes (Filtro por Query)
+GET {{url}}?estado=pendiente
+
+### 7. Modificar una tarea (Marcar como completada) -> Ajustar ID
+PUT {{url}}/1
+Content-Type: application/json
+
+{
+  "nombre": "Aprender Node.js avanzado",
+  "completada": true
+}
+
+### 8. Eliminar tarea -> Ajustar ID
+DELETE {{url}}/2

@@ -1,0 +1,3 @@
+Filtro mediante Query Parameters (?estado=...): En lugar de crear rutas diferentes como /api/tareas/completadas o /api/tareas/pendientes, se implementó la buena práctica REST de utilizar Query Parameters. Esto permite tratar a la ruta /api/tareas como la colección central, mientras que el query parameter aplica filtros dinámicos sobre esa misma colección.
+
+Uso intensivo de express-validator (Custom Validators): La validación asíncrona personalizada (validarNombreUnico) evita llegar a la fase del controlador o generar una excepción del motor de base de datos por llaves duplicadas. Controlar el flujo en la capa de middleware devuelve errores de manera estructurada (código HTTP 400).
