@@ -1,0 +1,38 @@
+### 1. Obtener todas las tareas
+GET http://localhost:3000/api/tareas
+
+### 2. Obtener solo tareas completadas
+GET http://localhost:3000/api/tareas?completada=true
+
+### 3. Obtener solo tareas pendientes
+GET http://localhost:3000/api/tareas?completada=false
+
+### 4. Error al filtrar por estado inválido
+GET http://localhost:3000/api/tareas?completada=invalid_status
+
+### 5. Crear una tarea válida
+POST http://localhost:3000/api/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Estudiar Programación IV",
+  "completada": false
+}
+
+### 6. Error de duplicidad (mismo nombre cambiando mayúsculas/espacios)
+POST http://localhost:3000/api/tareas
+Content-Type: application/json
+
+{
+  "nombre": "  estudiar PROGRAMACIÓN iv  ",
+  "completada": true
+}
+
+### 7. Error de validación (nombre vacío)
+POST http://localhost:3000/api/tareas
+Content-Type: application/json
+
+{
+  "nombre": "   ",
+  "completada": false
+}

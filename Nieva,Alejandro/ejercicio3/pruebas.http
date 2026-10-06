@@ -1,0 +1,53 @@
+### 1. Obtener lista de materias
+GET http://localhost:3000/api/materias
+
+### 2. Obtener todas las calificaciones cargadas
+GET http://localhost:3000/api/calificaciones
+
+### 3. Registrar calificación válida
+POST http://localhost:3000/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Alejandro Nieva",
+  "materia_id": 1,
+  "nota1": 8,
+  "nota2": 9.5,
+  "nota3": 10
+}
+
+### 4. Error por intentar duplicar registro (mismo alumno y materia)
+POST http://localhost:3000/api/calificaciones
+Content-Type: application/json
+
+{
+  "nombre": "  alejandro NIEVA  ",
+  "materia_id": 1,
+  "nota1": 7,
+  "nota2": 7,
+  "nota3": 7
+}
+
+### 5. Error de validación (nota fuera de rango 1-10 o materia inexistente)
+POST http://localhost:3000/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Gael Vargas",
+  "materia_id": 99,
+  "nota1": 11,
+  "nota2": 5,
+  "nota3": 0
+}
+
+### 6. Actualización válida de una calificación (PUT)
+PUT http://localhost:3000/api/calificaciones/1
+Content-Type: application/json
+
+{
+  "alumno": "Alejandro Nieva",
+  "materia_id": 1,
+  "nota1": 9,
+  "nota2": 9,
+  "nota3": 10
+}

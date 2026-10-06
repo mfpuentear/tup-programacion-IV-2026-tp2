@@ -1,0 +1,76 @@
+### Obtener todos los rectángulos
+GET http://localhost:3000/api/rectangulos
+
+### Obtener rectángulo por ID
+GET http://localhost:3000/api/rectangulos/1
+
+### Crear rectángulo (Válido)
+POST http://localhost:3000/api/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 10.5,
+  "lado2": 5
+}
+
+### Crear rectángulo (Error: lado menor o igual a cero)
+POST http://localhost:3000/api/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": -2,
+  "lado2": 5
+}
+
+### Crear rectángulo (Error: envía el perímetro desde el cliente)
+POST http://localhost:3000/api/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 10,
+  "lado2": 5,
+  "perimetro": 30
+}
+
+### Modificar rectángulo por ID
+PUT http://localhost:3000/api/rectangulos/1
+Content-Type: application/json
+
+{
+  "lado1": 12,
+  "lado2": 4
+}
+
+### Eliminar rectángulo por ID
+DELETE http://localhost:3000/api/rectangulos/1
+
+### Crear rectángulo (Error: lado menor o igual a cero)
+POST http://localhost:3000/api/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": -2,
+  "lado2": 5
+}
+
+### Crear rectángulo (Error: envía el perímetro desde el cliente)
+POST http://localhost:3000/api/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 10,
+  "lado2": 5,
+  "perimetro": 30
+}
+
+### Modificar rectángulo por ID
+PUT http://localhost:3000/api/rectangulos/1
+Content-Type: application/json
+
+{
+  "lado1": 12,
+  "lado2": 4
+}
+
+### Eliminar rectángulo por ID
+DELETE http://localhost:3000/api/rectangulos/1
