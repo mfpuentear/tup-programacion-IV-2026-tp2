@@ -1,0 +1,28 @@
+{
+  "name": "tp2-clean",
+  "version": "1.0.0",
+  "description": "- Bifurcar (fork) el repositorio para tener una copia en su cuenta de Github.\r - Crear una rama con sus apellidos y nombres (separados por una coma. Ejemplo:\r   Perez, Juan).\r - Crear una carpeta con sus apellidos y nombres (separados por una coma.\r   Ejemplo: Perez, Juan).\r - Dentro de esa carpeta agregar los ejercicios resueltos. Cada ejercicio en una\r   carpeta diferente (Ejemplo: Ejercicio 1, Ejercicio 2, etc).\r - Los enunciados de los ejercicios se encuentran dentro de la carpeta\r   'Enunciados'.\r - Para cada ejercicio plantear los métodos HTTP que considere necesarios junto\r   con el nombre del o los recursos.\r - También verificar que los valores (params, query, body) al consultar, crear,\r   modificar o quitar estén dentro de valores válidos empleando express-validator.\r - A su vez, incluir el diagrama de relaciones de entidades de cada tabla de la\r   base de datos.\r - Por último agregar un archivo http en cada ejercicio para probar los\r   distintos métodos.\r - Realizar al menos un commit por ejercicio.\r - Crear un pull request una vez finalizado el trabajo práctico.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Laovking/tup-programacion-IV-2026-tp2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Laovking/tup-programacion-IV-2026-tp2/issues"
+  },
+  "homepage": "https://github.com/Laovking/tup-programacion-IV-2026-tp2#readme",
+  "dependencies": {
+    "dotenv": "^18.0.5",
+    "express": "^5.2.1",
+    "express-validator": "^7.3.2",
+    "mysql2": "^3.24.5",
+    "nodemon": "^3.1.14"
+  }
+}

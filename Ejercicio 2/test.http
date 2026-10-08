@@ -1,0 +1,50 @@
+### 1. Obtener todas las tareas (Inicialmente vacío)
+GET http://localhost:3001/api/tasks
+
+###
+
+### 2. Crear una nueva tarea
+POST http://localhost:3001/api/tasks
+Content-Type: application/json
+
+{
+  "title": "Aprender Express Validator",
+  "description": "Estudiar la sintaxis de express-validator para APIs en Node.js",
+  "completed": false
+}
+
+###
+
+### 3. Intentar crear una tarea con el mismo título (Debe dar error de duplicado)
+POST http://localhost:3001/api/tasks
+Content-Type: application/json
+
+{
+  "title": "Aprender Express Validator",
+  "description": "Intento de duplicado"
+}
+
+###
+
+### 4. Obtener tarea por ID
+GET http://localhost:3001/api/tasks/1
+
+###
+
+### 5. Actualizar tarea (Marcar como completada)
+PUT http://localhost:3001/api/tasks/1
+Content-Type: application/json
+
+{
+  "completed": true
+}
+
+###
+
+### 6. Filtrar tareas por completadas (completed=true)
+GET http://localhost:3001/api/tasks?completed=true
+
+###
+
+### 7. Eliminar tarea por ID
+DELETE http://localhost:3001/api/tasks/1
