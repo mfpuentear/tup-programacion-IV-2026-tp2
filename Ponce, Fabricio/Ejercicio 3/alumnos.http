@@ -1,0 +1,119 @@
+@url=http://localhost:3003
+
+### 1. Listar materias
+GET {{url}}/materias
+
+### 2. Consultar materia por ID
+GET {{url}}/materias/1
+
+### 3. Crear materia
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+    "nombre": "Inglés Técnico"
+}
+
+### 4. Error - materia repetida
+POST {{url}}/materias
+Content-Type: application/json
+
+{
+    "nombre": "Programación IV"
+}
+
+
+### 5. Crear alumno
+POST {{url}}/alumnos
+Content-Type: application/json
+
+{
+    "nombre": "Fabricio",
+    "materia_id": 1,
+    "notas": [7, 8, 9]
+}
+
+### 6. Mismo alumno en otra materia
+POST {{url}}/alumnos
+Content-Type: application/json
+
+{
+    "nombre": "Fabricio",
+    "materia_id": 2,
+    "notas": [6, 7, 8]
+}
+
+### 7. Error - mismo alumno y misma materia
+POST {{url}}/alumnos
+Content-Type: application/json
+
+{
+    "nombre": "fabricio",
+    "materia_id": 1,
+    "notas": [9, 9, 9]
+}
+
+### 8. Error - materia inexistente
+POST {{url}}/alumnos
+Content-Type: application/json
+
+{
+    "nombre": "Pedro",
+    "materia_id": 999,
+    "notas": [7, 8, 9]
+}
+
+### 9. Error - faltan notas
+POST {{url}}/alumnos
+Content-Type: application/json
+
+{
+    "nombre": "Juan",
+    "materia_id": 1,
+    "notas": [7, 8]
+}
+
+### 10. Error - nota mayor a 10
+POST {{url}}/alumnos
+Content-Type: application/json
+
+{
+    "nombre": "Ana",
+    "materia_id": 1,
+    "notas": [7, 11, 9]
+}
+
+### 11. Listar alumnos
+GET {{url}}/alumnos
+
+### 12. Consultar alumno por ID
+GET {{url}}/alumnos/1
+
+### 13. Error - ID inválido
+GET {{url}}/alumnos/abc
+
+### 14. Modificar alumno
+PUT {{url}}/alumnos/1
+Content-Type: application/json
+
+{
+    "nombre": "Fabricio",
+    "materia_id": 1,
+    "notas": [8, 9, 10]
+}
+
+### 15. Error - modificar creando combinación repetida
+PUT {{url}}/alumnos/2
+Content-Type: application/json
+
+{
+    "nombre": "Fabricio",
+    "materia_id": 1,
+    "notas": [7, 7, 7]
+}
+
+### 16. Eliminar alumno
+DELETE {{url}}/alumnos/2
+
+### 17. Error - alumno inexistente
+GET {{url}}/alumnos/9999

@@ -1,0 +1,82 @@
+@url=http://localhost:3002
+
+### 1. Crear tarea pendiente
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar para el parcial",
+    "completada": false
+}
+
+### 2. Crear tarea completada
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Entregar TP",
+    "completada": true
+}
+
+### 3. Error - nombre duplicado
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "estudiar para el parcial",
+    "completada": false
+}
+
+### 4. Error - completada inválida
+POST {{url}}/tareas
+Content-Type: application/json
+
+{
+    "nombre": "Otra tarea",
+    "completada": "si"
+}
+
+### 5. Listar todas las tareas
+GET {{url}}/tareas
+
+### 6. Listar tareas completadas
+GET {{url}}/tareas?estado=completadas
+
+### 7. Listar tareas pendientes
+GET {{url}}/tareas?estado=pendientes
+
+### 8. Error - filtro inválido
+GET {{url}}/tareas?estado=otro
+
+### 9. Consultar tarea por ID
+GET {{url}}/tareas/1
+
+### 10. Error - ID inválido
+GET {{url}}/tareas/abc
+
+### 11. Modificar tarea
+PUT {{url}}/tareas/1
+Content-Type: application/json
+
+{
+    "nombre": "Estudiar para el segundo parcial",
+    "completada": true
+}
+
+### 12. Error - modificar con nombre duplicado
+PUT {{url}}/tareas/1
+Content-Type: application/json
+
+{
+    "nombre": "Entregar TP",
+    "completada": true
+}
+
+### 13. Eliminar tarea
+DELETE {{url}}/tareas/2
+
+### 14. Error - eliminar ID inválido
+DELETE {{url}}/tareas/abc
+
+### 15. Error - tarea inexistente
+GET {{url}}/tareas/9999

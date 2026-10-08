@@ -1,0 +1,60 @@
+@url=http://localhost:3001
+
+### 1. Crear rectángulo válido
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "base": 10.5,
+    "altura": 5
+}
+
+### 2. Error - enviar perímetro
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "base": 4,
+    "altura": 8,
+    "perimetro": 24
+}
+
+### 3. Error - enviar superficie
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "base": 4,
+    "altura": 8,
+    "superficie": 32
+}
+
+### 4. Error - valores menores o iguales a cero
+POST {{url}}/rectangulos
+Content-Type: application/json
+
+{
+    "base": -2,
+    "altura": 0
+}
+
+### 5. Consultar todos los rectángulos
+GET {{url}}/rectangulos
+
+### 6. Consultar rectángulo por ID
+GET {{url}}/rectangulos/1
+
+### 7. Error - ID inválido
+GET {{url}}/rectangulos/abc
+
+### 8. Actualizar rectángulo
+PUT {{url}}/rectangulos/1
+Content-Type: application/json
+
+{
+    "base": 12,
+    "altura": 6
+}
+
+### 9. Eliminar rectángulo
+DELETE {{url}}/rectangulos/1
