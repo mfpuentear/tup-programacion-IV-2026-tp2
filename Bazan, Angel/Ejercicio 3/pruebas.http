@@ -1,0 +1,44 @@
+### 1. Listar materias disponibles
+GET http://localhost:3003/api/materias
+
+### 2. Listar todas las calificaciones
+GET http://localhost:3003/api/calificaciones
+
+### 3. Cargar calificaciones (Éxito - Exige exactamente 3 notas)
+POST http://localhost:3003/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Ángel Bazán",
+  "materia_id": 1,
+  "nota_1": 8.5,
+  "nota_2": 9.0,
+  "nota_3": 10.0
+}
+
+### 4. Intentar cargar duplicado mismo alumno y materia (Error)
+POST http://localhost:3003/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Ángel Bazán",
+  "materia_id": 1,
+  "nota_1": 7.0,
+  "nota_2": 8.0,
+  "nota_3": 6.0
+}
+
+### 5. Modificar calificaciones
+PUT http://localhost:3003/api/calificaciones/1
+Content-Type: application/json
+
+{
+  "alumno": "Ángel Bazán",
+  "materia_id": 1,
+  "nota_1": 9.0,
+  "nota_2": 9.5,
+  "nota_3": 10.0
+}
+
+### 6. Eliminar calificación
+DELETE http://localhost:3003/api/calificaciones/1
